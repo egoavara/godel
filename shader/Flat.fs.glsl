@@ -24,7 +24,7 @@ out vec4 outputColor;
 void main() {
     vec4 c = BaseColorFactor;
     #ifdef HAS_BASECOLORTEX
-        c = c * texture(BaseColorTex, fsout.texCoord_0.xy);
+        c = c * vec4(texture(BaseColorTex, fsout.texCoord_0.xy));
     #endif
     outputColor = c;
 }

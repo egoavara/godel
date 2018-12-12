@@ -1,6 +1,7 @@
 package godel
 
 import (
+	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"image"
 	"strings"
@@ -44,6 +45,7 @@ func buildShader(src string, shdtype uint32) uint32 {
 		gl.GetShaderiv(shd, gl.INFO_LOG_LENGTH, &logLength)
 		log := strings.Repeat("\x00", int(logLength+1))
 		gl.GetShaderInfoLog(shd, logLength, nil, gl.Str(log))
+		fmt.Println(src)
 		panic(log)
 	}
 	return shd

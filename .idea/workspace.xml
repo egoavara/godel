@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ad9fc10-d5d8-46bd-955a-69df36addd2a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/godel.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/glutils.go" beforeDir="false" afterPath="$PROJECT_DIR$/glutils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shader/Flat.fs.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shader/Flat.fs.glsl" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aRender.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_Node.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="625">
+              <caret line="126" column="47" lean-forward="true" selection-start-line="126" selection-start-column="47" selection-end-line="126" selection-end-column="47" />
+              <folding>
+                <element signature="e#134#536#0" />
+                <element signature="n#!!block;n#Transform#0" />
+                <element signature="e#608#781#0" />
+                <element signature="e#787#809#0" />
+                <element signature="n#!!block;n#Scheme#0" />
+                <element signature="n#!!block;n#Syntax#0" />
+                <element signature="e#1785#2401#0" />
+                <element signature="e#1806#1832#0" />
+                <element signature="e#1834#2031#0" />
+                <element signature="e#1933#2017#0" />
+                <element signature="e#2033#2398#0" />
+                <element signature="e#2095#2160#0" />
+                <element signature="e#2197#2276#0" />
+                <element signature="e#2316#2398#0" />
+                <element signature="n#!!block;n#To#0" />
+                <element signature="e#2508#2533#0" />
+                <element signature="e#2554#2588#0" />
+                <element signature="e#2594#2623#0" />
+                <element signature="e#2650#2694#0" />
+                <element signature="e#2682#2691#0" />
+                <element signature="e#2700#2739#0" />
+                <element signature="e#2762#2801#0" />
+                <element signature="e#2807#2879#0" />
+                <element signature="e#2899#2937#0" />
+                <element signature="e#2925#2934#0" />
+                <element signature="e#2943#2970#0" />
+                <element signature="e#2992#3022#0" />
+                <element signature="e#3192#3345#0" />
+                <element signature="e#3238#3295#0" />
+                <element signature="n#!!block;n#findRecursiveLink#0" />
+                <element signature="e#3927#3946#0" />
+                <element signature="e#3967#3985#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_Mesh.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="58" column="69" lean-forward="true" selection-start-line="58" selection-start-column="69" selection-end-line="58" selection-end-column="69" />
+              <folding>
+                <element signature="e#62#186#0" />
+                <element signature="n#!!block;n#Scheme#0" />
+                <element signature="n#!!block;n#Syntax#0" />
+                <element signature="e#667#859#0" />
+                <element signature="e#688#714#0" />
+                <element signature="e#716#743#0" />
+                <element signature="e#745#856#0" />
+                <element signature="e#786#856#0" />
+                <element signature="n#!!block;n#To#0" />
+                <element signature="e#1051#1076#0" />
+                <element signature="n#!!block;n#GetChild#0" />
+                <element signature="n#!!block;n#SetChild#0" />
+                <element signature="n#!!block;n#LenChild#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
+              <folding>
+                <element signature="e#119#727#0" />
+                <element signature="e#767#1407#0" />
+                <element signature="e#1478#1573#0" />
+                <element signature="e#1490#1525#0" />
+                <element signature="e#1527#1570#0" />
+                <element signature="n#!!block;n#SetChild#0" />
+                <element signature="e#1675#1872#0" />
+                <element signature="e#1687#1773#0" />
+                <element signature="e#1775#1869#0" />
+                <element signature="n#!!block;n#Scheme#0" />
+                <element signature="n#!!block;n#Syntax#0" />
+                <element signature="e#2159#2839#0" />
+                <element signature="e#2180#2206#0" />
+                <element signature="e#2208#2822#0" />
+                <element signature="e#2291#2408#0" />
+                <element signature="e#2494#2606#0" />
+                <element signature="e#2695#2808#0" />
+                <element signature="n#!!block;n#To#0" />
+                <element signature="e#3005#3064#0" />
+                <element signature="e#3041#3061#0" />
+                <element signature="e#3070#3117#0" />
+                <element signature="e#3146#3177#0" />
+                <element signature="e#3183#3228#0" />
+                <element signature="e#3258#3290#0" />
+                <element signature="e#3296#3343#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/glutils.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shader/PBR.fs.glsl">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shader/Flat.fs.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_Scene.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+              <folding>
+                <element signature="e#153#246#0" />
+                <element signature="e#263#490#0" />
+                <element signature="n#!!block;n#Scheme#0" />
+                <element signature="n#!!block;n#Syntax#0" />
+                <element signature="e#630#830#0" />
+                <element signature="e#651#677#0" />
+                <element signature="e#679#705#0" />
+                <element signature="e#707#827#0" />
+                <element signature="e#767#827#0" />
+                <element signature="n#!!block;n#To#0" />
+                <element signature="e#981#1006#0" />
+                <element signature="n#!!block;n#Link#0" />
+                <element signature="e#1184#1327#0" />
+                <element signature="e#1220#1284#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aApplication.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="urls">
+      <list>
+        <option value="file://$PROJECT_DIR$/../../../.." />
+      </list>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../gltf2/spec_Node.go" />
+        <option value="$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go" />
+        <option value="$PROJECT_DIR$/glutils.go" />
+        <option value="$PROJECT_DIR$/shader/Flat.fs.glsl" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="953" />
+    <option name="y" value="1" />
+    <option name="width" value="974" />
+    <option name="height" value="1039" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="godel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="godel" type="462c0819:PsiDirectoryNode" />
+              <item name="shader" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gltf2" />
+    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="godel" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/demo/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/demo/model_gltf2.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MeshPrimitive.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding>
+            <element signature="e#71#266#0" />
+            <element signature="e#291#842#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="e#1007#1530#0" />
+            <element signature="e#1028#1054#0" />
+            <element signature="e#1056#1082#0" />
+            <element signature="e#1084#1527#0" />
+            <element signature="e#1124#1190#0" />
+            <element signature="e#1226#1527#0" />
+            <element signature="e#1278#1296#0" />
+            <element signature="e#1331#1349#0" />
+            <element signature="e#1385#1403#0" />
+            <element signature="e#1431#1523#0" />
+            <element signature="n#!!block;n#To#0" />
+            <element signature="e#1661#1717#0" />
+            <element signature="e#1739#1898#0" />
+            <element signature="e#1837#1895#0" />
+            <element signature="e#1917#1944#0" />
+            <element signature="e#1950#1975#0" />
+            <element signature="n#!!block;n#Link#0" />
+            <element signature="e#2166#2343#0" />
+            <element signature="e#2206#2283#0" />
+            <element signature="e#2365#2544#0" />
+            <element signature="e#2414#2481#0" />
+            <element signature="e#2567#2750#0" />
+            <element signature="e#2617#2685#0" />
+            <element signature="e#2786#3003#0" />
+            <element signature="e#2815#3000#0" />
+            <element signature="e#2856#2938#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Scene.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
+          <folding>
+            <element signature="e#153#246#0" />
+            <element signature="e#263#490#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="e#630#830#0" />
+            <element signature="e#651#677#0" />
+            <element signature="e#679#705#0" />
+            <element signature="e#707#827#0" />
+            <element signature="e#767#827#0" />
+            <element signature="n#!!block;n#To#0" />
+            <element signature="e#981#1006#0" />
+            <element signature="n#!!block;n#Link#0" />
+            <element signature="e#1184#1327#0" />
+            <element signature="e#1220#1284#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="126" column="47" lean-forward="true" selection-start-line="126" selection-start-column="47" selection-end-line="126" selection-end-column="47" />
+          <folding>
+            <element signature="e#134#536#0" />
+            <element signature="n#!!block;n#Transform#0" />
+            <element signature="e#608#781#0" />
+            <element signature="e#787#809#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="e#1785#2401#0" />
+            <element signature="e#1806#1832#0" />
+            <element signature="e#1834#2031#0" />
+            <element signature="e#1933#2017#0" />
+            <element signature="e#2033#2398#0" />
+            <element signature="e#2095#2160#0" />
+            <element signature="e#2197#2276#0" />
+            <element signature="e#2316#2398#0" />
+            <element signature="n#!!block;n#To#0" />
+            <element signature="e#2508#2533#0" />
+            <element signature="e#2554#2588#0" />
+            <element signature="e#2594#2623#0" />
+            <element signature="e#2650#2694#0" />
+            <element signature="e#2682#2691#0" />
+            <element signature="e#2700#2739#0" />
+            <element signature="e#2762#2801#0" />
+            <element signature="e#2807#2879#0" />
+            <element signature="e#2899#2937#0" />
+            <element signature="e#2925#2934#0" />
+            <element signature="e#2943#2970#0" />
+            <element signature="e#2992#3022#0" />
+            <element signature="e#3192#3345#0" />
+            <element signature="e#3238#3295#0" />
+            <element signature="n#!!block;n#findRecursiveLink#0" />
+            <element signature="e#3927#3946#0" />
+            <element signature="e#3967#3985#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Mesh.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="58" column="69" lean-forward="true" selection-start-line="58" selection-start-column="69" selection-end-line="58" selection-end-column="69" />
+          <folding>
+            <element signature="e#62#186#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="e#667#859#0" />
+            <element signature="e#688#714#0" />
+            <element signature="e#716#743#0" />
+            <element signature="e#745#856#0" />
+            <element signature="e#786#856#0" />
+            <element signature="n#!!block;n#To#0" />
+            <element signature="e#1051#1076#0" />
+            <element signature="n#!!block;n#GetChild#0" />
+            <element signature="n#!!block;n#SetChild#0" />
+            <element signature="n#!!block;n#LenChild#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
+          <folding>
+            <element signature="e#119#727#0" />
+            <element signature="e#767#1407#0" />
+            <element signature="e#1478#1573#0" />
+            <element signature="e#1490#1525#0" />
+            <element signature="e#1527#1570#0" />
+            <element signature="n#!!block;n#SetChild#0" />
+            <element signature="e#1675#1872#0" />
+            <element signature="e#1687#1773#0" />
+            <element signature="e#1775#1869#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="e#2159#2839#0" />
+            <element signature="e#2180#2206#0" />
+            <element signature="e#2208#2822#0" />
+            <element signature="e#2291#2408#0" />
+            <element signature="e#2494#2606#0" />
+            <element signature="e#2695#2808#0" />
+            <element signature="n#!!block;n#To#0" />
+            <element signature="e#3005#3064#0" />
+            <element signature="e#3041#3061#0" />
+            <element signature="e#3070#3117#0" />
+            <element signature="e#3146#3177#0" />
+            <element signature="e#3183#3228#0" />
+            <element signature="e#3258#3290#0" />
+            <element signature="e#3296#3343#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aRender.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aApplication.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glutils.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shader/PBR.fs.glsl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shader/Flat.fs.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
