@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/iamGreedy/essence/version"
 	"github.com/iamGreedy/gltf2"
 
 	"os"
 )
 
 func main() {
-	//f, err := os.Open("godel/demo/RubiksCube/RubiksCube_01.gltf")
-	f, err := os.Open("godel/demo/dice/dice.gltf")
+	//f, err := os.Open("./demo/RubiksCube/RubiksCube_01.gltf")
+	//f, err := os.Open("./demo/dice/dice.gltf")
+	f, err := os.Open("./demo/damagedHelmet/damagedHelmet.gltf")
 	if err != nil {
 		panic(err)
 	}
@@ -36,6 +36,5 @@ func main() {
 	}
 	//
 	fmt.Println(md.Asset)
-	v := version.New(4, 1)
-	fmt.Println(fmt.Sprintf("# version %d%d0", v.Major, v.Minor))
+	fmt.Println(md.Nodes)
 }

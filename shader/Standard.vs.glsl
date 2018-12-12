@@ -56,7 +56,7 @@ void main() {
     #ifdef HAS_COORD_0
         fsout.texCoord_0 = texCoord_0;
     #else
-        fsout.texCoord_0 = vec2(0.,0.);
+        fsout.texCoord_0 = vec2(0.0,0.0);
     #endif
     // Camera = Perspective * View
     gl_Position = CameraMatrix * ModelMatrix * vec4(position, 1); // needs w for proper perspective correction

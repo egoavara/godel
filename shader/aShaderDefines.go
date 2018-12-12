@@ -45,11 +45,11 @@ const (
 // PBR.fs.glsl
 const (
 	USE_IBL               Define = "#define USE_IBL"
-	HAS_BASECOLORMAP      Define = "#define HAS_BASECOLORMAP"
-	HAS_NORMALMAP         Define = "#define HAS_NORMALMAP"
-	HAS_EMISSIVEMAP       Define = "#define HAS_EMISSIVEMAP"
-	HAS_METALROUGHNESSMAP Define = "#define HAS_METALROUGHNESSMAP"
-	HAS_OCCLUSIONMAP      Define = "#define HAS_OCCLUSIONMAP"
+	HAS_BASECOLORTEX      Define = "#define HAS_BASECOLORTEX"
+	HAS_NORMALTEX         Define = "#define HAS_NORMALTEX"
+	HAS_EMISSIVETEX       Define = "#define HAS_EMISSIVETEX"
+	HAS_METALROUGHNESSTEX Define = "#define HAS_METALROUGHNESSTEX"
+	HAS_OCCLUSIONTEX      Define = "#define HAS_OCCLUSIONTEX"
 	//
 	MANUAL_SRGB             Define = "#define MANUAL_SRGB"
 	SRGB_FAST_APPROXIMATION Define = "#define SRGB_FAST_APPROXIMATION"

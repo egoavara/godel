@@ -6,6 +6,8 @@ import (
 	"github.com/iamGreedy/gltf2"
 	"github.com/iamGreedy/godel/shader"
 	"github.com/pkg/errors"
+	"image"
+	"unsafe"
 )
 
 type primitive struct {
@@ -21,6 +23,8 @@ type Renderer struct {
 	meshPrimitive [][]*primitive
 	// vbo
 	bufferViews []uint32
+	// texture
+	textures []uint32
 	//
 	t mgl32.Vec3
 	r mgl32.Quat
@@ -31,6 +35,9 @@ type Renderer struct {
 func (s *Renderer) _Setup() error {
 	s.sceneidx = -1
 	if err := s._Setup_buffers(); err != nil {
+		return err
+	}
+	if err := s._Setup_textures(); err != nil {
 		return err
 	}
 	if err := s._Setup_programs(); err != nil {
@@ -53,6 +60,7 @@ func (s *Renderer) _Setup_programs() (err error) {
 		for j, prim := range mesh.Primitives {
 			s.meshPrimitive[i][j] = new(primitive)
 			defs := base.Copy()
+			// vs defs
 			if _, ok := prim.Attributes[gltf2.POSITION]; !ok {
 				return errors.New("Must have POSITION")
 			}
@@ -61,6 +69,14 @@ func (s *Renderer) _Setup_programs() (err error) {
 			}
 			if _, ok := prim.Attributes[gltf2.NORMAL]; ok {
 				defs.Add(shader.HAS_COORD_0)
+			}
+			// fs defs
+			if prim.Material != nil {
+				if prim.Material.PBRMetallicRoughness != nil {
+					if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
+						defs.Add(shader.HAS_BASECOLORTEX)
+					}
+				}
 			}
 			//
 			s.meshPrimitive[i][j].programIndex = s.app.requireProgram(defs)
@@ -139,9 +155,54 @@ func (s *Renderer) _Setup_buffers() (err error) {
 	}
 	return nil
 }
+func (s *Renderer) _Setup_textures() (err error) {
+	s.textures = make([]uint32, len(s.model.Textures))
+	gl.GenTextures(int32(len(s.textures)), &s.textures[0])
+	defer func() {
+		if err != nil {
+			gl.DeleteBuffers(int32(len(s.textures)), &s.textures[0])
+		}
+	}()
+	for i, tex := range s.model.Textures {
+		var img *image.RGBA
+		img, err = tex.Source.Load(false)
+		if err != nil {
+			return err
+		}
+
+		//
+		gl.ActiveTexture(gl.TEXTURE0)
+		gl.BindTexture(gl.TEXTURE_2D, s.textures[i])
+		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, tex.Sampler.MagFilter.GL())
+		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, tex.Sampler.MinFilter.GL())
+		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, tex.Sampler.WrapS.GL())
+		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, tex.Sampler.WrapT.GL())
+		gl.TexImage2D(gl.TEXTURE_2D,
+			0,
+			gl.RGBA,
+			int32(img.Bounds().Dx()), int32(img.Bounds().Dy()),
+			0,
+			gl.RGBA,
+			gl.UNSIGNED_BYTE,
+			unsafe.Pointer(&img.Pix[0]),
+		)
+		if tex.Sampler.MinFilter.IsMipmap() {
+			gl.GenerateMipmap(gl.TEXTURE_2D)
+		}
+	}
+	return nil
+}
 func (s *Renderer) bufferViewIDX(bv *gltf2.BufferView) int {
 	for i, v := range s.model.BufferViews {
 		if v == bv {
+			return i
+		}
+	}
+	return -1
+}
+func (s *Renderer) textureIDX(tex *gltf2.Texture) int {
+	for i, v := range s.model.Textures {
+		if v == tex {
 			return i
 		}
 	}
@@ -156,32 +217,44 @@ func (s *Renderer) recur_node(node *gltf2.Node, camera mgl32.Mat4, model mgl32.M
 	for i, v := range s.model.Meshes {
 		if v == node.Mesh {
 			idx_mesh = i
+			break
 		}
 	}
 	// model matrix setup
 	model = model.Mul4(node.Transform())
-	// render mesh
-	for idx_prim, prim := range node.Mesh.Primitives {
-		glProgram := s.app.getProgram(s.meshPrimitive[idx_mesh][idx_prim].programIndex)
-		normal := model.Transpose()
-		gl.UseProgram(glProgram)
-		// matrix
-		gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("CameraMatrix\x00")), 1, false, &camera[0])
-		gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("ModelMatrix\x00")), 1, false, &model[0])
-		gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("NormalMatrix\x00")), 1, false, &normal[0])
-		// material
-		gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("FlatColor\x00")), 1, &prim.Material.PBRMetallicRoughness.BaseColorFactor[0])
-		//
-		if prim.Indices == nil {
-			gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
-			gl.DrawArrays(uint32(prim.Mode.GL()), int32(prim.Indices.ByteOffset), int32(prim.Indices.Count))
-		} else {
-			gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
-			gl.DrawElements(uint32(prim.Mode.GL()), int32(prim.Indices.Count), uint32(prim.Indices.ComponentType.GL()), gl.PtrOffset(prim.Indices.ByteOffset))
+	if node.Mesh != nil {
+		// render mesh
+		for idx_prim, prim := range node.Mesh.Primitives {
+			glProgram := s.app.getProgram(s.meshPrimitive[idx_mesh][idx_prim].programIndex)
+			normal := model.Transpose()
+			gl.UseProgram(glProgram)
+			// matrix
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("CameraMatrix\x00")), 1, false, &camera[0])
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("ModelMatrix\x00")), 1, false, &model[0])
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("NormalMatrix\x00")), 1, false, &normal[0])
+			// material
+			if prim.Material != nil {
+				if prim.Material.PBRMetallicRoughness != nil {
+					gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("BaseColorFactor\x00")), 1, &prim.Material.PBRMetallicRoughness.BaseColorFactor[0])
+					if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
+						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("BaseColorTex\x00")), 0)
+						gl.ActiveTexture(gl.TEXTURE0)
+						gl.BindTexture(gl.TEXTURE_2D, s.textures[s.textureIDX(prim.Material.PBRMetallicRoughness.BaseColorTexture.Index)])
+					}
+				}
+			}
+			//
+			if prim.Indices == nil {
+				gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
+				gl.DrawArrays(uint32(prim.Mode.GL()), int32(prim.Indices.ByteOffset), int32(prim.Indices.Count))
+			} else {
+				gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
+				gl.DrawElements(uint32(prim.Mode.GL()), int32(prim.Indices.Count), uint32(prim.Indices.ComponentType.GL()), gl.PtrOffset(prim.Indices.ByteOffset))
+			}
 		}
 	}
 	// render node child
-	for _, child := range node.Childrun {
+	for _, child := range node.Children {
 		s.recur_node(child, camera, model)
 	}
 
@@ -192,10 +265,32 @@ func (s *Renderer) Scene(i int) {
 	if i < 0 {
 		s.sceneidx = -1
 	}
+	if i >= len(s.model.Scenes) {
+		i = len(s.model.Scenes) - 1
+	}
 	s.sceneidx = i
 }
-func (s *Renderer) CountScene() int {
+func (s *Renderer) SceneCount() int {
 	return len(s.model.Scenes)
+}
+func (s *Renderer) SceneName(id string) bool {
+	if len(id) < 1 {
+		return false
+	}
+	for i, scene := range s.model.Scenes {
+		if scene.Name == id {
+			s.Scene(i)
+			return true
+		}
+	}
+	return false
+}
+func (s *Renderer) SceneNames() []string {
+	var res = make([]string, 0, len(s.model.Scenes))
+	for _, v := range s.model.Scenes {
+		res = append(res, v.Name)
+	}
+	return res
 }
 
 // TODO Animation

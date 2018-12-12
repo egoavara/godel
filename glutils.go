@@ -27,6 +27,7 @@ func buildProgram(srcvs string, srcfs string) uint32 {
 		gl.GetProgramInfoLog(prog, logLength, nil, gl.Str(log))
 		panic(log)
 	}
+	gl.BindFragDataLocation(prog, 0, gl.Str("outputColor\x00"))
 	return prog
 }
 func buildShader(src string, shdtype uint32) uint32 {
