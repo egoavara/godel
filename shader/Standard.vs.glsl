@@ -13,20 +13,25 @@ layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 #endif
 #ifdef HAS_TANGENT
-layout (location = 2) in vec3 tangent;
+layout (location = 2) in vec4 tangent;
 #endif
 //
 #ifdef HAS_COORD_0
 layout (location = 4) in vec2 texCoord_0;
 #endif
-//#ifdef HAS_COORD_1
-//layout (location = 5) in vec2 texCoord_1;
-//#endif
+#ifdef HAS_COORD_1
+layout (location = 5) in vec2 texCoord_1;
+#endif
 
 
 out struct{
     vec3 position;
+    #ifdef HAS_COORD_0
     vec2 texCoord_0;
+    #endif
+    #ifdef HAS_COORD_1
+    vec2 texCoord_1;
+    #endif
     #ifdef HAS_NORMAL
         #ifdef HAS_TANGENT
             mat3 TBN;
@@ -52,11 +57,13 @@ void main() {
             fsout.normal = normalize(vec3(ModelMatrix * vec4(normal.xyz, 0.0)));
         #endif
     #endif
-    // TexCoord
+    // TexCoord 1
     #ifdef HAS_COORD_0
         fsout.texCoord_0 = texCoord_0;
-    #else
-        fsout.texCoord_0 = vec2(0.0,0.0);
+    #endif
+    // TexCoord 1
+    #ifdef HAS_COORD_1
+        fsout.texCoord_1 = texCoord_1;
     #endif
     // Camera = Perspective * View
     gl_Position = CameraMatrix * ModelMatrix * vec4(position, 1); // needs w for proper perspective correction

@@ -8,6 +8,7 @@ uniform sampler2D BaseColorTex;
 in struct{
    vec3 position;
    vec2 texCoord_0;
+    vec2 texCoord_1;
    #ifdef HAS_NORMAL
        #ifdef HAS_TANGENT
            mat3 TBN;

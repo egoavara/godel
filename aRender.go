@@ -22,9 +22,11 @@ type Renderer struct {
 	// program, vao
 	meshPrimitive [][]*primitive
 	// vbo
-	bufferViews []uint32
+	//vbos []uint32
+	mVBO map[*gltf2.BufferView]uint32
 	// texture
-	textures []uint32
+	//textures []uint32
+	mTextures map[*gltf2.Texture]uint32
 	//
 	t mgl32.Vec3
 	r mgl32.Quat
@@ -33,6 +35,8 @@ type Renderer struct {
 }
 
 func (s *Renderer) _Setup() error {
+	s.mTextures = make(map[*gltf2.Texture]uint32)
+	s.mVBO = make(map[*gltf2.BufferView]uint32)
 	s.sceneidx = -1
 	if err := s._Setup_buffers(); err != nil {
 		return err
@@ -65,10 +69,16 @@ func (s *Renderer) _Setup_programs() (err error) {
 				return errors.New("Must have POSITION")
 			}
 			if _, ok := prim.Attributes[gltf2.TEXCOORD_0]; ok {
-				defs.Add(shader.HAS_NORMAL)
+				defs.Add(shader.HAS_COORD_0)
+			}
+			if _, ok := prim.Attributes[gltf2.TEXCOORD_1]; ok {
+				defs.Add(shader.HAS_COORD_1)
 			}
 			if _, ok := prim.Attributes[gltf2.NORMAL]; ok {
-				defs.Add(shader.HAS_COORD_0)
+				defs.Add(shader.HAS_NORMAL)
+			}
+			if _, ok := prim.Attributes[gltf2.TANGENT]; ok {
+				defs.Add(shader.HAS_TANGENT)
 			}
 			// fs defs
 			if prim.Material != nil {
@@ -76,6 +86,18 @@ func (s *Renderer) _Setup_programs() (err error) {
 					if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
 						defs.Add(shader.HAS_BASECOLORTEX)
 					}
+					if prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture != nil {
+						defs.Add(shader.HAS_METALROUGHNESSTEX)
+					}
+				}
+				if prim.Material.NormalTexture != nil{
+					defs.Add(shader.HAS_NORMALTEX)
+				}
+				if prim.Material.OcclusionTexture != nil{
+					defs.Add(shader.HAS_OCCLUSIONTEX)
+				}
+				if prim.Material.EmissiveTexture != nil{
+					defs.Add(shader.HAS_EMISSIVETEX)
 				}
 			}
 			//
@@ -85,12 +107,12 @@ func (s *Renderer) _Setup_programs() (err error) {
 			gl.BindVertexArray(s.meshPrimitive[i][j].vao)
 			// VBO POSITION
 			pos := prim.Attributes[gltf2.POSITION]
-			gl.BindBuffer(gl.ARRAY_BUFFER, s.bufferViews[s.bufferViewIDX(pos.BufferView)])
+			gl.BindBuffer(gl.ARRAY_BUFFER, s.mVBO[pos.BufferView])
 			gl.EnableVertexAttribArray(0)
 			gl.VertexAttribPointer(0, int32(pos.Type.Count()), uint32(pos.ComponentType), pos.Normalized, int32(pos.BufferView.ByteStride), gl.PtrOffset(pos.ByteOffset))
 			// VBO TEXCOORD_0
 			if coord0, ok := prim.Attributes[gltf2.TEXCOORD_0]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, s.bufferViews[s.bufferViewIDX(coord0.BufferView)])
+				gl.BindBuffer(gl.ARRAY_BUFFER, s.mVBO[coord0.BufferView])
 				gl.EnableVertexAttribArray(4)
 				gl.VertexAttribPointer(
 					4,
@@ -101,9 +123,22 @@ func (s *Renderer) _Setup_programs() (err error) {
 					gl.PtrOffset(coord0.ByteOffset),
 				)
 			}
+			// VBO TEXCOORD_1
+			if coord1, ok := prim.Attributes[gltf2.TEXCOORD_0]; ok {
+				gl.BindBuffer(gl.ARRAY_BUFFER, s.mVBO[coord1.BufferView])
+				gl.EnableVertexAttribArray(5)
+				gl.VertexAttribPointer(
+					5,
+					int32(coord1.Type.Count()),
+					uint32(coord1.ComponentType),
+					coord1.Normalized,
+					int32(coord1.BufferView.ByteStride),
+					gl.PtrOffset(coord1.ByteOffset),
+				)
+			}
 			// VBO NORMAL
 			if norm, ok := prim.Attributes[gltf2.NORMAL]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, s.bufferViews[s.bufferViewIDX(norm.BufferView)])
+				gl.BindBuffer(gl.ARRAY_BUFFER, s.mVBO[norm.BufferView])
 				gl.EnableVertexAttribArray(1)
 				gl.VertexAttribPointer(
 					1,
@@ -114,9 +149,22 @@ func (s *Renderer) _Setup_programs() (err error) {
 					gl.PtrOffset(norm.ByteOffset),
 				)
 			}
+			// VBO TANGENT
+			if tangent, ok := prim.Attributes[gltf2.TANGENT]; ok {
+				gl.BindBuffer(gl.ARRAY_BUFFER, s.mVBO[tangent.BufferView])
+				gl.EnableVertexAttribArray(2)
+				gl.VertexAttribPointer(
+					2,
+					int32(tangent.Type.Count()),
+					uint32(tangent.ComponentType),
+					tangent.Normalized,
+					int32(tangent.BufferView.ByteStride),
+					gl.PtrOffset(tangent.ByteOffset),
+				)
+			}
 			// EBO
 			if prim.Indices != nil {
-				gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, s.bufferViews[s.bufferViewIDX(prim.Indices.BufferView)])
+				gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, s.mVBO[prim.Indices.BufferView])
 			}
 		}
 	}
@@ -124,11 +172,14 @@ func (s *Renderer) _Setup_programs() (err error) {
 	return nil
 }
 func (s *Renderer) _Setup_buffers() (err error) {
-	s.bufferViews = make([]uint32, len(s.model.BufferViews))
-	gl.GenBuffers(int32(len(s.bufferViews)), &s.bufferViews[0])
+	if len(s.model.BufferViews) < 1{
+		return nil
+	}
+	vbos := make([]uint32, len(s.model.BufferViews))
+	gl.GenBuffers(int32(len(vbos)), &vbos[0])
 	defer func() {
 		if err != nil {
-			gl.DeleteBuffers(int32(len(s.bufferViews)), &s.bufferViews[0])
+			gl.DeleteBuffers(int32(len(vbos)), &vbos[0])
 		}
 	}()
 	for i, bv := range s.model.BufferViews {
@@ -146,21 +197,26 @@ func (s *Renderer) _Setup_buffers() (err error) {
 			// TODO : logging
 			fallthrough
 		case gltf2.ARRAY_BUFFER:
-			gl.BindBuffer(gl.ARRAY_BUFFER, s.bufferViews[i])
+			gl.BindBuffer(gl.ARRAY_BUFFER, vbos[i])
 			gl.BufferData(gl.ARRAY_BUFFER, len(bts), gl.Ptr(&bts[0]), gl.STATIC_DRAW)
 		case gltf2.ELEMENT_ARRAY_BUFFER:
-			gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, s.bufferViews[i])
+			gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, vbos[i])
 			gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, len(bts), gl.Ptr(bts), gl.STATIC_DRAW)
 		}
+		//
+		s.mVBO[bv] = vbos[i]
 	}
 	return nil
 }
 func (s *Renderer) _Setup_textures() (err error) {
-	s.textures = make([]uint32, len(s.model.Textures))
-	gl.GenTextures(int32(len(s.textures)), &s.textures[0])
+	if len(s.model.Textures) < 1{
+		return nil
+	}
+	textures := make([]uint32, len(s.model.Textures))
+	gl.GenTextures(int32(len(textures)), &textures[0])
 	defer func() {
 		if err != nil {
-			gl.DeleteBuffers(int32(len(s.textures)), &s.textures[0])
+			gl.DeleteBuffers(int32(len(textures)), &textures[0])
 		}
 	}()
 	for i, tex := range s.model.Textures {
@@ -172,7 +228,7 @@ func (s *Renderer) _Setup_textures() (err error) {
 
 		//
 		gl.ActiveTexture(gl.TEXTURE0)
-		gl.BindTexture(gl.TEXTURE_2D, s.textures[i])
+		gl.BindTexture(gl.TEXTURE_2D, textures[i])
 		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, tex.Sampler.MagFilter.GL())
 		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, tex.Sampler.MinFilter.GL())
 		gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, tex.Sampler.WrapS.GL())
@@ -189,26 +245,12 @@ func (s *Renderer) _Setup_textures() (err error) {
 		if tex.Sampler.MinFilter.IsMipmap() {
 			gl.GenerateMipmap(gl.TEXTURE_2D)
 		}
+		s.mTextures[tex] = textures[i]
 	}
+
 	return nil
 }
-func (s *Renderer) bufferViewIDX(bv *gltf2.BufferView) int {
-	for i, v := range s.model.BufferViews {
-		if v == bv {
-			return i
-		}
-	}
-	return -1
-}
-func (s *Renderer) textureIDX(tex *gltf2.Texture) int {
-	for i, v := range s.model.Textures {
-		if v == tex {
-			return i
-		}
-	}
-	return -1
-}
-func (s *Renderer) recur_node(node *gltf2.Node, camera mgl32.Mat4, model mgl32.Mat4) {
+func (s *Renderer) _Recur_node(node *gltf2.Node, cameraMatrix mgl32.Mat4, modelMatrix mgl32.Mat4, cameraPos mgl32.Vec3) {
 	if node == nil {
 		return
 	}
@@ -220,27 +262,65 @@ func (s *Renderer) recur_node(node *gltf2.Node, camera mgl32.Mat4, model mgl32.M
 			break
 		}
 	}
-	// model matrix setup
-	model = model.Mul4(node.Transform())
+	// modelMatrix matrix setup
+	modelMatrix = modelMatrix.Mul4(node.Transform())
 	if node.Mesh != nil {
 		// render mesh
 		for idx_prim, prim := range node.Mesh.Primitives {
 			glProgram := s.app.getProgram(s.meshPrimitive[idx_mesh][idx_prim].programIndex)
-			normal := model.Transpose()
+			normalMatrix := modelMatrix.Inv().Transpose()
 			gl.UseProgram(glProgram)
 			// matrix
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("CameraMatrix\x00")), 1, false, &camera[0])
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("ModelMatrix\x00")), 1, false, &model[0])
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("NormalMatrix\x00")), 1, false, &normal[0])
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("CameraMatrix\x00")), 1, false, &cameraMatrix[0])
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("ModelMatrix\x00")), 1, false, &modelMatrix[0])
+			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("NormalMatrix\x00")), 1, false, &normalMatrix[0])
+			gl.Uniform3fv(gl.GetUniformLocation(glProgram, gl.Str("Camera\x00")), 1, &cameraPos[0])
+			const power = 1
+			var dir = mgl32.Vec3{0, 0, -1}
+			gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("LightDir\x00")), dir.X(), dir.Y(), dir.Z())
+			gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("LightColor\x00")), power, power, power)
 			// material
 			if prim.Material != nil {
 				if prim.Material.PBRMetallicRoughness != nil {
 					gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("BaseColorFactor\x00")), 1, &prim.Material.PBRMetallicRoughness.BaseColorFactor[0])
+					gl.Uniform2f(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessFactor\x00")),
+						prim.Material.PBRMetallicRoughness.MetallicFactor,
+						prim.Material.PBRMetallicRoughness.RoughnessFactor,
+					)
+					gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("EmissiveFactor\x00")), 1, &prim.Material.EmissiveFactor[0])
 					if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
 						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("BaseColorTex\x00")), 0)
+						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("BaseColorTexCoord\x00")), int32(prim.Material.PBRMetallicRoughness.BaseColorTexture.TexCoord))
 						gl.ActiveTexture(gl.TEXTURE0)
-						gl.BindTexture(gl.TEXTURE_2D, s.textures[s.textureIDX(prim.Material.PBRMetallicRoughness.BaseColorTexture.Index)])
+						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.BaseColorTexture.Index])
 					}
+					if prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture != nil {
+						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessTex\x00")), 1)
+						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessTexCoord\x00")), int32(prim.Material.PBRMetallicRoughness.BaseColorTexture.TexCoord))
+						gl.ActiveTexture(gl.TEXTURE1)
+						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture.Index])
+					}
+				}
+				if prim.Material.NormalTexture != nil {
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("NormalTex\x00")), 2)
+					gl.Uniform1f(gl.GetUniformLocation(glProgram, gl.Str("NormalScale\x00")), prim.Material.NormalTexture.Scale)
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("NormalTexCoord\x00")), int32(prim.Material.NormalTexture.TexCoord))
+					gl.ActiveTexture(gl.TEXTURE2)
+					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.NormalTexture.Index])
+				}
+				if prim.Material.OcclusionTexture != nil {
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("OcculusionTex\x00")), 3)
+					gl.Uniform1f(gl.GetUniformLocation(glProgram, gl.Str("OcclusionStrength\x00")), prim.Material.OcclusionTexture.Strength)
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("OcculusionTexCoord\x00")), int32(prim.Material.OcclusionTexture.TexCoord))
+					gl.ActiveTexture(gl.TEXTURE3)
+					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.OcclusionTexture.Index])
+				}
+				if prim.Material.EmissiveTexture != nil {
+					gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("EmissiveFactor\x00")), prim.Material.EmissiveFactor[0],  prim.Material.EmissiveFactor[1],  prim.Material.EmissiveFactor[2])
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("EmissiveTex\x00")), 4)
+					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("EmissiveTexCoord\x00")), int32(prim.Material.EmissiveTexture.TexCoord))
+					gl.ActiveTexture(gl.TEXTURE4)
+					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.EmissiveTexture.Index])
 				}
 			}
 			//
@@ -255,11 +335,10 @@ func (s *Renderer) recur_node(node *gltf2.Node, camera mgl32.Mat4, model mgl32.M
 	}
 	// render node child
 	for _, child := range node.Children {
-		s.recur_node(child, camera, model)
+		s._Recur_node(child, cameraMatrix, modelMatrix, cameraPos)
 	}
 
 }
-
 // Scene
 func (s *Renderer) Scene(i int) {
 	if i < 0 {
@@ -347,6 +426,7 @@ func (s *Renderer) Render() {
 	}
 
 	for _, n := range scene.Nodes {
-		s.recur_node(n, s.app.Camera.Matrix(s.app.screen), s.Matrix())
+
+		s._Recur_node(n, s.app.Camera.Matrix(s.app.screen), s.Matrix(), s.app.Camera.GetLookFrom())
 	}
 }

@@ -62,27 +62,31 @@ func (s *Shader) Arg(key string) *ShaderArg {
 var (
 	Standard *Shader
 	Flat     *Shader
+	PBR     *Shader
 )
 
 func init() {
 	Standard = NewShader(Vertex, string(FileStandardVsGlsl), map[string]*ShaderArg{
-		"CameraMatrix": {
-			Count: 16,
-			Kind:  reflect.Float32,
-		},
-		"ModelMatrix": {
-			Count: 16,
-			Kind:  reflect.Float32,
-		},
-		"NormalMatrix": {
-			Count: 16,
-			Kind:  reflect.Float32,
-		},
+		//"CameraMatrix": {
+		//	Count: 16,
+		//	Kind:  reflect.Float32,
+		//},
+		//"ModelMatrix": {
+		//	Count: 16,
+		//	Kind:  reflect.Float32,
+		//},
+		//"NormalMatrix": {
+		//	Count: 16,
+		//	Kind:  reflect.Float32,
+		//},
 	})
 	Flat = NewShader(Fragment, string(FileFlatFsGlsl), map[string]*ShaderArg{
-		"FlatColor": {
-			Count: 4,
-			Kind:  reflect.Float32,
-		},
+		//"FlatColor": {
+		//	Count: 4,
+		//	Kind:  reflect.Float32,
+		//},
+	})
+	PBR = NewShader(Fragment, string(FilePBRFsGlsl), map[string]*ShaderArg{
+
 	})
 }

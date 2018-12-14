@@ -5,6 +5,11 @@ import (
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/mathgl/mgl32"
+	"github.com/iamGreedy/essence/align"
+	"github.com/iamGreedy/essence/axis"
+	"github.com/iamGreedy/essence/meter"
+	"github.com/iamGreedy/essence/must"
+	"github.com/iamGreedy/essence/prefix"
 	"github.com/iamGreedy/gltf2"
 	"github.com/iamGreedy/godel"
 	"github.com/iamGreedy/godel/shader"
@@ -12,17 +17,6 @@ import (
 	"runtime"
 )
 
-func Must(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-func MustGet(i interface{}, err error) interface{} {
-	if err != nil {
-		panic(err)
-	}
-	return i
-}
 
 func main() {
 	var (
@@ -36,11 +30,11 @@ func main() {
 	version := gl.GoStr(gl.GetString(gl.VERSION))
 	fmt.Println("OpenGL version : ", version)
 	// GLTF
-	//f := MustGet(os.Open("./demo/RubiksCube/RubiksCube_01.gltf")).(*os.File)
-	//f := MustGet(os.Open("./demo/dice/dice.gltf")).(*os.File)
-	f := MustGet(os.Open("./demo/damagedHelmet/damagedHelmet.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/RubiksCube/RubiksCube_01.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/dice/dice.gltf")).(*os.File)
+	f := must.MustGet(os.Open("./demo/damagedHelmet/damagedHelmet.gltf")).(*os.File)
 	defer f.Close()
-	md := MustGet(gltf2.Parser().
+	md := must.MustGet(gltf2.Parser().
 		Reader(f).
 		Logger(os.Stdout).
 		Plugin(
@@ -48,18 +42,18 @@ func main() {
 			gltf2.Tasks.Caching,
 			gltf2.Tasks.BufferCaching,
 			gltf2.Tasks.ImageCaching,
-			//gltf2.Tasks.AutoBufferTarget,
-			//gltf2.Tasks.AccessorMinMax,
-			//gltf2.Tasks.ModelScale(axis.Y, meter.New(prefix.No, 10)),
-			//gltf2.Tasks.ModelAlign(align.Center, align.Center, align.Center),
+			gltf2.Tasks.AutoBufferTarget,
+			gltf2.Tasks.AccessorMinMax,
+			gltf2.Tasks.ModelScale(axis.Y, meter.New(prefix.No, 13)),
+			gltf2.Tasks.ModelAlign(align.Center, align.Center, align.Center),
 			gltf2.Tasks.ByeWorld,
 		).
 		Strictness(gltf2.LEVEL1).
 		Parse()).(*gltf2.GLTF)
 
 	// godel Renderer
-	app := godel.NewApplication(shader.Standard, shader.Flat, godel.NewCamera(godel.Perspective))
-	app.Camera.LookFrom(mgl32.Vec3{-3, 0, 0})
+	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective))
+	app.Camera.LookFrom(mgl32.Vec3{0, 0, -30})
 	rd := app.MustRenderer(md)
 	//rd.Scale(mgl32.Vec3{0.001, 0.001, 0.001})
 	//
@@ -72,7 +66,8 @@ func main() {
 	for !wnd.ShouldClose() {
 		gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 		curr := float32(glfw.GetTime())
-		rd.Rotate(mgl32.QuatRotate(mgl32.DegToRad(curr*50), mgl32.Vec3{0, 1, 0}))
+		rd.Rotate(mgl32.QuatRotate(mgl32.DegToRad(curr * 50), mgl32.Vec3{0, 1, 0}))
+		//rd.Rotate(mgl32.QuatRotate(45, mgl32.Vec3{0, 1, 0}))
 		rd.Render()
 		//
 		wnd.SwapBuffers()
@@ -82,7 +77,7 @@ func main() {
 }
 func window(w, h int) *glfw.Window {
 	// glfw3
-	Must(glfw.Init())
+	must.Must(glfw.Init())
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	glfw.WindowHint(glfw.ContextVersionMajor, 4)
 	glfw.WindowHint(glfw.ContextVersionMinor, 1)
@@ -90,9 +85,9 @@ func window(w, h int) *glfw.Window {
 	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
 	glfw.WindowHint(glfw.DoubleBuffer, glfw.True)
 	// glfw3.window
-	window := MustGet(glfw.CreateWindow(w, h, "Testing", nil, nil)).(*glfw.Window)
+	window := must.MustGet(glfw.CreateWindow(w, h, "Testing", nil, nil)).(*glfw.Window)
 	window.MakeContextCurrent()
 	// OpenGL
-	Must(gl.Init())
+	must.Must(gl.Init())
 	return window
 }
