@@ -46,9 +46,7 @@ uniform vec3 Camera;
 //
 in struct{
    vec3 position;
-    #ifdef HAS_COORD_0
     vec2 texCoord_0;
-    #endif
     #ifdef HAS_COORD_1
     vec2 texCoord_1;
     #endif
@@ -82,11 +80,9 @@ struct PBRInfo
     vec3 specularColor;           // color contribution from specular lighting
 };
 vec2 getTexCoord(int i){
-    #ifdef HAS_COORD_0
-        if(i == 0){
-            return fsout.texCoord_0;
-        }
-    #endif
+    if(i == 0){
+        return fsout.texCoord_0;
+    }
     #ifdef HAS_COORD_1
         if(i == 1){
             return fsout.texCoord_1;
@@ -99,8 +95,8 @@ vec3 getNormal(){
     #ifndef HAS_TANGENT
         vec3 pos_dx = dFdx(fsout.position);
         vec3 pos_dy = dFdy(fsout.position);
-        vec3 tex_dx = dFdx(vec3(getTexCoord(NormalTexCoord), 0.0));
-        vec3 tex_dy = dFdy(vec3(getTexCoord(NormalTexCoord), 0.0));
+        vec3 tex_dx = dFdx(vec3(fsout.texCoord_0, 0.0));
+        vec3 tex_dy = dFdy(vec3(fsout.texCoord_0, 0.0));
         vec3 t = (tex_dy.t * pos_dx - tex_dx.t * pos_dy) / (tex_dx.s * tex_dy.t - tex_dy.s * tex_dx.t);
 
         #ifdef HAS_NORMAL
@@ -200,7 +196,7 @@ void main()
         specularColor
     );
     // ================================================================================================
-    // PBRInfo pbrInputs : complete
+    // PBRInfo pbrInputs complete
     // ================================================================================================
     // Calculate the shading terms for the microfacet specular shading model
     vec3 F = specularReflection(pbrInputs);
@@ -222,6 +218,8 @@ void main()
     #ifdef HAS_EMISSIVETEX
         vec3 emissive = texture(EmissiveTex, getTexCoord(EmissiveTexCoord)).rgb * EmissiveFactor;
         color += emissive;
+    #else
+        color += EmissiveFactor;
     #endif
     outputColor = vec4(pow(color,vec3(1.0/2.2)), baseColor.a);
 }

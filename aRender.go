@@ -267,70 +267,69 @@ func (s *Renderer) _Recur_node(node *gltf2.Node, cameraMatrix mgl32.Mat4, modelM
 	if node.Mesh != nil {
 		// render mesh
 		for idx_prim, prim := range node.Mesh.Primitives {
-			glProgram := s.app.getProgram(s.meshPrimitive[idx_mesh][idx_prim].programIndex)
-			normalMatrix := modelMatrix.Inv().Transpose()
-			gl.UseProgram(glProgram)
-			// matrix
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("CameraMatrix\x00")), 1, false, &cameraMatrix[0])
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("ModelMatrix\x00")), 1, false, &modelMatrix[0])
-			gl.UniformMatrix4fv(gl.GetUniformLocation(glProgram, gl.Str("NormalMatrix\x00")), 1, false, &normalMatrix[0])
-			gl.Uniform3fv(gl.GetUniformLocation(glProgram, gl.Str("Camera\x00")), 1, &cameraPos[0])
-			const power = 1
-			var dir = mgl32.Vec3{0, 0, -1}
-			gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("LightDir\x00")), dir.X(), dir.Y(), dir.Z())
-			gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("LightColor\x00")), power, power, power)
-			// material
-			if prim.Material != nil {
-				if prim.Material.PBRMetallicRoughness != nil {
-					gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("BaseColorFactor\x00")), 1, &prim.Material.PBRMetallicRoughness.BaseColorFactor[0])
-					gl.Uniform2f(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessFactor\x00")),
-						prim.Material.PBRMetallicRoughness.MetallicFactor,
-						prim.Material.PBRMetallicRoughness.RoughnessFactor,
-					)
-					gl.Uniform4fv(gl.GetUniformLocation(glProgram, gl.Str("EmissiveFactor\x00")), 1, &prim.Material.EmissiveFactor[0])
-					if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
-						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("BaseColorTex\x00")), 0)
-						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("BaseColorTexCoord\x00")), int32(prim.Material.PBRMetallicRoughness.BaseColorTexture.TexCoord))
-						gl.ActiveTexture(gl.TEXTURE0)
-						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.BaseColorTexture.Index])
+			prog := s.app.getProgram(s.meshPrimitive[idx_mesh][idx_prim].programIndex)
+			prog.Use(func(p *ProgramContext) {
+				// matrix
+				p.Uniform("CameraMatrix", cameraMatrix)
+				p.Uniform("ModelMatrix", modelMatrix)
+				p.Uniform("NormalMatrix", modelMatrix.Inv().Transpose())
+				p.Uniform("Camera", cameraPos)
+				const power= 1
+				var dir= mgl32.Vec3{0, 0, -1}
+				p.Uniform("LightDir", dir)
+				p.Uniform("LightColor", mgl32.Vec3{power, power, power})
+				// material
+				if prim.Material != nil {
+					if prim.Material.PBRMetallicRoughness != nil {
+						p.Uniform("BaseColorFactor", prim.Material.PBRMetallicRoughness.BaseColorFactor)
+						p.Uniform("MetalRoughnessFactor", mgl32.Vec2{
+							prim.Material.PBRMetallicRoughness.MetallicFactor,
+							prim.Material.PBRMetallicRoughness.RoughnessFactor,
+						})
+						p.Uniform("EmissiveFactor", prim.Material.EmissiveFactor)
+						if prim.Material.PBRMetallicRoughness.BaseColorTexture != nil {
+							p.Uniform("BaseColorTex", 0)
+							p.Uniform("BaseColorTexCoord", int32(prim.Material.PBRMetallicRoughness.BaseColorTexture.TexCoord))
+							gl.ActiveTexture(gl.TEXTURE0)
+							gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.BaseColorTexture.Index])
+						}
+						if prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture != nil {
+							p.Uniform("MetalRoughnessTex", 1)
+							p.Uniform("MetalRoughnessTexCoord", int32(prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture.TexCoord))
+							gl.ActiveTexture(gl.TEXTURE1)
+							gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture.Index])
+						}
 					}
-					if prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture != nil {
-						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessTex\x00")), 1)
-						gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("MetalRoughnessTexCoord\x00")), int32(prim.Material.PBRMetallicRoughness.BaseColorTexture.TexCoord))
-						gl.ActiveTexture(gl.TEXTURE1)
-						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.PBRMetallicRoughness.MetallicRoughnessTexture.Index])
+					if prim.Material.NormalTexture != nil {
+						p.Uniform("NormalTex", 2)
+						p.Uniform("NormalScale", prim.Material.NormalTexture.Scale)
+						p.Uniform("NormalTexCoord", int32(prim.Material.NormalTexture.TexCoord))
+						gl.ActiveTexture(gl.TEXTURE2)
+						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.NormalTexture.Index])
+					}
+					if prim.Material.OcclusionTexture != nil {
+						p.Uniform("OcculusionTex", 3)
+						p.Uniform("OcclusionStrength", prim.Material.OcclusionTexture.Strength)
+						p.Uniform("OcculusionTexCoord", int32(prim.Material.OcclusionTexture.TexCoord))
+						gl.ActiveTexture(gl.TEXTURE3)
+						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.OcclusionTexture.Index])
+					}
+					if prim.Material.EmissiveTexture != nil {
+						p.Uniform("EmissiveTex", 4)
+						p.Uniform("EmissiveTexCoord", int32(prim.Material.EmissiveTexture.TexCoord))
+						gl.ActiveTexture(gl.TEXTURE4)
+						gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.EmissiveTexture.Index])
 					}
 				}
-				if prim.Material.NormalTexture != nil {
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("NormalTex\x00")), 2)
-					gl.Uniform1f(gl.GetUniformLocation(glProgram, gl.Str("NormalScale\x00")), prim.Material.NormalTexture.Scale)
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("NormalTexCoord\x00")), int32(prim.Material.NormalTexture.TexCoord))
-					gl.ActiveTexture(gl.TEXTURE2)
-					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.NormalTexture.Index])
+				//
+				if prim.Indices == nil {
+					gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
+					gl.DrawArrays(uint32(prim.Mode.GL()), int32(prim.Indices.ByteOffset), int32(prim.Indices.Count))
+				} else {
+					gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
+					gl.DrawElements(uint32(prim.Mode.GL()), int32(prim.Indices.Count), uint32(prim.Indices.ComponentType.GL()), gl.PtrOffset(prim.Indices.ByteOffset))
 				}
-				if prim.Material.OcclusionTexture != nil {
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("OcculusionTex\x00")), 3)
-					gl.Uniform1f(gl.GetUniformLocation(glProgram, gl.Str("OcclusionStrength\x00")), prim.Material.OcclusionTexture.Strength)
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("OcculusionTexCoord\x00")), int32(prim.Material.OcclusionTexture.TexCoord))
-					gl.ActiveTexture(gl.TEXTURE3)
-					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.OcclusionTexture.Index])
-				}
-				if prim.Material.EmissiveTexture != nil {
-					gl.Uniform3f(gl.GetUniformLocation(glProgram, gl.Str("EmissiveFactor\x00")), prim.Material.EmissiveFactor[0],  prim.Material.EmissiveFactor[1],  prim.Material.EmissiveFactor[2])
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("EmissiveTex\x00")), 4)
-					gl.Uniform1i(gl.GetUniformLocation(glProgram, gl.Str("EmissiveTexCoord\x00")), int32(prim.Material.EmissiveTexture.TexCoord))
-					gl.ActiveTexture(gl.TEXTURE4)
-					gl.BindTexture(gl.TEXTURE_2D, s.mTextures[prim.Material.EmissiveTexture.Index])
-				}
-			}
-			//
-			if prim.Indices == nil {
-				gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
-				gl.DrawArrays(uint32(prim.Mode.GL()), int32(prim.Indices.ByteOffset), int32(prim.Indices.Count))
-			} else {
-				gl.BindVertexArray(s.meshPrimitive[idx_mesh][idx_prim].vao)
-				gl.DrawElements(uint32(prim.Mode.GL()), int32(prim.Indices.Count), uint32(prim.Indices.ComponentType.GL()), gl.PtrOffset(prim.Indices.ByteOffset))
-			}
+			})
 		}
 	}
 	// render node child

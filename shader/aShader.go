@@ -1,3 +1,4 @@
+// [ reference ] https://github.com/KhronosGroup/glTF-WebGL-PBR
 package shader
 
 import (

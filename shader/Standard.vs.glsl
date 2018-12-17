@@ -26,9 +26,7 @@ layout (location = 5) in vec2 texCoord_1;
 
 out struct{
     vec3 position;
-    #ifdef HAS_COORD_0
     vec2 texCoord_0;
-    #endif
     #ifdef HAS_COORD_1
     vec2 texCoord_1;
     #endif
@@ -54,12 +52,14 @@ void main() {
             fsout.TBN = mat3(tangentW, bitangentW, normalW);
         #else
             // if HAS_NORMAL
-            fsout.normal = normalize(vec3(ModelMatrix * vec4(normal.xyz, 0.0)));
+            fsout.normal = normalize(vec3(NormalMatrix   * vec4(normal.xyz, 0.0)));
         #endif
     #endif
     // TexCoord 1
     #ifdef HAS_COORD_0
         fsout.texCoord_0 = texCoord_0;
+    #else
+        fsout.texCoord_0 = vec2(0, 0);
     #endif
     // TexCoord 1
     #ifdef HAS_COORD_1

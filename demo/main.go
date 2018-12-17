@@ -32,7 +32,8 @@ func main() {
 	// GLTF
 	//f := must.MustGet(os.Open("./demo/RubiksCube/RubiksCube_01.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/dice/dice.gltf")).(*os.File)
-	f := must.MustGet(os.Open("./demo/damagedHelmet/damagedHelmet.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/damagedHelmet/damagedHelmet.gltf")).(*os.File)
+	f := must.MustGet(os.Open("./demo/kenney_piratekit_1.1/Models/glTF format/boat_large.gltf")).(*os.File)
 	defer f.Close()
 	md := must.MustGet(gltf2.Parser().
 		Reader(f).
@@ -44,8 +45,9 @@ func main() {
 			gltf2.Tasks.ImageCaching,
 			gltf2.Tasks.AutoBufferTarget,
 			gltf2.Tasks.AccessorMinMax,
-			gltf2.Tasks.ModelScale(axis.Y, meter.New(prefix.No, 13)),
+			gltf2.Tasks.ModelScale(axis.Z, meter.New(prefix.No, 13)),
 			gltf2.Tasks.ModelAlign(align.Center, align.Center, align.Center),
+			//gltf2.Tasks.ModelAlign(align.No, align.No, align.Center),
 			gltf2.Tasks.ByeWorld,
 		).
 		Strictness(gltf2.LEVEL1).
@@ -53,9 +55,8 @@ func main() {
 
 	// godel Renderer
 	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective))
-	app.Camera.LookFrom(mgl32.Vec3{0, 0, -30})
+	app.Camera.LookFrom(mgl32.Vec3{0, 10, -30})
 	rd := app.MustRenderer(md)
-	//rd.Scale(mgl32.Vec3{0.001, 0.001, 0.001})
 	//
 	// Configure global settings
 	gl.Enable(gl.DEPTH_TEST)

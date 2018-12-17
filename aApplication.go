@@ -2,22 +2,24 @@ package godel
 
 import (
 	"github.com/go-gl/mathgl/mgl32"
-	"github.com/iamGreedy/essence/version"
 	"github.com/iamGreedy/gltf2"
 	"github.com/iamGreedy/godel/shader"
 	"image"
 )
 
-type program struct {
-	glptr   uint32
-	defines *shader.DefineList
-}
+//type program struct {
+//	glptr   uint32
+//	defines *shader.DefineList
+//}
 type Application struct {
-	glprograms []*program
+	glprograms []*Program
 	//
 	vs     *shader.Shader
 	fs     *shader.Shader
 	screen mgl32.Vec2
+	// lighting
+	//ibl []uint32
+
 	// public
 	Camera *Camera
 }
@@ -50,16 +52,13 @@ func (s *Application) requireProgram(defines *shader.DefineList) int {
 	}
 	if findIdx == -1 {
 		// Compile new program
-		s.glprograms = append(s.glprograms, &program{
-			glptr:   buildProgram(s.vs.Source(version.New(4, 1), *defines...), s.fs.Source(version.New(4, 1), *defines...)),
-			defines: defines,
-		})
+		s.glprograms = append(s.glprograms, NewProgram(s.vs, s.fs, defines))
 		findIdx = len(s.glprograms) - 1
 	}
 	return findIdx
 }
-func (s *Application) getProgram(i int) uint32 {
-	return s.glprograms[i].glptr
+func (s *Application) getProgram(i int) *Program {
+	return s.glprograms[i]
 }
 
 //
@@ -90,3 +89,4 @@ func (s *Application) MustRenderer(model *gltf2.GLTF) *Renderer {
 	}
 	return res
 }
+//
