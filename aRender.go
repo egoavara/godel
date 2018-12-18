@@ -264,6 +264,7 @@ func (s *Renderer) _Recur_node(node *gltf2.Node, cameraMatrix mgl32.Mat4, modelM
 	}
 	// modelMatrix matrix setup
 	modelMatrix = modelMatrix.Mul4(node.Transform())
+	//modelMatrix = node.Transform().Mul4(modelMatrix)
 	if node.Mesh != nil {
 		// render mesh
 		for idx_prim, prim := range node.Mesh.Primitives {
@@ -274,10 +275,12 @@ func (s *Renderer) _Recur_node(node *gltf2.Node, cameraMatrix mgl32.Mat4, modelM
 				p.Uniform("ModelMatrix", modelMatrix)
 				p.Uniform("NormalMatrix", modelMatrix.Inv().Transpose())
 				p.Uniform("Camera", cameraPos)
-				const power= 1
-				var dir= mgl32.Vec3{0, 0, -1}
-				p.Uniform("LightDir", dir)
-				p.Uniform("LightColor", mgl32.Vec3{power, power, power})
+				if s.app.Lighting != nil{
+					if s.app.Lighting.Global != nil{
+						p.Uniform("LightDir", s.app.Lighting.Global.Direction.Mul(-1))
+						p.Uniform("LightColor", s.app.Lighting.Global.Color)
+					}
+				}
 				// material
 				if prim.Material != nil {
 					if prim.Material.PBRMetallicRoughness != nil {
@@ -425,7 +428,6 @@ func (s *Renderer) Render() {
 	}
 
 	for _, n := range scene.Nodes {
-
 		s._Recur_node(n, s.app.Camera.Matrix(s.app.screen), s.Matrix(), s.app.Camera.GetLookFrom())
 	}
 }

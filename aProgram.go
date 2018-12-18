@@ -13,7 +13,7 @@ type Program struct {
 	defines *shader.DefineList
 	uniformIndex map[string]int32
 	uniformData  map[int32]interface{}
-
+	uboPointer map[string]uint32
 }
 
 func NewProgram(vertex, frag *shader.Shader, defines *shader.DefineList) *Program {
@@ -22,6 +22,7 @@ func NewProgram(vertex, frag *shader.Shader, defines *shader.DefineList) *Progra
 		defines: defines,
 		uniformIndex: make(map[string]int32),
 		uniformData: make(map[int32]interface{}),
+		uboPointer: make(map[string]uint32),
 	}
 }
 func (s *Program)GL() uint32 {

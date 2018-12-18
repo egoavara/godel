@@ -2,17 +2,390 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ad9fc10-d5d8-46bd-955a-69df36addd2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/aLight.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aApplication.go" beforeDir="false" afterPath="$PROJECT_DIR$/aApplication.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aLight.go" beforeDir="false" afterPath="$PROJECT_DIR$/aLight.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aProgram.go" beforeDir="false" afterPath="$PROJECT_DIR$/aProgram.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aRender.go" beforeDir="false" afterPath="$PROJECT_DIR$/aRender.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/RubiksCube/RubiksCube_01.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/RubiksCube/RubiksCube_01.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_AO.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_AO.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_MetalSmooth_converted_metalRoughness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_MetalSmooth_converted_metalRoughness.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_albedo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_albedo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_emissive.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_emissive.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_normal.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_normal.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/damagedHelmet.bin" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/damagedHelmet.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/damagedHelmet/damagedHelmet.gltf" beforeDir="false" afterPath="$PROJECT_DIR$/demo/models/damagedHelmet/damagedHelmet.gltf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/dice/Dice.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/dice/Dice.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_large_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/boat_small_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottleLarge_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottleLarge_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottleLarge_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottleLarge_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottle_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottle_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottle_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/bottle_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonBall_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonBall_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonBall_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonBall_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonLarge_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonLarge_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonLarge_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonLarge_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannonMobile_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannon_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannon_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannon_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/cannon_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/chest_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/chest_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/chest_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/chest_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_rock_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_rock_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_rock_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_rock_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_stone_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_stone_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_stone_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formationLarge_stone_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_rock_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_rock_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_rock_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_rock_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_stone_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_stone_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_stone_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/formation_stone_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/hole_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/hole_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/hole_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/hole_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/paddle_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/paddle_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/paddle_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/paddle_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_long_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_long_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_long_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_long_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_short_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_short_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_short_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_detailed_short_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_long_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_long_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_long_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_long_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_short_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_short_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_short_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/palm_short_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_captain_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_crew_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/pirate_officer_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/plant_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/plant_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/plant_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/plant_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_dark_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_light_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_E.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_N.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_S.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/ship_wreck_W.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/shovel_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/shovel_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/shovel_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/shovel_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_scimitar_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_scimitar_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_scimitar_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/sword_scimitar_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/tower_NE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/tower_NW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/tower_SE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Isometric/tower_SW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Kenney.url" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/License.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/_defaultMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/iron.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/leaves.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/sand.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/stone.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/textile.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/textileBlue.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/textileRed.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/window.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/wood.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/Materials/woodDark.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/boat_large.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/boat_small.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/bottle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/bottleLarge.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/cannon.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/cannonBall.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/cannonLarge.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/cannonMobile.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/chest.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/formationLarge_rock.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/formationLarge_stone.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/formation_rock.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/formation_stone.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/hole.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/paddle.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/palm_detailed_long.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/palm_detailed_short.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/palm_long.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/palm_short.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/pirate_captain.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/pirate_crew.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/pirate_officer.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/plant.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/ship_dark.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/ship_light.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/ship_wreck.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/shovel.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/sword.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/sword_scimitar.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/FBX format/tower.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/_defaultMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/iron.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/leaves.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/sand.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/stone.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/textile.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/textileBlue.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/textileRed.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/window.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/wood.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/Materials/woodDark.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/boat_large.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/boat_large.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/boat_small.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/boat_small.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/bottle.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/bottle.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/bottleLarge.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/bottleLarge.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannon.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannon.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonBall.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonBall.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonLarge.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonLarge.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonMobile.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/cannonMobile.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/chest.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/chest.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formationLarge_rock.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formationLarge_rock.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formationLarge_stone.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formationLarge_stone.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formation_rock.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formation_rock.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formation_stone.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/formation_stone.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/hole.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/hole.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/paddle.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/paddle.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_detailed_long.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_detailed_long.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_detailed_short.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_detailed_short.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_long.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_long.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_short.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/palm_short.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_captain.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_captain.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_crew.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_crew.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_officer.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/pirate_officer.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/plant.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/plant.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_dark.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_dark.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_light.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_light.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_wreck.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/ship_wreck.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/shovel.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/shovel.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/sword.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/sword.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/sword_scimitar.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/sword_scimitar.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/tower.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/OBJ format/tower.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/boat_large.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/boat_large.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/boat_small.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/boat_small.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/bottle.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/bottle.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/bottleLarge.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/bottleLarge.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannon.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannon.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonBall.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonBall.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonLarge.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonLarge.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonMobile.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/cannonMobile.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/chest.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/chest.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formationLarge_rock.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formationLarge_rock.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formationLarge_stone.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formationLarge_stone.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formation_rock.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formation_rock.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formation_stone.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/formation_stone.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/hole.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/hole.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/paddle.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/paddle.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_detailed_long.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_detailed_long.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_detailed_short.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_detailed_short.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_long.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_long.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_short.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/palm_short.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_captain.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_captain.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_crew.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_crew.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_officer.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/pirate_officer.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/plant.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/plant.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_dark.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_dark.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_light.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_light.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_wreck.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/ship_wreck.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/shovel.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/shovel.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/sword.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/sword.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/sword_scimitar.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/sword_scimitar.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/tower.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/tower.gltf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Patreon.url" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Preview.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Sample.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/boat_large.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/boat_small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/bottle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/bottleLarge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/cannon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/cannonBall.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/cannonLarge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/cannonMobile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/formationLarge_rock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/formationLarge_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/formation_rock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/formation_stone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/paddle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/palm_detailed_long.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/palm_detailed_short.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/palm_long.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/palm_short.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/pirate_captain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/pirate_crew.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/pirate_officer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/plant.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/ship_dark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/ship_light.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/ship_wreck.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/shovel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/sword.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/sword_scimitar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Topdown/tower.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Unity package/Pirate Kit.unitypackage" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/model_gltf2.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/model_gltf2.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/PBR.fs.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shader/PBR.fs.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/Standard.vs.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shader/Standard.vs.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/aShader.go" beforeDir="false" afterPath="$PROJECT_DIR$/shader/aShader.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/aShaderStatic.go" beforeDir="false" afterPath="$PROJECT_DIR$/shader/aShaderStatic.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,101 +409,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1188">
-              <caret line="69" column="83" selection-start-line="69" selection-start-column="83" selection-end-line="69" selection-end-column="83" />
+            <state relative-caret-position="259">
+              <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aApplication.go">
+        <entry file="file://$PROJECT_DIR$/demo/models/AnimatedCube/glTF/AnimatedCube.gltf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-              <folding>
-                <element signature="n#!!block;n#NewApplication#0" />
-                <element signature="n#!!block;n#requireProgram#0" />
-                <element signature="n#!!block;n#getProgram#0" />
-                <element signature="n#!!block;n#Screen#0" />
-                <element signature="n#!!block;n#NewRenderer#0" />
-                <element signature="n#!!block;n#MustRenderer#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/aLight.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-              <folding>
-                <element signature="e#15#73#0" expanded="true" />
-                <element signature="n#!!block;n#SetColor#1" />
-              </folding>
+            <state relative-caret-position="132">
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aRender.go">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationSampler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="254" column="14" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
-              <folding>
-                <element signature="n#!!block;n#_Setup#0" />
-                <element signature="n#!!block;n#_Setup_programs#0" />
-                <element signature="n#!!block;n#_Setup_buffers#0" />
-                <element signature="n#!!block;n#_Setup_textures#0" />
-                <element signature="n#!!block;n#Scene#0" />
-                <element signature="n#!!block;n#SceneCount#0" />
-                <element signature="n#!!block;n#SceneName#0" />
-                <element signature="n#!!block;n#SceneNames#0" />
-                <element signature="n#!!block;n#Matrix#0" />
-                <element signature="n#!!block;n#Translate#0" />
-                <element signature="n#!!block;n#Rotate#0" />
-                <element signature="n#!!block;n#Scale#0" />
-                <element signature="n#!!block;n#GetTranslate#0" />
-                <element signature="n#!!block;n#GetRotate#0" />
-                <element signature="n#!!block;n#GetScale#0" />
-                <element signature="n#!!block;n#Render#0" />
-              </folding>
+            <state relative-caret-position="325">
+              <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shader/PBR.fs.glsl">
+        <entry file="file://$PROJECT_DIR$/../gltf2/spec_Animation.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3256">
-              <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
-              <folding>
-                <element signature="n#!!block;n#getTexCoord#0" />
-                <element signature="n#!!block;n#getNormal#0" />
-                <element signature="n#!!block;n#diffuse#0" />
-                <element signature="n#!!block;n#geometricOcclusion#0" />
-                <element signature="n#!!block;n#microfacetDistribution#0" />
-              </folding>
+            <state relative-caret-position="435">
+              <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glutils.go">
+        <entry file="file://$PROJECT_DIR$/../essence/must/must.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
-              <folding>
-                <element signature="n#!!block;n#buildProgram#0" />
-                <element signature="e#489#692#0" />
-                <element signature="n#!!block;n#viewportSize#0" />
-                <element signature="e#1400#1538#0" />
-                <element signature="e#1420#1467#0" />
-                <element signature="e#1487#1534#0" />
-              </folding>
+            <state relative-caret-position="198">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -146,7 +465,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bufferViews</find>
       <find>COORD_</find>
       <find>tbn</find>
       <find>texture2D</find>
@@ -155,9 +473,7 @@
       <find>HAS_EMISSIVETEX</find>
       <find>Emissive</find>
       <find>OcculusionTex</find>
-      <find>material</find>
       <find>Tangent</find>
-      <find>LightDir</find>
       <find>NormalMatrix</find>
       <find>EmissiveFactor</find>
       <find>NormalTexCoord</find>
@@ -170,6 +486,15 @@
       <find>reflectance0</find>
       <find>specularEnvironmentR0</find>
       <find>Light</find>
+      <find>LightDir</find>
+      <find>l</find>
+      <find>NdotL</find>
+      <find>ca</find>
+      <find>access</find>
+      <find>material</find>
+      <find>materials</find>
+      <find>nodes</find>
+      <find>acc</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -190,7 +515,6 @@
         <option value="$PROJECT_DIR$/../essence/must/must.go" />
         <option value="$PROJECT_DIR$/../essence/meter/meter.go" />
         <option value="$PROJECT_DIR$/../essence/align/AxisAlign.go" />
-        <option value="$PROJECT_DIR$/../gltf2/spec_Animation.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_BufferView.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_Buffer.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_Accessor.go" />
@@ -202,20 +526,25 @@
         <option value="$PROJECT_DIR$/../gltf2/spec_Material.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go" />
         <option value="$PROJECT_DIR$/aProgram_test.go" />
-        <option value="$PROJECT_DIR$/aProgram.go" />
-        <option value="$PROJECT_DIR$/aRender.go" />
         <option value="$PROJECT_DIR$/shader/aShader.go" />
         <option value="$PROJECT_DIR$/shader/Standard.vs.glsl" />
         <option value="$PROJECT_DIR$/shader/PBR.fs.glsl" />
-        <option value="$PROJECT_DIR$/../gltf2/spec_Node.go" />
         <option value="$PROJECT_DIR$/../gltf2/aParser.go" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.go" />
-        <option value="$PROJECT_DIR$/demo/model_gltf2.go" />
         <option value="$PROJECT_DIR$/demo/kenney_piratekit_1.1/Models/glTF format/boat_large.gltf" />
-        <option value="$PROJECT_DIR$/../gltf2/aTask.go" />
-        <option value="$PROJECT_DIR$/demo/main.go" />
         <option value="$PROJECT_DIR$/aApplication.go" />
         <option value="$PROJECT_DIR$/aLight.go" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/../gltf2/spec_CameraPerspective.go" />
+        <option value="$PROJECT_DIR$/../gltf2/spec_Node.go" />
+        <option value="$PROJECT_DIR$/aRender.go" />
+        <option value="$PROJECT_DIR$/demo/model_gltf2.go" />
+        <option value="$PROJECT_DIR$/demo/models/2CylinderEngine/glTF/2CylinderEngine.gltf" />
+        <option value="$PROJECT_DIR$/../gltf2/aTask.go" />
+        <option value="$PROJECT_DIR$/aProgram.go" />
+        <option value="$PROJECT_DIR$/../gltf2/spec_AnimationSampler.go" />
+        <option value="$PROJECT_DIR$/../gltf2/spec_Animation.go" />
+        <option value="$PROJECT_DIR$/demo/main.go" />
       </list>
     </option>
   </component>
@@ -230,7 +559,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,6 +570,12 @@
               <item name="godel" type="b2602c69:ProjectViewProjectNode" />
               <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
               <item name="godel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="godel" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="godel" type="b2602c69:ProjectViewProjectNode" />
@@ -265,6 +599,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,6 +612,14 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../essence" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\git\src\github.com\iamGreedy\godel\demo\models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\git\src\github.com\iamGreedy\godel\demo\models" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -291,6 +634,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
+    <configuration name="go build aTask.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="godel" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/../gltf2/aTask.go" />
+      <package value="github.com/iamGreedy/godel" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="godel" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -316,33 +668,22 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build spec_Node.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build spec_AnimationSampler.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="godel" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/../gltf2/spec_Node.go" />
+      <filePath value="$PROJECT_DIR$/../gltf2/spec_AnimationSampler.go" />
       <package value="github.com/iamGreedy/godel" />
       <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestName in github.com/iamGreedy/godel" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="godel" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/iamGreedy/godel" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestName$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build spec_AnimationSampler.go" />
         <item itemvalue="Go Build.go build model_gltf2.go" />
+        <item itemvalue="Go Build.go build aTask.go" />
         <item itemvalue="Go Build.go build scratch.go" />
-        <item itemvalue="Go Build.go build spec_Node.go" />
-        <item itemvalue="Go Test.TestName in github.com/iamGreedy/godel" />
       </list>
     </recent_temporary>
   </component>
@@ -359,9 +700,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26332623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -391,13 +731,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/demo/main.go</url>
-          <line>15</line>
+          <line>14</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/../gltf2/aTask.go</url>
-          <line>539</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/../gltf2/spec_Node.go</url>
@@ -407,155 +742,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../essence/meter/meter.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding>
-            <element signature="e#92#138#0" />
-            <element signature="n#!!block;n#String#0" />
-            <element signature="e#191#239#0" />
-            <element signature="n#!!block;n#NewMeter#0" />
-            <element signature="e#314#342#0" />
-            <element signature="n#!!block;n#Convert#0" />
-            <element signature="n#!!block;n#Convert#1" />
-            <element signature="n#!!block;n#F32#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../essence/prefix/prefix.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../essence/must/must.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_BufferView.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="119" column="1" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="1" />
-          <folding>
-            <element signature="e#67#161#0" />
-            <element signature="n#!!block;n#Load#0" />
-            <element signature="e#560#589#0" />
-            <element signature="e#595#690#0" />
-            <element signature="e#663#687#0" />
-            <element signature="n#!!block;n#LoadReader#0" />
-            <element signature="e#844#866#0" />
-            <element signature="e#924#1424#0" />
-            <element signature="n#!!block;n#Scheme#0" />
-            <element signature="n#!!block;n#Syntax#0" />
-            <element signature="e#1579#2315#0" />
-            <element signature="e#1600#2099#0" />
-            <element signature="e#1706#1811#0" />
-            <element signature="e#1858#1948#0" />
-            <element signature="e#1995#2085#0" />
-            <element signature="e#2101#2128#0" />
-            <element signature="e#2130#2312#0" />
-            <element signature="e#2164#2223#0" />
-            <element signature="e#2249#2312#0" />
-            <element signature="n#!!block;n#To#0" />
-            <element signature="e#2440#2465#0" />
-            <element signature="e#2471#2508#0" />
-            <element signature="e#2533#2558#0" />
-            <element signature="e#2564#2601#0" />
-            <element signature="e#2626#2651#0" />
-            <element signature="e#2657#2694#0" />
-            <element signature="e#2715#2756#0" />
-            <element signature="e#2762#2791#0" />
-            <element signature="e#2810#2835#0" />
-            <element signature="n#!!block;n#Link#0" />
-            <element signature="e#3034#3095#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Buffer.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="e#131#225#0" />
-            <element signature="n#!!block;n#Load#0" />
-            <element signature="e#544#572#0" />
-            <element signature="e#606#744#0" />
-            <element signature="e#663#705#0" />
-            <element signature="e#750#1433#0" />
-            <element signature="e#777#1430#0" />
-            <element signature="e#800#845#0" />
-            <element signature="e#848#1100#0" />
-            <element signature="e#965#991#0" />
-            <element signature="e#1074#1100#0" />
-            <element signature="e#1103#1126#0" />
-            <element signature="e#1129#1346#0" />
-            <element signature="e#1225#1251#0" />
-            <element signature="e#1320#1346#0" />
-            <element signature="e#1349#1426#0" />
-            <element signature="e#1475#1507#0" />
-            <element signature="e#1531#1568#0" />
-            <element signature="n#!!block;n#Cache#0" />
-            <element signature="n#!!block;n#IsCached#0" />
-            <element signature="e#1717#1991#0" />
-            <element signature="n#!!block;n#Scheme#0" />
-            <element signature="n#!!block;n#Syntax#0" />
-            <element signature="e#2134#2386#0" />
-            <element signature="e#2155#2259#0" />
-            <element signature="e#2191#2245#0" />
-            <element signature="e#2261#2287#0" />
-            <element signature="e#2289#2383#0" />
-            <element signature="e#2327#2383#0" />
-            <element signature="n#!!block;n#To#0" />
-            <element signature="e#2515#2740#0" />
-            <element signature="e#2519#2737#0" />
-            <element signature="e#2545#2568#0" />
-            <element signature="e#2571#2733#0" />
-            <element signature="e#2626#2646#0" />
-            <element signature="e#2790#2815#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Asset.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationSampler.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gltf2/spec_AccessorSparseIndices.go">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationChannelTarget.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationChannel.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Animation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../gltf2/spec_MaterialNormalTextureInfo.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/enums.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="553" column="19" selection-start-line="553" selection-start-column="19" selection-end-line="553" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -566,16 +759,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_normal.jpg">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_normal.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_MetalSmooth_converted_metalRoughness.jpg">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_MetalSmooth_converted_metalRoughness.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_albedo.jpg">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_albedo.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_emissive.jpg">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_emissive.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../gltf2/spec_glTF.go">
@@ -585,10 +778,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_AO.jpg">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/Assets/Models/PBR/damagedHelmet/textures/Default_AO.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../gltf2/itfc_GLTFFromTo.go">
@@ -608,70 +798,6 @@
             <element signature="e#650#676#0" />
             <element signature="e#919#950#0" />
             <element signature="e#956#989#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="62" column="93" selection-start-line="62" selection-start-column="93" selection-end-line="62" selection-end-column="93" />
-          <folding>
-            <element signature="e#119#727#0" />
-            <element signature="e#767#1407#0" />
-            <element signature="n#!!block;n#GetChild#0" />
-            <element signature="n#!!block;n#SetChild#0" />
-            <element signature="e#1625#2059#0" />
-            <element signature="e#1649#1669#0" />
-            <element signature="e#1673#1775#0" />
-            <element signature="e#1712#1723#0" />
-            <element signature="e#1773#1775#0" />
-            <element signature="e#1840#1873#0" />
-            <element signature="e#1851#1873#0" />
-            <element signature="e#1865#1922#0" />
-            <element signature="e#1926#1992#0" />
-            <element signature="n#!!block;n#LenChild#0" />
-            <element signature="n#!!block;n#LenChild#1" />
-            <element signature="e#2059#2061#0" />
-            <element signature="e#2141#2143#0" />
-            <element signature="n#!!block;n#ImpleGetChild#0" />
-            <element signature="e#2506#2864#0" />
-            <element signature="e#2510#2861#0" />
-            <element signature="e#2534#2698#0" />
-            <element signature="e#2573#2629#0" />
-            <element signature="e#2634#2698#0" />
-            <element signature="e#2701#2857#0" />
-            <element signature="e#2712#2857#0" />
-            <element signature="e#2726#2783#0" />
-            <element signature="e#2736#2786#0" />
-            <element signature="n#!!block;n#Scheme#0" />
-            <element signature="n#!!block;n#Syntax#0" />
-            <element signature="e#2433#3113#0" />
-            <element signature="e#2454#2480#0" />
-            <element signature="e#2482#3096#0" />
-            <element signature="e#2565#2682#0" />
-            <element signature="e#2768#2880#0" />
-            <element signature="e#2969#3082#0" />
-            <element signature="n#!!block;n#To#0" />
-            <element signature="e#3279#3338#0" />
-            <element signature="e#3315#3335#0" />
-            <element signature="e#3344#3391#0" />
-            <element signature="e#3420#3451#0" />
-            <element signature="e#3457#3502#0" />
-            <element signature="e#3532#3564#0" />
-            <element signature="e#3570#3617#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Material.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="105" column="5" lean-forward="true" selection-start-line="94" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!block;n#Scheme#0" />
-            <element signature="n#!!block;n#Syntax#0" />
-            <element signature="n#!!block;n#To#0" />
           </folding>
         </state>
       </provider>
@@ -696,38 +822,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/extensions/com.intellij.database/data/extractors/CSV-Groovy.csv.groovy">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/aProgram.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-          <folding>
-            <element signature="e#120#245#0" />
-            <element signature="e#295#300#0" />
-            <element signature="e#424#551#0" />
-            <element signature="n#!!block;n#GL#0" />
-            <element signature="n#!!block;n#Use#0" />
-            <element signature="e#768#784#0" />
-            <element signature="n#!!block;n#UniformIndex#0" />
-            <element signature="e#460#475#0" />
-            <element signature="e#545#588#0" />
-            <element signature="n#!!block;n#Uniform#0" />
-            <element signature="e#724#731#0" />
-            <element signature="e#759#761#0" />
-            <element signature="e#757#797#0" />
-            <element signature="e#800#842#0" />
-            <element signature="e#838#872#0" />
-            <element signature="e#884#921#0" />
-            <element signature="e#924#962#0" />
-            <element signature="e#964#1004#0" />
-            <element signature="e#1016#1065#0" />
-            <element signature="e#1074#1129#0" />
-            <element signature="e#1138#1179#0" />
-            <element signature="e#1202#1263#0" />
-            <element signature="e#1266#1327#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shader/aShader.go">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -738,7 +832,7 @@
     <entry file="file://$PROJECT_DIR$/shader/aScript.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/damagedHelmet/damagedHelmet.gltf">
+    <entry file="file://$PROJECT_DIR$/demo/models/damagedHelmet/damagedHelmet.gltf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="150" column="29" selection-start-line="150" selection-start-column="25" selection-end-line="150" selection-end-column="29" />
@@ -865,16 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Node.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-902">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding>
-            <element signature="e#15#83#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gltf2/aParser.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-570">
@@ -889,13 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/model_gltf2.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -906,249 +983,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/aTask.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="422" column="1" lean-forward="true" selection-start-line="422" selection-start-column="1" selection-end-line="422" selection-end-column="1" />
-          <folding>
-            <element signature="e#288#545#0" />
-            <element signature="e#301#335#0" />
-            <element signature="e#345#437#0" />
-            <element signature="e#448#543#0" />
-            <element signature="e#547#782#0" />
-            <element signature="e#567#665#0" />
-            <element signature="e#680#780#0" />
-            <element signature="n#!!block;n#TaskName#0" />
-            <element signature="n#!!block;n#PreLoad#0" />
-            <element signature="n#!!block;n#TaskName#1" />
-            <element signature="n#!!block;n#PostLoad#0" />
-            <element signature="n#!!block;n#FnPreTask#0" />
-            <element signature="e#1287#1317#0" />
-            <element signature="n#!!block;n#FnPostTask#0" />
-            <element signature="e#1449#1479#0" />
-            <element signature="n#!!block;n#_BufferCaching#0" />
-            <element signature="e#1602#2212#0" />
-            <element signature="e#1627#1682#0" />
-            <element signature="e#1688#1734#0" />
-            <element signature="e#1787#1839#0" />
-            <element signature="e#1922#1967#0" />
-            <element signature="e#1973#2068#0" />
-            <element signature="e#2111#2130#0" />
-            <element signature="n#!!block;n#_ImageCaching#0" />
-            <element signature="e#2344#2996#0" />
-            <element signature="e#2371#2427#0" />
-            <element signature="e#2433#2478#0" />
-            <element signature="e#2531#2584#0" />
-            <element signature="e#2617#2696#0" />
-            <element signature="e#2699#2809#0" />
-            <element signature="e#2856#2875#0" />
-            <element signature="e#3032#4046#0" />
-            <element signature="e#3172#3203#0" />
-            <element signature="e#3509#3529#0" />
-            <element signature="e#4038#10727#0" />
-            <element signature="e#4145#4182#0" />
-            <element signature="e#4289#4337#0" />
-            <element signature="e#4562#4740#0" />
-            <element signature="e#4625#4644#0" />
-            <element signature="e#4705#4724#0" />
-            <element signature="e#4860#8959#0" />
-            <element signature="e#4904#8943#0" />
-            <element signature="e#4935#4999#0" />
-            <element signature="e#5005#5055#0" />
-            <element signature="e#5143#5204#0" />
-            <element signature="e#5208#5316#1" />
-            <element signature="e#5320#8823#0" />
-            <element signature="e#5355#5955#0" />
-            <element signature="e#5370#5483#1" />
-            <element signature="e#5617#5829#0" />
-            <element signature="e#5667#5823#0" />
-            <element signature="e#5702#5742#0" />
-            <element signature="e#5776#5816#0" />
-            <element signature="e#5860#5892#0" />
-            <element signature="e#5923#5955#0" />
-            <element signature="e#5959#6572#0" />
-            <element signature="e#5983#6098#1" />
-            <element signature="e#6234#6446#0" />
-            <element signature="e#6284#6440#0" />
-            <element signature="e#6319#6359#0" />
-            <element signature="e#6393#6433#0" />
-            <element signature="e#6477#6509#0" />
-            <element signature="e#6540#6572#0" />
-            <element signature="e#6576#7181#0" />
-            <element signature="e#6592#6707#1" />
-            <element signature="e#6843#7055#0" />
-            <element signature="e#6893#7049#0" />
-            <element signature="e#6928#6968#0" />
-            <element signature="e#7002#7042#0" />
-            <element signature="e#7086#7118#0" />
-            <element signature="e#7149#7181#0" />
-            <element signature="e#7185#7803#0" />
-            <element signature="e#7210#7327#1" />
-            <element signature="e#7465#7677#0" />
-            <element signature="e#7515#7671#0" />
-            <element signature="e#7550#7590#0" />
-            <element signature="e#7624#7664#0" />
-            <element signature="e#7708#7740#0" />
-            <element signature="e#7771#7803#0" />
-            <element signature="e#7807#8423#0" />
-            <element signature="e#7830#7947#1" />
-            <element signature="e#8085#8297#0" />
-            <element signature="e#8135#8291#0" />
-            <element signature="e#8170#8210#0" />
-            <element signature="e#8244#8284#0" />
-            <element signature="e#8328#8360#0" />
-            <element signature="e#8391#8423#0" />
-            <element signature="e#8427#8774#0" />
-            <element signature="e#8578#8774#0" />
-            <element signature="e#8628#8768#0" />
-            <element signature="e#8659#8695#0" />
-            <element signature="e#8725#8761#0" />
-            <element signature="e#8778#8818#0" />
-            <element signature="e#9030#9073#0" />
-            <element signature="e#9052#9070#0" />
-            <element signature="e#9133#9194#0" />
-            <element signature="e#9155#9191#0" />
-            <element signature="e#9313#10723#0" />
-            <element signature="e#9350#10335#0" />
-            <element signature="e#9392#10331#0" />
-            <element signature="e#9468#10326#0" />
-            <element signature="e#9582#10320#0" />
-            <element signature="e#9684#9893#0" />
-            <element signature="e#9711#9798#0" />
-            <element signature="e#9804#9885#0" />
-            <element signature="e#9899#10313#0" />
-            <element signature="e#9928#10207#0" />
-            <element signature="e#10034#10116#0" />
-            <element signature="e#10122#10198#0" />
-            <element signature="e#10213#10305#0" />
-            <element signature="e#10370#10720#0" />
-            <element signature="e#10412#10716#0" />
-            <element signature="e#10549#10640#0" />
-            <element signature="e#10646#10711#0" />
-            <element signature="e#10745#10800#0" />
-            <element signature="n#!!block;n#TaskName#2" />
-            <element signature="n#!!block;n#PostLoad#1" />
-            <element signature="e#10995#11802#0" />
-            <element signature="e#11021#11075#0" />
-            <element signature="e#11081#11125#0" />
-            <element signature="e#11175#11225#0" />
-            <element signature="e#11236#11390#1" />
-            <element signature="e#11261#11312#0" />
-            <element signature="e#11332#11386#0" />
-            <element signature="e#11406#11501#0" />
-            <element signature="e#11716#11762#0" />
-            <element signature="n#!!block;n#recurMinMax#0" />
-            <element signature="e#11945#12712#0" />
-            <element signature="e#11991#12709#0" />
-            <element signature="e#12036#12092#1" />
-            <element signature="e#12144#12151#0" />
-            <element signature="e#12157#12363#0" />
-            <element signature="e#12194#12242#0" />
-            <element signature="e#12294#12342#0" />
-            <element signature="e#12390#12420#0" />
-            <element signature="e#12447#12477#0" />
-            <element signature="e#12504#12534#0" />
-            <element signature="e#12561#12591#0" />
-            <element signature="e#12618#12648#0" />
-            <element signature="e#12675#12705#0" />
-            <element signature="e#12754#12794#0" />
-            <element signature="n#!!block;n#recurMove#0" />
-            <element signature="e#12974#13462#0" />
-            <element signature="e#13020#13459#0" />
-            <element signature="e#13176#13207#0" />
-            <element signature="e#13235#13331#0" />
-            <element signature="e#13359#13455#0" />
-            <element signature="e#13504#13585#0" />
-            <element signature="e#13563#13582#0" />
-            <element signature="n#!!block;n#diff#0" />
-            <element signature="e#13673#13971#0" />
-            <element signature="e#13701#13796#0" />
-            <element signature="e#13764#13796#0" />
-            <element signature="e#13798#13882#0" />
-            <element signature="e#13862#13882#0" />
-            <element signature="e#13884#13968#0" />
-            <element signature="e#13948#13968#0" />
-            <element signature="e#14001#14045#0" />
-            <element signature="n#!!block;n#TaskName#3" />
-            <element signature="n#!!block;n#PostLoad#2" />
-            <element signature="e#14240#15233#0" />
-            <element signature="e#14266#14320#0" />
-            <element signature="e#14326#14370#0" />
-            <element signature="e#14425#14475#0" />
-            <element signature="e#14506#14553#1" />
-            <element signature="e#14539#14590#0" />
-            <element signature="e#14610#14661#0" />
-            <element signature="e#14650#14928#0" />
-            <element signature="e#14668#14751#0" />
-            <element signature="e#14754#14837#0" />
-            <element signature="e#14840#14923#0" />
-            <element signature="e#14976#15024#0" />
-            <element signature="e#15116#15137#0" />
-            <element signature="e#15151#15197#0" />
-            <element signature="n#!!block;n#recurScale#0" />
-            <element signature="e#15418#15979#0" />
-            <element signature="e#15464#15976#0" />
-            <element signature="e#15899#16003#0" />
-            <element signature="e#15925#15998#0" />
-            <element signature="e#15752#15848#0" />
-            <element signature="e#15876#15972#0" />
-            <element signature="e#16021#16099#0" />
-            <element signature="e#16077#16096#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="69" column="83" selection-start-line="69" selection-start-column="83" selection-end-line="69" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aApplication.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        <state relative-caret-position="719">
+          <caret line="96" column="2" lean-forward="true" selection-start-line="96" selection-start-column="2" selection-end-line="96" selection-end-column="2" />
           <folding>
-            <element signature="n#!!block;n#NewApplication#0" />
             <element signature="n#!!block;n#requireProgram#0" />
             <element signature="n#!!block;n#getProgram#0" />
             <element signature="n#!!block;n#Screen#0" />
             <element signature="n#!!block;n#NewRenderer#0" />
-            <element signature="n#!!block;n#MustRenderer#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aRender.go">
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="254" column="14" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
+        <state relative-caret-position="88">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
           <folding>
-            <element signature="n#!!block;n#_Setup#0" />
-            <element signature="n#!!block;n#_Setup_programs#0" />
-            <element signature="n#!!block;n#_Setup_buffers#0" />
-            <element signature="n#!!block;n#_Setup_textures#0" />
-            <element signature="n#!!block;n#Scene#0" />
-            <element signature="n#!!block;n#SceneCount#0" />
-            <element signature="n#!!block;n#SceneName#0" />
-            <element signature="n#!!block;n#SceneNames#0" />
-            <element signature="n#!!block;n#Matrix#0" />
-            <element signature="n#!!block;n#Translate#0" />
-            <element signature="n#!!block;n#Rotate#0" />
-            <element signature="n#!!block;n#Scale#0" />
-            <element signature="n#!!block;n#GetTranslate#0" />
-            <element signature="n#!!block;n#GetRotate#0" />
-            <element signature="n#!!block;n#GetScale#0" />
-            <element signature="n#!!block;n#Render#0" />
+            <element signature="e#767#1407#0" />
+            <element signature="n#!!block;n#GetChild#0" />
+            <element signature="n#!!block;n#SetChild#0" />
+            <element signature="e#1865#1922#0" />
+            <element signature="n#!!block;n#LenChild#0" />
+            <element signature="n#!!block;n#ImpleGetChild#0" />
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="n#!!block;n#To#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Material.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!block;n#Scheme#0" />
+            <element signature="n#!!block;n#Syntax#0" />
+            <element signature="n#!!block;n#To#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shader/PBR.fs.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3256">
-          <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
+        <state relative-caret-position="336">
+          <caret line="207" column="47" selection-start-line="207" selection-start-column="42" selection-end-line="207" selection-end-column="47" />
           <folding>
             <element signature="n#!!block;n#getTexCoord#0" />
             <element signature="n#!!block;n#getNormal#0" />
@@ -1174,14 +1055,344 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationChannel.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationChannelTarget.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/enums.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_CameraPerspective.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Camera.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-462" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/model_gltf2.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/models/AnimatedCube/glTF/AnimatedCube_BaseColor.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/models/2CylinderEngine/glTF/2CylinderEngine.gltf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="28" column="18" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding>
+            <element signature="e#15#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aProgram.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="38" column="16" lean-forward="true" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!block;n#GL#0" />
+            <element signature="n#!!block;n#Use#0" />
+            <element signature="n#!!block;n#UniformIndex#0" />
+            <element signature="e#1030#1045#0" />
+            <element signature="e#1119#1166#0" />
+            <element signature="n#!!block;n#Uniform#0" />
+            <element signature="e#1335#2046#0" />
+            <element signature="e#1372#1392#0" />
+            <element signature="e#1455#1495#0" />
+            <element signature="e#1498#1533#0" />
+            <element signature="e#1536#1579#0" />
+            <element signature="e#1582#1619#0" />
+            <element signature="e#1622#1659#0" />
+            <element signature="e#1662#1711#0" />
+            <element signature="e#1714#1769#0" />
+            <element signature="e#1772#1833#0" />
+            <element signature="e#1836#1897#0" />
+            <element signature="e#1900#1961#0" />
+            <element signature="e#1964#2025#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aRender.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1227">
+          <caret line="273" column="21" selection-start-line="273" selection-start-column="21" selection-end-line="273" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!block;n#_Setup#0" />
+            <element signature="n#!!block;n#_Setup_programs#0" />
+            <element signature="n#!!block;n#_Setup_buffers#0" />
+            <element signature="n#!!block;n#_Setup_textures#0" />
+            <element signature="n#!!block;n#Scene#0" />
+            <element signature="n#!!block;n#SceneCount#0" />
+            <element signature="n#!!block;n#SceneName#0" />
+            <element signature="n#!!block;n#SceneNames#0" />
+            <element signature="n#!!block;n#Matrix#0" />
+            <element signature="n#!!block;n#Translate#0" />
+            <element signature="n#!!block;n#Rotate#0" />
+            <element signature="n#!!block;n#Scale#0" />
+            <element signature="n#!!block;n#GetTranslate#0" />
+            <element signature="n#!!block;n#GetRotate#0" />
+            <element signature="n#!!block;n#GetScale#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/aLight.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        <state relative-caret-position="169">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
           <folding>
-            <element signature="e#15#73#0" expanded="true" />
             <element signature="n#!!block;n#SetColor#1" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/aTask.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="422" column="68" selection-start-line="422" selection-start-column="68" selection-end-line="422" selection-end-column="68" />
+          <folding>
+            <element signature="e#296#553#0" />
+            <element signature="e#309#343#0" />
+            <element signature="e#353#445#0" />
+            <element signature="e#456#551#0" />
+            <element signature="e#555#790#0" />
+            <element signature="e#575#673#0" />
+            <element signature="e#688#788#0" />
+            <element signature="n#!!block;n#TaskName#0" />
+            <element signature="n#!!block;n#PreLoad#0" />
+            <element signature="n#!!block;n#TaskName#1" />
+            <element signature="n#!!block;n#PostLoad#0" />
+            <element signature="n#!!block;n#FnPreTask#0" />
+            <element signature="e#1295#1325#0" />
+            <element signature="n#!!block;n#FnPostTask#0" />
+            <element signature="e#1457#1487#0" />
+            <element signature="n#!!block;n#_BufferCaching#0" />
+            <element signature="e#1610#2220#0" />
+            <element signature="e#1635#1690#0" />
+            <element signature="e#1696#1742#0" />
+            <element signature="e#1795#1847#0" />
+            <element signature="e#1930#1975#0" />
+            <element signature="e#1981#2076#0" />
+            <element signature="e#2119#2138#0" />
+            <element signature="n#!!block;n#_ImageCaching#0" />
+            <element signature="e#2352#3004#0" />
+            <element signature="e#2379#2435#0" />
+            <element signature="e#2441#2486#0" />
+            <element signature="e#2539#2592#0" />
+            <element signature="e#2625#2704#0" />
+            <element signature="e#2707#2817#0" />
+            <element signature="e#2864#2883#0" />
+            <element signature="e#3032#4046#0" />
+            <element signature="e#3180#3211#0" />
+            <element signature="e#3517#3537#0" />
+            <element signature="e#4046#10695#0" />
+            <element signature="e#4153#4190#0" />
+            <element signature="e#4297#4345#0" />
+            <element signature="e#4570#4748#0" />
+            <element signature="e#4633#4652#0" />
+            <element signature="e#4713#4732#0" />
+            <element signature="e#4868#8927#0" />
+            <element signature="e#4912#8911#0" />
+            <element signature="e#4967#4986#0" />
+            <element signature="e#4990#5098#1" />
+            <element signature="e#5102#8605#0" />
+            <element signature="e#5137#5737#0" />
+            <element signature="e#5152#5265#1" />
+            <element signature="e#5399#5611#0" />
+            <element signature="e#5449#5605#0" />
+            <element signature="e#5484#5524#0" />
+            <element signature="e#5558#5598#0" />
+            <element signature="e#5642#5674#0" />
+            <element signature="e#5705#5737#0" />
+            <element signature="e#5741#6354#0" />
+            <element signature="e#5765#5880#1" />
+            <element signature="e#6016#6228#0" />
+            <element signature="e#6066#6222#0" />
+            <element signature="e#6101#6141#0" />
+            <element signature="e#6175#6215#0" />
+            <element signature="e#6259#6291#0" />
+            <element signature="e#6322#6354#0" />
+            <element signature="e#6358#6963#0" />
+            <element signature="e#6374#6489#1" />
+            <element signature="e#6625#6837#0" />
+            <element signature="e#6675#6831#0" />
+            <element signature="e#6710#6750#0" />
+            <element signature="e#6784#6824#0" />
+            <element signature="e#6868#6900#0" />
+            <element signature="e#6931#6963#0" />
+            <element signature="e#6967#7585#0" />
+            <element signature="e#6992#7109#1" />
+            <element signature="e#7247#7459#0" />
+            <element signature="e#7297#7453#0" />
+            <element signature="e#7332#7372#0" />
+            <element signature="e#7406#7446#0" />
+            <element signature="e#7490#7522#0" />
+            <element signature="e#7553#7585#0" />
+            <element signature="e#7589#8205#0" />
+            <element signature="e#7612#7729#1" />
+            <element signature="e#7867#8079#0" />
+            <element signature="e#7917#8073#0" />
+            <element signature="e#7952#7992#0" />
+            <element signature="e#8026#8066#0" />
+            <element signature="e#8110#8142#0" />
+            <element signature="e#8173#8205#0" />
+            <element signature="e#8209#8556#0" />
+            <element signature="e#8360#8556#0" />
+            <element signature="e#8410#8550#0" />
+            <element signature="e#8441#8477#0" />
+            <element signature="e#8507#8543#0" />
+            <element signature="e#8560#8600#0" />
+            <element signature="e#8636#8700#0" />
+            <element signature="e#8706#8756#0" />
+            <element signature="e#8998#9041#0" />
+            <element signature="e#9020#9038#0" />
+            <element signature="e#9101#9162#0" />
+            <element signature="e#9123#9159#0" />
+            <element signature="e#9281#10691#0" />
+            <element signature="e#9318#10303#0" />
+            <element signature="e#9360#10299#0" />
+            <element signature="e#9436#10294#0" />
+            <element signature="e#9550#10288#0" />
+            <element signature="e#9652#9861#0" />
+            <element signature="e#9679#9766#0" />
+            <element signature="e#9772#9853#0" />
+            <element signature="e#9867#10281#0" />
+            <element signature="e#9896#10175#0" />
+            <element signature="e#10002#10084#0" />
+            <element signature="e#10090#10166#0" />
+            <element signature="e#10181#10273#0" />
+            <element signature="e#10338#10688#0" />
+            <element signature="e#10380#10684#0" />
+            <element signature="e#10517#10608#0" />
+            <element signature="e#10614#10679#0" />
+            <element signature="e#10713#10768#0" />
+            <element signature="n#!!block;n#TaskName#2" />
+            <element signature="e#11006#11023#0" />
+            <element signature="e#11046#11064#0" />
+            <element signature="e#11089#11143#0" />
+            <element signature="e#11149#11193#0" />
+            <element signature="n#!!block;n#recurMove#0" />
+            <element signature="e#13189#13719#0" />
+            <element signature="e#13235#13716#0" />
+            <element signature="e#13391#13428#0" />
+            <element signature="e#13456#13570#0" />
+            <element signature="e#13598#13712#0" />
+            <element signature="e#13761#13842#0" />
+            <element signature="e#13820#13839#0" />
+            <element signature="e#13958#14053#0" />
+            <element signature="e#14021#14053#0" />
+            <element signature="e#14055#14139#0" />
+            <element signature="e#14119#14139#0" />
+            <element signature="e#14141#14225#0" />
+            <element signature="e#14205#14225#0" />
+            <element signature="e#14258#14302#0" />
+            <element signature="n#!!block;n#TaskName#3" />
+            <element signature="e#14539#14556#0" />
+            <element signature="e#14579#14596#0" />
+            <element signature="e#14621#14675#0" />
+            <element signature="e#14681#14725#0" />
+            <element signature="e#14849#15127#0" />
+            <element signature="e#14867#14950#0" />
+            <element signature="e#14953#15036#0" />
+            <element signature="e#15039#15122#0" />
+            <element signature="e#15175#15223#0" />
+            <element signature="e#15112#15117#0" />
+            <element signature="n#!!block;n#recurScale#1" />
+            <element signature="e#15585#15636#0" />
+            <element signature="e#15793#15844#0" />
+            <element signature="n#!!block;n#uMinMax#0" />
+            <element signature="e#15093#15144#0" />
+            <element signature="e#15162#15216#0" />
+            <element signature="e#15283#15312#0" />
+            <element signature="n#!!block;n#recurMinMax#0" />
+            <element signature="e#15465#16260#0" />
+            <element signature="e#15511#16257#0" />
+            <element signature="e#15556#15612#1" />
+            <element signature="e#15664#15699#0" />
+            <element signature="e#15705#15911#0" />
+            <element signature="e#15742#15790#0" />
+            <element signature="e#15842#15890#0" />
+            <element signature="e#15938#15968#0" />
+            <element signature="e#15995#16025#0" />
+            <element signature="e#16052#16082#0" />
+            <element signature="e#16109#16139#0" />
+            <element signature="e#16166#16196#0" />
+            <element signature="e#16223#16253#0" />
+            <element signature="e#16302#16342#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../essence/must/must.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/models/AnimatedCube/glTF/AnimatedCube.gltf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_AnimationSampler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_Animation.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="73" column="50" selection-start-line="73" selection-start-column="50" selection-end-line="73" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
         </state>
       </provider>
     </entry>

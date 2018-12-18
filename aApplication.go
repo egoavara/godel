@@ -22,9 +22,10 @@ type Application struct {
 
 	// public
 	Camera *Camera
+	Lighting *Lighting
 }
 
-func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera) *Application {
+func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera, lighting *Lighting) *Application {
 	if vs.Type() != shader.Vertex {
 		panic("vs must be Vertex Shader")
 	}
@@ -37,8 +38,12 @@ func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera) *Appli
 	//
 	size := viewportSize().Size()
 
-	return &Application{vs: vs, fs: fs, Camera: camera,
+	return &Application{
+		vs: vs,
+		fs: fs,
 		screen: mgl32.Vec2{float32(size.X), float32(size.Y)},
+		Camera: camera,
+		Lighting: lighting,
 	}
 }
 func (s *Application) requireProgram(defines *shader.DefineList) int {
@@ -82,11 +87,11 @@ func (s *Application) NewRenderer(model *gltf2.GLTF) (*Renderer, error) {
 	}
 	return res, nil
 }
-func (s *Application) MustRenderer(model *gltf2.GLTF) *Renderer {
-	res, err := s.NewRenderer(model)
-	if err != nil {
-		panic(err)
-	}
-	return res
-}
+//func (s *Application) MustRenderer(model *gltf2.GLTF) *Renderer {
+//	res, err := s.NewRenderer(model)
+//	if err != nil {
+//		panic(err)
+//	}
+//	return res
+//}
 //

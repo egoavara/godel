@@ -5,7 +5,6 @@ import (
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/mathgl/mgl32"
-	"github.com/iamGreedy/essence/align"
 	"github.com/iamGreedy/essence/axis"
 	"github.com/iamGreedy/essence/meter"
 	"github.com/iamGreedy/essence/must"
@@ -30,10 +29,9 @@ func main() {
 	version := gl.GoStr(gl.GetString(gl.VERSION))
 	fmt.Println("OpenGL version : ", version)
 	// GLTF
-	//f := must.MustGet(os.Open("./demo/RubiksCube/RubiksCube_01.gltf")).(*os.File)
-	//f := must.MustGet(os.Open("./demo/dice/dice.gltf")).(*os.File)
-	//f := must.MustGet(os.Open("./demo/damagedHelmet/damagedHelmet.gltf")).(*os.File)
-	f := must.MustGet(os.Open("./demo/kenney_piratekit_1.1/Models/glTF format/boat_large.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/damagedHelmet/damagedHelmet.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/2CylinderEngine/glTF/2CylinderEngine.gltf")).(*os.File)
+	f := must.MustGet(os.Open("./demo/models/AnimatedCube/glTF/AnimatedCube.gltf")).(*os.File)
 	defer f.Close()
 	md := must.MustGet(gltf2.Parser().
 		Reader(f).
@@ -45,8 +43,8 @@ func main() {
 			gltf2.Tasks.ImageCaching,
 			gltf2.Tasks.AutoBufferTarget,
 			gltf2.Tasks.AccessorMinMax,
-			gltf2.Tasks.ModelScale(axis.Z, meter.New(prefix.No, 13)),
-			gltf2.Tasks.ModelAlign(align.Center, align.Center, align.Center),
+			gltf2.Tasks.ModelScale(axis.X, meter.New(prefix.No, 15)),
+			//gltf2.Tasks.ModelAlign(align.Center, align.Center, align.Center),
 			//gltf2.Tasks.ModelAlign(align.No, align.No, align.Center),
 			gltf2.Tasks.ByeWorld,
 		).
@@ -54,9 +52,12 @@ func main() {
 		Parse()).(*gltf2.GLTF)
 
 	// godel Renderer
-	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective))
-	app.Camera.LookFrom(mgl32.Vec3{0, 10, -30})
-	rd := app.MustRenderer(md)
+	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective), godel.NewLighting())
+	app.Camera.LookFrom(mgl32.Vec3{0, 10, -50})
+	app.Lighting.Global.Direction = mgl32.Vec3{
+		0, -1, 1,
+	}
+	rd := must.MustGet(app.NewRenderer(md)).(*godel.Renderer)
 	//
 	// Configure global settings
 	gl.Enable(gl.DEPTH_TEST)
