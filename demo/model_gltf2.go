@@ -8,7 +8,7 @@ import (
 	"github.com/iamGreedy/essence/must"
 	"github.com/iamGreedy/essence/prefix"
 	"github.com/iamGreedy/gltf2"
-
+	"github.com/iamGreedy/godel"
 	"os"
 )
 
@@ -41,5 +41,14 @@ func main() {
 	fmt.Println(md.Animations[0].Samplers[0].Input)
 	fmt.Println(md.Animations[0].Samplers[0].Input.MustSliceMapping(new([]float32),true, true))
 	fmt.Println(md.Animations[0].Samplers[0].Output.MustSliceMapping(new([]mgl32.Vec3),true, true))
-
+	md.Animations[0].Samplers[0].Interpolation = gltf2.LINEAR
+	smp, err := godel.MakeSampler(md.Animations[0].Samplers[0], false)
+	if err != nil {
+		panic(err)
+	}
+	start, end := smp.Range()
+	const dt = 0.125
+	for curr := start; curr < end; curr += dt {
+		fmt.Printf("%10f : %v\n",curr,smp.P(curr).Vec3())
+	}
 }
