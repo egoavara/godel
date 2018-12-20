@@ -2,7 +2,6 @@ package godel
 
 import (
 	"github.com/go-gl/mathgl/mgl32"
-	"github.com/iamGreedy/gltf2"
 	"github.com/iamGreedy/godel/shader"
 	"image"
 )
@@ -19,10 +18,15 @@ type Application struct {
 	screen mgl32.Vec2
 	// lighting
 	//ibl []uint32
-
 	// public
 	Camera *Camera
 	Lighting *Lighting
+
+	//
+	updaters []Updater
+}
+type Updater interface {
+	dt(t float32)
 }
 
 func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera, lighting *Lighting) *Application {
@@ -75,23 +79,25 @@ func (s *Application) Screen(size image.Point) {
 	}
 	s.screen = mgl32.Vec2{float32(size.X), float32(size.Y)}
 }
-
-//
-func (s *Application) NewRenderer(model *gltf2.GLTF) (*Renderer, error) {
-	res := &Renderer{
-		app:   s,
-		model: model,
+func (s *Application) Update(dt float32) {
+	for _, v := range s.updaters {
+		v.dt(dt)
 	}
-	if err := res._Setup(); err != nil {
-		return nil, err
-	}
-	return res, nil
 }
-//func (s *Application) MustRenderer(model *gltf2.GLTF) *Renderer {
-//	res, err := s.NewRenderer(model)
-//	if err != nil {
-//		panic(err)
-//	}
-//	return res
-//}
-//
+func (s *Application) append(u Updater) {
+	if u == nil{
+		return
+	}
+	s.updaters = append(s.updaters, u)
+}
+func (s *Application) delete(u Updater) {
+	if u == nil{
+		return
+	}
+	for i, updater := range s.updaters {
+		if updater == u{
+			s.updaters = append(s.updaters[:i], s.updaters[i + 1:]...)
+			return
+		}
+	}
+}

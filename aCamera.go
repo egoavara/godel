@@ -25,7 +25,7 @@ func NewCamera(cameraType CameraType, args ...float32) *Camera {
 		if len(args) == 4 {
 			cam.Perspective(args[0], args[1], args[2], args[3])
 		} else {
-			cam.Perspective(AUTO, mgl32.DegToRad(45), NEAR, INF)
+			cam.Perspective(AUTO, mgl32.DegToRad(60), NEAR, INF)
 		}
 	}
 	cam.vargs[0] = mgl32.Vec3{1, 1, 1}
@@ -130,6 +130,6 @@ const (
 const (
 	AUTO float32 = 0
 	INF  float32 = -1
-	NEAR float32 = 0.001
+	NEAR float32 = 0.05
 	FAR  float32 = 1000
 )
