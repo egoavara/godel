@@ -19,9 +19,6 @@ type Object struct {
 type node struct {
 	children []*node
 	//
-	t  mgl32.Vec3
-	r  mgl32.Quat
-	s  mgl32.Vec3
 	aT *mgl32.Vec3
 	aR *mgl32.Quat
 	aS *mgl32.Vec3
@@ -74,14 +71,6 @@ func (s *Object) Scene(i int) {
 func (s *Object) recurSetupNode(dst *node, src *gltf2.Node) {
 	dst.src = src
 	dst.mesh = src.Mesh
-	//
-	dst.t = src.Translation
-	dst.r = src.Rotation
-	dst.s = src.Scale
-	if src.Matrix != mgl32.Ident4() {
-		dst.m = new(mgl32.Mat4)
-		*dst.m = src.Matrix
-	}
 	//
 	dst.children = make([]*node, len(src.Children))
 	for i, v := range src.Children {
@@ -187,29 +176,23 @@ func (s *Object) recurRender(node *node, cameraMatrix mgl32.Mat4, modelMatrix mg
 		return
 	}
 	// modelMatrix matrix setup
-	animon := false
-	transform := mgl32.Ident4()
-	if !animon && node.m != nil {
-		transform = *node.m
+	var transform mgl32.Mat4
+	mt := node.src.Translation
+	mr := node.src.Rotation
+	ms := node.src.Scale
+	if node.aT != nil {
+		mt = *node.aT
+	}
+	if node.aR != nil {
+		mr = *node.aR
+	}
+	if node.aS != nil {
+		ms= *node.aS
+	}
+	if node.src.Matrix != mgl32.Ident4(){
+		transform = node.src.Matrix
 	}else {
-		if node.aT != nil {
-			transform = transform.Mul4(mgl32.Translate3D(node.aT[0], node.aT[1], node.aT[2]))
-			animon = true
-		} else {
-			transform = transform.Mul4(mgl32.Translate3D(node.t[0], node.t[1], node.t[2]))
-		}
-		if node.aR != nil {
-			transform = transform.Mul4(node.aR.Mat4())
-			animon = true
-		} else {
-			transform = transform.Mul4(node.r.Mat4())
-		}
-		if node.aS != nil {
-			transform = transform.Mul4(mgl32.Translate3D(node.aS[0], node.aS[1], node.aS[2]))
-			animon = true
-		} else {
-			transform = transform.Mul4(mgl32.Scale3D(node.s[0], node.s[1], node.s[2]))
-		}
+		transform = mgl32.Translate3D(mt[0], mt[1], mt[2]).Mul4(mr.Mat4()).Mul4(mgl32.Scale3D(ms[0], ms[1], ms[2]))
 	}
 	modelMatrix = modelMatrix.Mul4(transform)
 	//
