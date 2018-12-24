@@ -42,13 +42,13 @@ func (s *Model) NewObject(i int) (player *Object) {
 	return res
 }
 func (s *Object) Close() error {
-	if s.anim != nil{
+	if s.anim != nil {
 		s.anim.Close()
 	}
 	return nil
 }
 func (s *Object) Scene(i int) {
-	if s.anim != nil{
+	if s.anim != nil {
 		s.anim.Close()
 		s.anim = nil
 	}
@@ -187,11 +187,11 @@ func (s *Object) recurRender(node *node, cameraMatrix mgl32.Mat4, modelMatrix mg
 		mr = *node.aR
 	}
 	if node.aS != nil {
-		ms= *node.aS
+		ms = *node.aS
 	}
-	if node.src.Matrix != mgl32.Ident4(){
+	if node.src.Matrix != mgl32.Ident4() {
 		transform = node.src.Matrix
-	}else {
+	} else {
 		transform = mgl32.Translate3D(mt[0], mt[1], mt[2]).Mul4(mr.Mat4()).Mul4(mgl32.Scale3D(ms[0], ms[1], ms[2]))
 	}
 	modelMatrix = modelMatrix.Mul4(transform)

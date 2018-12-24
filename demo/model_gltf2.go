@@ -18,6 +18,9 @@ func main() {
 	md := must.MustGet(gltf2.Parser().
 		Reader(f).
 		Logger(os.Stdout).
+		Extensions(
+			gltf2.KHR_materials_pbrSpecularGlossiness,
+		).
 		Tasks(
 			gltf2.Tasks.HelloWorld,
 			gltf2.Tasks.Caching,
@@ -33,4 +36,6 @@ func main() {
 		Parse()).(*gltf2.GLTF)
 	//
 	fmt.Println(md.Asset)
+	fmt.Println(md.Materials[0].Extensions)
+
 }
