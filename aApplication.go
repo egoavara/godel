@@ -19,7 +19,7 @@ type Application struct {
 	// lighting
 	//ibl []uint32
 	// public
-	Camera *Camera
+	Camera   *Camera
 	Lighting *Lighting
 
 	//
@@ -43,10 +43,10 @@ func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera, lighti
 	size := viewportSize().Size()
 
 	return &Application{
-		vs: vs,
-		fs: fs,
-		screen: mgl32.Vec2{float32(size.X), float32(size.Y)},
-		Camera: camera,
+		vs:       vs,
+		fs:       fs,
+		screen:   mgl32.Vec2{float32(size.X), float32(size.Y)},
+		Camera:   camera,
 		Lighting: lighting,
 	}
 }
@@ -85,18 +85,18 @@ func (s *Application) Update(dt float32) {
 	}
 }
 func (s *Application) append(u Updater) {
-	if u == nil{
+	if u == nil {
 		return
 	}
 	s.updaters = append(s.updaters, u)
 }
 func (s *Application) delete(u Updater) {
-	if u == nil{
+	if u == nil {
 		return
 	}
 	for i, updater := range s.updaters {
-		if updater == u{
-			s.updaters = append(s.updaters[:i], s.updaters[i + 1:]...)
+		if updater == u {
+			s.updaters = append(s.updaters[:i], s.updaters[i+1:]...)
 			return
 		}
 	}

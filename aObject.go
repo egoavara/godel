@@ -18,15 +18,20 @@ type Object struct {
 
 type node struct {
 	children []*node
+	skin *skin
 	//
 	aT *mgl32.Vec3
 	aR *mgl32.Quat
 	aS *mgl32.Vec3
 	m  *mgl32.Mat4
-
 	//
 	src  *gltf2.Node
-	mesh *gltf2.Mesh
+}
+
+type skin struct {
+	mtx *gltf2.Accessor
+	skt *node
+	joint []*node
 }
 
 func (s *Model) NewObject(i int) (player *Object) {
@@ -66,16 +71,32 @@ func (s *Object) Scene(i int) {
 	for i, v := range scn.Nodes {
 		s.tree[i] = new(node)
 		s.recurSetupNode(s.tree[i], v)
+		s.recurSetupSkin(s.tree[i])
 	}
 }
 func (s *Object) recurSetupNode(dst *node, src *gltf2.Node) {
 	dst.src = src
-	dst.mesh = src.Mesh
 	//
 	dst.children = make([]*node, len(src.Children))
 	for i, v := range src.Children {
 		dst.children[i] = new(node)
 		s.recurSetupNode(dst.children[i], v)
+	}
+}
+func (s *Object) recurSetupSkin(trg *node) {
+	if trg.src.Skin != nil{
+		trg.skin = &skin{
+			mtx:trg.src.Skin.InverseBindMatrices,
+			skt:s.find(trg.src.Skin.Skeleton),
+			joint: make([]*node, len(trg.src.Skin.Joints)),
+		}
+		for i, v := range trg.src.Skin.Joints {
+			trg.skin.joint[i] = s.find(v)
+		}
+	}
+	//
+	for _, v := range trg.children {
+		s.recurSetupSkin(v)
 	}
 }
 func (s *Object) find(src *gltf2.Node) *node {
@@ -196,9 +217,9 @@ func (s *Object) recurRender(node *node, cameraMatrix mgl32.Mat4, modelMatrix mg
 	}
 	modelMatrix = modelMatrix.Mul4(transform)
 	//
-	if node.mesh != nil {
+	if node.src.Mesh != nil {
 		// render mesh
-		for _, prim := range node.mesh.Primitives {
+		for _, prim := range node.src.Mesh.Primitives {
 			primUser := prim.UserData.(*primitive)
 			prog := s.model.app.getProgram(primUser.programIndex)
 			prog.Use(func(p *ProgramContext) {

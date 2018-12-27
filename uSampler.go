@@ -33,7 +33,7 @@ func MakeSampler(sampler *gltf2.AnimationSampler, normalize bool, rotation bool)
 		if sampler.Input.ComponentType != gltf2.FLOAT {
 			return nil, errors.New("Must be float type")
 		}
-		if rotation{
+		if rotation {
 			return &PlayerSphereLinearSampler{
 				in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
 				out:      nFloat32s(sampler.Output, normalize),
@@ -136,12 +136,12 @@ func (s *PlayerSphereLinearSampler) P(current float32) *mgl32.VecN {
 			p1 := mgl32.NewVecNFromData(s.out[startk1 : startk1+s.outCount])
 			//
 			q0 := mgl32.Quat{
-				W : p0.Get(3),
-				V:p0.Vec3(),
+				W: p0.Get(3),
+				V: p0.Vec3(),
 			}
 			q1 := mgl32.Quat{
-				W : p1.Get(3),
-				V:p1.Vec3(),
+				W: p1.Get(3),
+				V: p1.Vec3(),
 			}
 			//res := mgl32.QuatSlerp(q0, q1, t)
 			res := slerp(q0, q1, t)
@@ -231,14 +231,13 @@ func nFloat32s(accessor *gltf2.Accessor, normalize bool) []float32 {
 	return res
 }
 
-
 func slerp(q0 mgl32.Quat, q1 mgl32.Quat, amount float32) mgl32.Quat {
 	q0, q1 = q0.Normalize(), q1.Normalize()
 	dot := q0.Dot(q1)
-	if dot < 0{
+	if dot < 0 {
 		q1 = mgl32.Quat{
 			W: -q1.W,
-			V : mgl32.Vec3{
+			V: mgl32.Vec3{
 				-q1.V[0],
 				-q1.V[1],
 				-q1.V[2],

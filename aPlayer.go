@@ -24,7 +24,7 @@ type playerTarget struct {
 }
 
 func (s *Object) NewPlayer(i int, callback func(a *Player)) *Player {
-	if s.anim != nil{
+	if s.anim != nil {
 		s.anim.Close()
 	}
 	if i < 0 || i >= len(s.model.gltf.Animations) {
@@ -35,7 +35,7 @@ func (s *Object) NewPlayer(i int, callback func(a *Player)) *Player {
 	if err := s.setupAnimation(s.anim, s.model.gltf.Animations[i]); err != nil {
 		s.anim = nil
 	} else {
-		if callback != nil{
+		if callback != nil {
 			callback(s.anim)
 		}
 	}

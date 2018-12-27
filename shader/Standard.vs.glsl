@@ -19,10 +19,15 @@ layout (location = 2) in vec4 tangent;
 #ifdef HAS_COORD_0
 layout (location = 4) in vec2 texCoord_0;
 #endif
-#ifdef HAS_COORD_1
+#ifdef HAS_JOINTS_0
 layout (location = 5) in vec2 texCoord_1;
 #endif
-
+#ifdef HAS_JOINT_0
+layout (location = 6) in ivec4 joint_0;
+#endif
+#ifdef HAS_WEIGHT_0
+layout (location = 7) in vec4 weight_0;
+#endif
 
 out struct{
     vec3 position;
@@ -41,6 +46,7 @@ out struct{
 
 void main() {
     vec4 pos = ModelMatrix * vec4(position, 1);
+    //
     fsout.position = vec3(pos.xyz) / pos.w;
     // Normal,
     #ifdef HAS_NORMAL
@@ -55,16 +61,20 @@ void main() {
             fsout.normal = normalize(vec3(NormalMatrix   * vec4(normal.xyz, 0.0)));
         #endif
     #endif
+
+
     // TexCoord 1
     #ifdef HAS_COORD_0
         fsout.texCoord_0 = texCoord_0;
     #else
         fsout.texCoord_0 = vec2(0, 0);
     #endif
+
     // TexCoord 1
     #ifdef HAS_COORD_1
         fsout.texCoord_1 = texCoord_1;
     #endif
+
     // Camera = Perspective * View
-    gl_Position = CameraMatrix * ModelMatrix * vec4(position, 1); // needs w for proper perspective correction
+    gl_Position = CameraMatrix * pos; // needs w for proper perspective correction
 }

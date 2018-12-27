@@ -143,6 +143,7 @@ float microfacetDistribution(PBRInfo pbrInputs){
     return roughnessSq / (PI * f * f);
 }
 
+// Physical Based Rendering
 void main()
 {
     float metallic = MetalRoughnessFactor.x;

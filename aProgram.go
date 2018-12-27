@@ -10,51 +10,53 @@ import (
 
 type Program struct {
 	ptr          uint32
-	defines *shader.DefineList
+	defines      *shader.DefineList
 	uniformIndex map[string]int32
 	uniformData  map[int32]interface{}
-	uboPointer map[string]uint32
+	uboPointer   map[string]uint32
 }
 
 func NewProgram(vertex, frag *shader.Shader, defines *shader.DefineList) *Program {
 	return &Program{
-		ptr : buildProgram(vertex.Source(version.New(4, 1), *defines...), frag.Source(version.New(4, 1), *defines...)),
-		defines: defines,
+		ptr:          buildProgram(vertex.Source(version.New(4, 1), *defines...), frag.Source(version.New(4, 1), *defines...)),
+		defines:      defines,
 		uniformIndex: make(map[string]int32),
-		uniformData: make(map[int32]interface{}),
-		uboPointer: make(map[string]uint32),
+		uniformData:  make(map[int32]interface{}),
+		uboPointer:   make(map[string]uint32),
 	}
 }
-func (s *Program)GL() uint32 {
+func (s *Program) GL() uint32 {
 	return s.ptr
 }
-func (s *Program)Use(fn func(p *ProgramContext)) {
+func (s *Program) Use(fn func(p *ProgramContext)) {
 	gl.UseProgram(s.ptr)
 	fn(&ProgramContext{
-		ref:s,
+		ref: s,
 	})
 }
 
 type ProgramContext struct {
 	ref *Program
 }
+
 // Do not use just Array float, nor Slice float
-func (s *ProgramContext)UniformIndex(key string) int32 {
+func (s *ProgramContext) UniformIndex(key string) int32 {
 	key = strings.Trim(key, "\x00")
-	if v, ok := s.ref.uniformIndex[key];ok{
+	if v, ok := s.ref.uniformIndex[key]; ok {
 		return v
 	}
-	lc := gl.GetUniformLocation(s.ref.ptr, gl.Str(key + "\x00"))
-	if lc >= 0{
+	lc := gl.GetUniformLocation(s.ref.ptr, gl.Str(key+"\x00"))
+	if lc >= 0 {
 		s.ref.uniformIndex[key] = lc
 		return lc
 	}
 	return -1
 }
+
 // Do not use just Array float, nor Slice float
-func (s *ProgramContext)Uniform(key string, data interface{}) bool{
-	if idx := s.UniformIndex(key); idx >=0{
-		if s.ref.uniformData[idx] == data{
+func (s *ProgramContext) Uniform(key string, data interface{}) bool {
+	if idx := s.UniformIndex(key); idx >= 0 {
+		if s.ref.uniformData[idx] == data {
 			return true
 		}
 		s.ref.uniformData[idx] = data

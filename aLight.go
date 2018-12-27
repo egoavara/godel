@@ -14,12 +14,11 @@ type Lighting struct {
 func NewLighting() *Lighting {
 	return &Lighting{
 		Global: &GlobalLight{
-			Direction:mgl32.Vec3{0,-1,0},
-			Color: mgl32.Vec3{1,1,1},
+			Direction: mgl32.Vec3{0, -1, 0},
+			Color:     mgl32.Vec3{1, 1, 1},
 		},
 	}
 }
-
 
 type GlobalLight struct {
 	Direction mgl32.Vec3

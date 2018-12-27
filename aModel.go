@@ -14,8 +14,8 @@ type primitive struct {
 	vao          uint32
 }
 type Model struct {
-	app *Application
-	gltf     *gltf2.GLTF
+	app  *Application
+	gltf *gltf2.GLTF
 }
 
 func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool) (*Model, error) {
@@ -26,11 +26,12 @@ func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool) (*Model, er
 	if err := res._Setup(); err != nil {
 		return nil, err
 	}
-	if clearCache{
+	if clearCache {
 		gltf2.ThrowAllCache(model)
 	}
 	return res, nil
 }
+
 // privates
 func (s *Model) _Setup() error {
 	if err := s._Setup_buffers(); err != nil {
@@ -68,6 +69,12 @@ func (s *Model) _Setup_programs() (err error) {
 			}
 			if _, ok := prim.Attributes[gltf2.TANGENT]; ok {
 				defs.Add(shader.HAS_TANGENT)
+			}
+			if _, ok := prim.Attributes[gltf2.WEIGHTS_0]; ok {
+				defs.Add(shader.HAS_WEIGHT_0)
+			}
+			if _, ok := prim.Attributes[gltf2.JOINTS_0]; ok {
+				defs.Add(shader.HAS_JOINT_0)
 			}
 			// fs defs
 			if prim.Material != nil {
@@ -150,6 +157,32 @@ func (s *Model) _Setup_programs() (err error) {
 					tangent.Normalized,
 					int32(tangent.BufferView.ByteStride),
 					gl.PtrOffset(tangent.ByteOffset),
+				)
+			}
+			// VBO Joint 0
+			if joint0, ok := prim.Attributes[gltf2.JOINTS_0]; ok {
+				gl.BindBuffer(gl.ARRAY_BUFFER, joint0.BufferView.UserData.(uint32))
+				gl.EnableVertexAttribArray(7)
+				gl.VertexAttribPointer(
+					7,
+					int32(joint0.Type.Count()),
+					uint32(joint0.ComponentType),
+					joint0.Normalized,
+					int32(joint0.BufferView.ByteStride),
+					gl.PtrOffset(joint0.ByteOffset),
+				)
+			}
+			// VBO Weight 0
+			if weight0, ok := prim.Attributes[gltf2.WEIGHTS_0]; ok {
+				gl.BindBuffer(gl.ARRAY_BUFFER, weight0.BufferView.UserData.(uint32))
+				gl.EnableVertexAttribArray(7)
+				gl.VertexAttribPointer(
+					7,
+					int32(weight0.Type.Count()),
+					uint32(weight0.ComponentType),
+					weight0.Normalized,
+					int32(weight0.BufferView.ByteStride),
+					gl.PtrOffset(weight0.ByteOffset),
 				)
 			}
 			// EBO
@@ -242,4 +275,3 @@ func (s *Model) _Setup_textures() (err error) {
 
 	return nil
 }
-

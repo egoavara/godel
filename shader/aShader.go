@@ -63,7 +63,7 @@ func (s *Shader) Arg(key string) *ShaderArg {
 var (
 	Standard *Shader
 	Flat     *Shader
-	PBR     *Shader
+	PBR      *Shader
 )
 
 func init() {
@@ -87,7 +87,5 @@ func init() {
 		//	Kind:  reflect.Float32,
 		//},
 	})
-	PBR = NewShader(Fragment, string(FilePBRFsGlsl), map[string]*ShaderArg{
-
-	})
+	PBR = NewShader(Fragment, string(FilePBRFsGlsl), map[string]*ShaderArg{})
 }

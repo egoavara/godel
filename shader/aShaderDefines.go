@@ -41,6 +41,8 @@ const (
 	HAS_TANGENT Define = "#define HAS_TANGENT"
 	HAS_COORD_0 Define = "#define HAS_COORD_0"
 	HAS_COORD_1 Define = "#define HAS_COORD_1"
+	HAS_JOINT_0 Define = "#define HAS_JOINT_0"
+	HAS_WEIGHT_0 Define = "#define HAS_WEIGHT_0"
 )
 
 // PBR.fs.glsl
