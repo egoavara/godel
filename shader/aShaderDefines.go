@@ -37,11 +37,11 @@ type Define string
 
 // Standard.vs.glsl, PBR.fs.glsl, Phong.fs.glsl, Debug.fs.glsl
 const (
-	HAS_NORMAL  Define = "#define HAS_NORMAL"
-	HAS_TANGENT Define = "#define HAS_TANGENT"
-	HAS_COORD_0 Define = "#define HAS_COORD_0"
-	HAS_COORD_1 Define = "#define HAS_COORD_1"
-	HAS_JOINT_0 Define = "#define HAS_JOINT_0"
+	HAS_NORMAL   Define = "#define HAS_NORMAL"
+	HAS_TANGENT  Define = "#define HAS_TANGENT"
+	HAS_COORD_0  Define = "#define HAS_COORD_0"
+	HAS_COORD_1  Define = "#define HAS_COORD_1"
+	HAS_JOINT_0  Define = "#define HAS_JOINT_0"
 	HAS_WEIGHT_0 Define = "#define HAS_WEIGHT_0"
 )
 

@@ -37,7 +37,11 @@ func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera, lighti
 		panic("fs must be Fragment Shader")
 	}
 	if camera == nil {
-		panic("Camera not nillable")
+		camera = NewCamera(Perspective)
+	}
+
+	if lighting == nil {
+		lighting = NewLighting()
 	}
 	//
 	size := viewportSize().Size()

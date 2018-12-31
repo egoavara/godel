@@ -7,6 +7,11 @@
 uniform mat4 CameraMatrix;
 uniform mat4 ModelMatrix;
 uniform mat4 NormalMatrix;
+#ifdef HAS_JOINT_0
+#ifdef HAS_WEIGHT_0
+uniform mat4 [64]JointMatrix;
+#endif
+#endif
 
 layout (location = 0) in vec3 position;
 #ifdef HAS_NORMAL
@@ -29,6 +34,8 @@ layout (location = 6) in ivec4 joint_0;
 layout (location = 7) in vec4 weight_0;
 #endif
 
+
+
 out struct{
     vec3 position;
     vec2 texCoord_0;
@@ -45,7 +52,18 @@ out struct{
 } fsout;
 
 void main() {
-    vec4 pos = ModelMatrix * vec4(position, 1);
+    vec4 pos = vec4(position, 1);
+    #ifdef HAS_JOINT_0
+    #ifdef HAS_WEIGHT_0
+        mat4 skinMatrix =
+            weight_0.x * JointMatrix[int(joint_0.x)] +
+            weight_0.y * JointMatrix[int(joint_0.y)] +
+            weight_0.z * JointMatrix[int(joint_0.z)] +
+            weight_0.w * JointMatrix[int(joint_0.w)];
+        pos = skinMatrix * pos;
+    #endif
+    #endif
+    pos = ModelMatrix * pos;
     //
     fsout.position = vec3(pos.xyz) / pos.w;
     // Normal,
@@ -68,6 +86,7 @@ void main() {
         fsout.texCoord_0 = texCoord_0;
     #else
         fsout.texCoord_0 = vec2(0, 0);
+//        fsout.texCoord_0 = vec2(float(joint_0.x), float(joint_0.y));
     #endif
 
     // TexCoord 1

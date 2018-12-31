@@ -1,6 +1,7 @@
 package godel
 
 import (
+	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/mathgl/mgl32"
 	"github.com/iamGreedy/essence/version"
@@ -17,13 +18,22 @@ type Program struct {
 }
 
 func NewProgram(vertex, frag *shader.Shader, defines *shader.DefineList) *Program {
-	return &Program{
+	p := &Program{
 		ptr:          buildProgram(vertex.Source(version.New(4, 1), *defines...), frag.Source(version.New(4, 1), *defines...)),
 		defines:      defines,
 		uniformIndex: make(map[string]int32),
 		uniformData:  make(map[int32]interface{}),
 		uboPointer:   make(map[string]uint32),
 	}
+	// opengl ^4.2 support binding in layout GLSL
+	p.Use(func(p *ProgramContext) {
+		for i := 0; i < 64; i++ {
+			p.Uniform(fmt.Sprintf("JointMatrix[%d]", i), mgl32.Ident4())
+		}
+	})
+	
+	
+	return p
 }
 func (s *Program) GL() uint32 {
 	return s.ptr

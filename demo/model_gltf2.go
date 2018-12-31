@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/go-gl/mathgl/mgl32"
 	"github.com/iamGreedy/essence/align"
 	"github.com/iamGreedy/essence/axis"
 	"github.com/iamGreedy/essence/meter"
@@ -16,7 +17,8 @@ func main() {
 	//f := must.MustGet(os.Open("./demo/models/Avocado/glTF-pbrSpecularGlossiness/Avocado.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/Avocado/glTF-Draco/Avocado.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/RiggedFigure/glTF/RiggedFigure.gltf")).(*os.File)
-	f := must.MustGet(os.Open("./demo/models/RiggedSimple/glTF/RiggedSimple.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/RiggedSimple/glTF/RiggedSimple.gltf")).(*os.File)
+	f := must.MustGet(os.Open("./demo/models/0gltfTutorial19/file.gltf")).(*os.File)
 	defer f.Close()
 	md := must.MustGet(gltf2.Parser().
 		Reader(f).
@@ -40,8 +42,9 @@ func main() {
 		Parse()).(*gltf2.GLTF)
 	//
 	fmt.Println(md.Asset)
-	fmt.Println(md.Skins[0])
-	fmt.Println(md.Skins[0].Joints)
-	fmt.Println(md.Skins[0].Skeleton)
+	fmt.Println(md.Accessors[3])
+	fmt.Println(md.Accessors[3].BufferView.ByteStride)
+	fmt.Println(md.Accessors[3].RawMap())
+	fmt.Println(md.Accessors[3].MustSliceMapping(new([]mgl32.Vec4), true, true))
 //
 }

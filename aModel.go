@@ -34,7 +34,7 @@ func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool) (*Model, er
 
 // privates
 func (s *Model) _Setup() error {
-	if err := s._Setup_buffers(); err != nil {
+	if err := s._Setup_accessor(); err != nil {
 		return err
 	}
 	if err := s._Setup_textures(); err != nil {
@@ -98,18 +98,25 @@ func (s *Model) _Setup_programs() (err error) {
 			}
 			//
 			temp.programIndex = s.app.requireProgram(defs)
-			// _Setup Vao
+			// Setup Vao
 			gl.GenVertexArrays(1, &temp.vao)
 			gl.BindVertexArray(temp.vao)
 			// VBO POSITION
 			pos := prim.Attributes[gltf2.POSITION]
 
-			gl.BindBuffer(gl.ARRAY_BUFFER, pos.BufferView.UserData.(uint32))
+			gl.BindBuffer(gl.ARRAY_BUFFER, pos.UserData.(uint32))
 			gl.EnableVertexAttribArray(0)
-			gl.VertexAttribPointer(0, int32(pos.Type.Count()), uint32(pos.ComponentType), pos.Normalized, int32(pos.BufferView.ByteStride), gl.PtrOffset(pos.ByteOffset))
+			gl.VertexAttribPointer(
+				0,
+				int32(pos.Type.Count()),
+				uint32(pos.ComponentType),
+				pos.Normalized,
+				int32(pos.BufferView.ByteStride),
+				gl.PtrOffset(0),
+			)
 			// VBO TEXCOORD_0
 			if coord0, ok := prim.Attributes[gltf2.TEXCOORD_0]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, coord0.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ARRAY_BUFFER, coord0.UserData.(uint32))
 				gl.EnableVertexAttribArray(4)
 				gl.VertexAttribPointer(
 					4,
@@ -117,12 +124,12 @@ func (s *Model) _Setup_programs() (err error) {
 					uint32(coord0.ComponentType),
 					coord0.Normalized,
 					int32(coord0.BufferView.ByteStride),
-					gl.PtrOffset(coord0.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// VBO TEXCOORD_1
 			if coord1, ok := prim.Attributes[gltf2.TEXCOORD_1]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, coord1.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ARRAY_BUFFER, coord1.UserData.(uint32))
 				gl.EnableVertexAttribArray(5)
 				gl.VertexAttribPointer(
 					5,
@@ -130,12 +137,12 @@ func (s *Model) _Setup_programs() (err error) {
 					uint32(coord1.ComponentType),
 					coord1.Normalized,
 					int32(coord1.BufferView.ByteStride),
-					gl.PtrOffset(coord1.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// VBO NORMAL
 			if norm, ok := prim.Attributes[gltf2.NORMAL]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, norm.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ARRAY_BUFFER, norm.UserData.(uint32))
 				gl.EnableVertexAttribArray(1)
 				gl.VertexAttribPointer(
 					1,
@@ -143,12 +150,12 @@ func (s *Model) _Setup_programs() (err error) {
 					uint32(norm.ComponentType),
 					norm.Normalized,
 					int32(norm.BufferView.ByteStride),
-					gl.PtrOffset(norm.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// VBO TANGENT
 			if tangent, ok := prim.Attributes[gltf2.TANGENT]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, tangent.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ARRAY_BUFFER, tangent.UserData.(uint32))
 				gl.EnableVertexAttribArray(2)
 				gl.VertexAttribPointer(
 					2,
@@ -156,25 +163,24 @@ func (s *Model) _Setup_programs() (err error) {
 					uint32(tangent.ComponentType),
 					tangent.Normalized,
 					int32(tangent.BufferView.ByteStride),
-					gl.PtrOffset(tangent.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// VBO Joint 0
 			if joint0, ok := prim.Attributes[gltf2.JOINTS_0]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, joint0.BufferView.UserData.(uint32))
-				gl.EnableVertexAttribArray(7)
-				gl.VertexAttribPointer(
-					7,
+				gl.BindBuffer(gl.ARRAY_BUFFER, joint0.UserData.(uint32))
+				gl.EnableVertexAttribArray(6)
+				gl.VertexAttribIPointer(
+					6,
 					int32(joint0.Type.Count()),
 					uint32(joint0.ComponentType),
-					joint0.Normalized,
 					int32(joint0.BufferView.ByteStride),
-					gl.PtrOffset(joint0.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// VBO Weight 0
 			if weight0, ok := prim.Attributes[gltf2.WEIGHTS_0]; ok {
-				gl.BindBuffer(gl.ARRAY_BUFFER, weight0.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ARRAY_BUFFER, weight0.UserData.(uint32))
 				gl.EnableVertexAttribArray(7)
 				gl.VertexAttribPointer(
 					7,
@@ -182,12 +188,12 @@ func (s *Model) _Setup_programs() (err error) {
 					uint32(weight0.ComponentType),
 					weight0.Normalized,
 					int32(weight0.BufferView.ByteStride),
-					gl.PtrOffset(weight0.ByteOffset),
+					gl.PtrOffset(0),
 				)
 			}
 			// EBO
 			if prim.Indices != nil {
-				gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, prim.Indices.BufferView.UserData.(uint32))
+				gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, prim.Indices.UserData.(uint32))
 			}
 			//
 			prim.UserData = temp
@@ -196,20 +202,20 @@ func (s *Model) _Setup_programs() (err error) {
 	//
 	return nil
 }
-func (s *Model) _Setup_buffers() (err error) {
-	if len(s.gltf.BufferViews) < 1 {
+func (s *Model) _Setup_accessor() (err error) {
+	if len(s.gltf.Accessors) < 1 {
 		return nil
 	}
-	vbos := make([]uint32, len(s.gltf.BufferViews))
+	vbos := make([]uint32, len(s.gltf.Accessors))
 	gl.GenBuffers(int32(len(vbos)), &vbos[0])
 	defer func() {
 		if err != nil {
 			gl.DeleteBuffers(int32(len(vbos)), &vbos[0])
 		}
 	}()
-	for i, bv := range s.gltf.BufferViews {
+	for i, acc := range s.gltf.Accessors {
 		var bts []byte
-		bts, err = bv.Load()
+		bts, err = acc.RawMap()
 		if err != nil {
 			return err
 		}
@@ -217,19 +223,20 @@ func (s *Model) _Setup_buffers() (err error) {
 			continue
 		}
 		//
-		switch bv.Target {
+		size := acc.Count * acc.Type.Count() * acc.ComponentType.Size()
+		switch acc.BufferView.Target {
 		case gltf2.NEED_TO_DEFINE_BUFFER:
 			// TODO : logging
 			fallthrough
 		case gltf2.ARRAY_BUFFER:
 			gl.BindBuffer(gl.ARRAY_BUFFER, vbos[i])
-			gl.BufferData(gl.ARRAY_BUFFER, len(bts), gl.Ptr(&bts[0]), gl.STATIC_DRAW)
+			gl.BufferData(gl.ARRAY_BUFFER, size, unsafe.Pointer(&bts[0]), gl.STATIC_DRAW)
 		case gltf2.ELEMENT_ARRAY_BUFFER:
 			gl.BindBuffer(gl.ELEMENT_ARRAY_BUFFER, vbos[i])
-			gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, len(bts), gl.Ptr(bts), gl.STATIC_DRAW)
+			gl.BufferData(gl.ELEMENT_ARRAY_BUFFER, size, unsafe.Pointer(&bts[0]), gl.STATIC_DRAW)
 		}
 		//
-		bv.UserData = vbos[i]
+		acc.UserData = vbos[i]
 	}
 	return nil
 }

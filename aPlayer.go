@@ -7,7 +7,7 @@ import (
 )
 
 type Player struct {
-	ref *Object
+	ref *Instance
 	//
 	targets  []*playerTarget
 	playtime float32
@@ -18,12 +18,12 @@ type Player struct {
 	fPlay     bool
 }
 type playerTarget struct {
-	target *node
+	target *Node
 	path   gltf2.Path
 	sample PlayerSampler
 }
 
-func (s *Object) NewPlayer(i int, callback func(a *Player)) *Player {
+func (s *Instance) NewPlayer(i int, callback func(a *Player)) *Player {
 	if s.anim != nil {
 		s.anim.Close()
 	}
@@ -38,11 +38,14 @@ func (s *Object) NewPlayer(i int, callback func(a *Player)) *Player {
 		if callback != nil {
 			callback(s.anim)
 		}
+		s.model.app.append(s.anim)
 	}
-	s.model.app.append(s.anim)
 	return s.anim
 }
 func (s *Player) Close() error {
+	for _, v := range s.targets {
+		v.target.clearAnim()
+	}
 	s.ref.model.app.delete(s)
 	return nil
 }
@@ -59,22 +62,19 @@ func (s *Player) dt(t float32) {
 				s.curr = s.curr - s.playtime
 			}
 		}
-		//s.anim.current += dt
+
 		for _, t := range s.targets {
 			v := t.sample.P(s.curr)
 			switch t.path {
 			case gltf2.Translation:
-				temp := v.Vec3()
-				t.target.aT = &temp
+				t.target.setT(v.Vec3())
 			case gltf2.Rotation:
-				temp := mgl32.Quat{
+				t.target.setR(mgl32.Quat{
 					W: v.Get(3),
 					V: v.Vec3(),
-				}
-				t.target.aR = &temp
+				})
 			case gltf2.Scale:
-				temp := v.Vec3()
-				t.target.aS = &temp
+				t.target.setS(v.Vec3())
 			case gltf2.Weight:
 				// TODO
 			}
@@ -103,7 +103,10 @@ func (s *Player) Seek(x float32, whence int) float32 {
 	case io.SeekEnd:
 		s.curr = mgl32.Clamp(s.playtime-x, 0, s.playtime)
 	}
+	temp := s.fPlay
+	s.fPlay = true
 	s.dt(0)
+	s.fPlay = temp
 	return s.curr
 }
 func (s *Player) Playtime() float32 {
