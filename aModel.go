@@ -1,6 +1,7 @@
 package godel
 
 import (
+	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/iamGreedy/gltf2"
 	"github.com/iamGreedy/godel/shader"
@@ -47,13 +48,15 @@ func (s *Model) _Setup() error {
 }
 func (s *Model) _Setup_programs() (err error) {
 	var base = shader.NewDefineList()
-	// material defs
-
 	//
 	for _, mesh := range s.gltf.Meshes {
+		meshbase := base.Copy()
+		if len(mesh.Weights) > 0{
+			meshbase.Add(shader.MORPH_SIZE(len(mesh.Weights)))
+		}
 		for _, prim := range mesh.Primitives {
 			temp := new(primitive)
-			defs := base.Copy()
+			defs := meshbase.Copy()
 			// vs defs
 			if _, ok := prim.Attributes[gltf2.POSITION]; !ok {
 				return errors.New("Must have POSITION")
@@ -75,6 +78,17 @@ func (s *Model) _Setup_programs() (err error) {
 			}
 			if _, ok := prim.Attributes[gltf2.JOINTS_0]; ok {
 				defs.Add(shader.HAS_JOINT_0)
+			}
+			for _, target := range prim.Targets {
+				if _, ok := target[gltf2.POSITION]; ok {
+					defs.Add(shader.HAS_MORPH_POSITION)
+				}
+				if _, ok := target[gltf2.NORMAL]; ok {
+					defs.Add(shader.HAS_MORPH_NORMAL)
+				}
+				if _, ok := target[gltf2.TANGENT]; ok {
+					defs.Add(shader.HAS_MORPH_TANGENT)
+				}
 			}
 			// fs defs
 			if prim.Material != nil {
@@ -105,9 +119,9 @@ func (s *Model) _Setup_programs() (err error) {
 			pos := prim.Attributes[gltf2.POSITION]
 
 			gl.BindBuffer(gl.ARRAY_BUFFER, pos.UserData.(uint32))
-			gl.EnableVertexAttribArray(0)
+			gl.EnableVertexAttribArray(shader.VertexAttributePosition)
 			gl.VertexAttribPointer(
-				0,
+				shader.VertexAttributePosition,
 				int32(pos.Type.Count()),
 				uint32(pos.ComponentType),
 				pos.Normalized,
@@ -117,9 +131,9 @@ func (s *Model) _Setup_programs() (err error) {
 			// VBO TEXCOORD_0
 			if coord0, ok := prim.Attributes[gltf2.TEXCOORD_0]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, coord0.UserData.(uint32))
-				gl.EnableVertexAttribArray(4)
+				gl.EnableVertexAttribArray(shader.VertexAttributeTexCoord0)
 				gl.VertexAttribPointer(
-					4,
+					shader.VertexAttributeTexCoord0,
 					int32(coord0.Type.Count()),
 					uint32(coord0.ComponentType),
 					coord0.Normalized,
@@ -130,9 +144,9 @@ func (s *Model) _Setup_programs() (err error) {
 			// VBO TEXCOORD_1
 			if coord1, ok := prim.Attributes[gltf2.TEXCOORD_1]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, coord1.UserData.(uint32))
-				gl.EnableVertexAttribArray(5)
+				gl.EnableVertexAttribArray(shader.VertexAttributeTexCoord1)
 				gl.VertexAttribPointer(
-					5,
+					shader.VertexAttributeTexCoord1,
 					int32(coord1.Type.Count()),
 					uint32(coord1.ComponentType),
 					coord1.Normalized,
@@ -143,9 +157,9 @@ func (s *Model) _Setup_programs() (err error) {
 			// VBO NORMAL
 			if norm, ok := prim.Attributes[gltf2.NORMAL]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, norm.UserData.(uint32))
-				gl.EnableVertexAttribArray(1)
+				gl.EnableVertexAttribArray(shader.VertexAttributeNormal)
 				gl.VertexAttribPointer(
-					1,
+					shader.VertexAttributeNormal,
 					int32(norm.Type.Count()),
 					uint32(norm.ComponentType),
 					norm.Normalized,
@@ -156,9 +170,9 @@ func (s *Model) _Setup_programs() (err error) {
 			// VBO TANGENT
 			if tangent, ok := prim.Attributes[gltf2.TANGENT]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, tangent.UserData.(uint32))
-				gl.EnableVertexAttribArray(2)
+				gl.EnableVertexAttribArray(shader.VertexAttributeTangent)
 				gl.VertexAttribPointer(
-					2,
+					shader.VertexAttributeTangent,
 					int32(tangent.Type.Count()),
 					uint32(tangent.ComponentType),
 					tangent.Normalized,
@@ -169,27 +183,65 @@ func (s *Model) _Setup_programs() (err error) {
 			// VBO Joint 0
 			if joint0, ok := prim.Attributes[gltf2.JOINTS_0]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, joint0.UserData.(uint32))
-				gl.EnableVertexAttribArray(6)
+				gl.EnableVertexAttribArray(shader.VertexAttributeJoint0)
 				gl.VertexAttribIPointer(
-					6,
+					shader.VertexAttributeJoint0,
 					int32(joint0.Type.Count()),
 					uint32(joint0.ComponentType),
 					int32(joint0.BufferView.ByteStride),
 					gl.PtrOffset(0),
 				)
 			}
-			// VBO Weight 0
+			// VBO Weights 0
 			if weight0, ok := prim.Attributes[gltf2.WEIGHTS_0]; ok {
 				gl.BindBuffer(gl.ARRAY_BUFFER, weight0.UserData.(uint32))
-				gl.EnableVertexAttribArray(7)
+				gl.EnableVertexAttribArray(shader.VertexAttributeWeight0)
 				gl.VertexAttribPointer(
-					7,
+					shader.VertexAttributeWeight0,
 					int32(weight0.Type.Count()),
 					uint32(weight0.ComponentType),
 					weight0.Normalized,
 					int32(weight0.BufferView.ByteStride),
 					gl.PtrOffset(0),
 				)
+			}
+			// MORPH
+
+			for i, target := range prim.Targets {
+				if morphpos, ok := target[gltf2.POSITION]; ok {
+					fmt.Println(i, shader.VertexAttributeMorphPosition[i], morphpos)
+					gl.BindBuffer(gl.ARRAY_BUFFER, morphpos.UserData.(uint32))
+					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphPosition[i]))
+					gl.VertexAttribIPointer(
+						uint32(shader.VertexAttributeMorphPosition[i]),
+						int32(morphpos.Type.Count()),
+						uint32(morphpos.ComponentType),
+						int32(morphpos.BufferView.ByteStride),
+						gl.PtrOffset(0),
+					)
+				}
+				if morphnormal, ok := target[gltf2.NORMAL]; ok {
+					gl.BindBuffer(gl.ARRAY_BUFFER, morphnormal.UserData.(uint32))
+					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphNormal[i]))
+					gl.VertexAttribIPointer(
+						uint32(shader.VertexAttributeMorphNormal[i]),
+						int32(morphnormal.Type.Count()),
+						uint32(morphnormal.ComponentType),
+						int32(morphnormal.BufferView.ByteStride),
+						gl.PtrOffset(0),
+					)
+				}
+				if morphtangent, ok := target[gltf2.TANGENT]; ok {
+					gl.BindBuffer(gl.ARRAY_BUFFER, morphtangent.UserData.(uint32))
+					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphTangent[i]))
+					gl.VertexAttribIPointer(
+						uint32(shader.VertexAttributeMorphTangent[i]),
+						int32(morphtangent.Type.Count()),
+						uint32(morphtangent.ComponentType),
+						int32(morphtangent.BufferView.ByteStride),
+						gl.PtrOffset(0),
+					)
+				}
 			}
 			// EBO
 			if prim.Indices != nil {

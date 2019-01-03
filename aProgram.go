@@ -49,7 +49,6 @@ type ProgramContext struct {
 	ref *Program
 }
 
-// Do not use just Array float, nor Slice float
 func (s *ProgramContext) UniformIndex(key string) int32 {
 	key = strings.Trim(key, "\x00")
 	if v, ok := s.ref.uniformIndex[key]; ok {
@@ -63,10 +62,10 @@ func (s *ProgramContext) UniformIndex(key string) int32 {
 	return -1
 }
 
-// Do not use just Array float, nor Slice float
+// Do not use just Array float
 func (s *ProgramContext) Uniform(key string, data interface{}) bool {
 	if idx := s.UniformIndex(key); idx >= 0 {
-		if s.ref.uniformData[idx] == data {
+		if isEqualUniformData(s.ref.uniformData[idx], data) {
 			return true
 		}
 		s.ref.uniformData[idx] = data
@@ -97,4 +96,22 @@ func (s *ProgramContext) Uniform(key string, data interface{}) bool {
 		return true
 	}
 	return false
+}
+
+func isEqualUniformData(a, b interface{}) bool {
+	if oa, ok := a.([]float32); ok{
+		if ob, ok := b.([]float32); ok{
+			if len(oa) != len(ob){
+				return false
+			}
+			for i, ioa := range oa {
+				if ioa != ob[i]{
+					return false
+				}
+			}
+			return true
+		}
+		return false
+	}
+	return a == b
 }

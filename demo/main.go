@@ -35,14 +35,17 @@ func main() {
 	// TODO f := must.MustGet(os.Open("./demo/models/2CylinderEngine/glTF-Draco/2CylinderEngine.gltf")).(*os.File)
 	// f := must.MustGet(os.Open("./demo/models/2CylinderEngine/glTF-Embedded/2CylinderEngine.gltf")).(*os.File)
 	// TODO f := must.MustGet(os.Open("./demo/models/2CylinderEngine/glTF-pbrSpecularGlossiness/2CylinderEngine.gltf")).(*os.File)
-	f := must.MustGet(os.Open("./demo/models/AnimatedCube/glTF/AnimatedCube.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/AnimatedCube/glTF/AnimatedCube.gltf")).(*os.File)
+	f := must.MustGet(os.Open("./demo/models/AnimatedMorphCube/glTF/AnimatedMorphCube.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/AnimatedTriangle/glTF/AnimatedTriangle.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/AnimatedTriangle/glTF-Embedded/AnimatedTriangle.gltf")).(*os.File)
 	// TODO f := must.MustGet(os.Open("./demo/models/Avocado/glTF-pbrSpecularGlossiness/Avocado.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/Avocado/glTF/Avocado.gltf")).(*os.File)
 
 	//f := must.MustGet(os.Open("./demo/models/Buggy/glTF/Buggy.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/BrainStem/glTF/BrainStem.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/CesiumMilkTruck/glTF/CesiumMilkTruck.gltf")).(*os.File)
+	//f := must.MustGet(os.Open("./demo/models/RiggedFigure/glTF/RiggedFigure.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/RiggedSimple/glTF/RiggedSimple.gltf")).(*os.File)
 	//f := must.MustGet(os.Open("./demo/models/0gltfTutorial19/file.gltf")).(*os.File)
 	defer f.Close()
@@ -61,11 +64,10 @@ func main() {
 		).
 		Strictness(gltf2.LEVEL1).
 		Parse()).(*gltf2.GLTF)
-
 	// godel Model
 	//app := godel.NewApplication(shader.Standard, shader.Flat, godel.NewCamera(godel.Perspective), godel.NewLighting())
 	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective), godel.NewLighting())
-	app.Camera.LookFrom(mgl32.Vec3{0, 0, -32})
+	app.Camera.LookFrom(mgl32.Vec3{0, 11, -16})
 	app.Camera.LookTo(mgl32.Vec3{0, 0, 0})
 	app.Lighting.Global.Direction = mgl32.Vec3{
 		0, -1, 4,
@@ -73,7 +75,9 @@ func main() {
 	model := must.MustGet(app.BuildModel(md, true)).(*godel.Model)
 	//
 	obj := model.NewInstance(-1)
-
+	//baseRotation := mgl32.AnglesToQuat(mgl32.DegToRad(90),0,mgl32.DegToRad(0), mgl32.XYZ)
+	baseRotation := mgl32.QuatIdent()
+	obj.Rotate(baseRotation)
 	obj.NewPlayer(0, func(a *godel.Player) {
 		a.Loop = true
 		a.PlaySpeed = 1
@@ -89,7 +93,7 @@ func main() {
 		// application update
 		app.Update(curr - prev)
 		gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
-		//obj.Rotate(mgl32.QuatRotate(curr, mgl32.Vec3{0, 1, 0}))
+		obj.Rotate(mgl32.QuatRotate(curr, mgl32.Vec3{0, 1, 0}).Mul(baseRotation))
 		obj.Render()
 		//
 		wnd.SwapBuffers()

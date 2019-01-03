@@ -17,6 +17,7 @@ type (
 		aT *mgl32.Vec3
 		aR *mgl32.Quat
 		aS *mgl32.Vec3
+		aW []float32
 	}
 	Skin struct {
 		src   *gltf2.Skin
@@ -149,6 +150,10 @@ func (s *Node) setR(quat mgl32.Quat) {
 func (s *Node) setS(vec3 mgl32.Vec3) {
 	s.aS = &vec3
 }
+func (s *Node) setW(f32s ... float32) {
+	s.aW = f32s
+}
+
 func (s *Node) clearAnim() {
 	s.aT = nil
 	s.aR = nil
@@ -187,6 +192,19 @@ func (s *Node) Matrix(globalMode bool) mgl32.Mat4 {
 		return s.parent.Matrix(globalMode).Mul4(model)
 	}
 	return model
+}
+func (s *Node) Weight() []float32{
+	if len(s.aW) > 0{
+		return s.aW
+	}
+	if len(s.src.Weights) > 0{
+		return s.src.Weights
+	}
+	if len(s.src.Mesh.Weights) > 0{
+		return s.src.Mesh.Weights
+	}
+	return nil
+
 }
 
 

@@ -75,8 +75,8 @@ func (s *Player) dt(t float32) {
 				})
 			case gltf2.Scale:
 				t.target.setS(v.Vec3())
-			case gltf2.Weight:
-				// TODO
+			case gltf2.Weights:
+				t.target.setW(v.Raw()...)
 			}
 		}
 	}

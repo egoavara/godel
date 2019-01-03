@@ -1,5 +1,7 @@
 package shader
 
+import "fmt"
+
 type DefineList []Define
 
 func NewDefineList(defines ...Define) *DefineList {
@@ -43,6 +45,16 @@ const (
 	HAS_COORD_1  Define = "#define HAS_COORD_1"
 	HAS_JOINT_0  Define = "#define HAS_JOINT_0"
 	HAS_WEIGHT_0 Define = "#define HAS_WEIGHT_0"
+)
+
+func MORPH_SIZE(size int) Define {
+	return Define(fmt.Sprintf("#define MORPH_SIZE %d", size))
+}
+
+const (
+	HAS_MORPH_POSITION Define = "#define HAS_MORPH_POSITION"
+	HAS_MORPH_NORMAL   Define = "#define HAS_MORPH_NORMAL"
+	HAS_MORPH_TANGENT  Define = "#define HAS_MORPH_TANGENT"
 )
 
 // PBR.fs.glsl

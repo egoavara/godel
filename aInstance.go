@@ -1,6 +1,7 @@
 package godel
 
 import (
+	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/mathgl/mgl32"
 	"github.com/iamGreedy/gltf2"
@@ -77,7 +78,7 @@ func (s *Instance) setupAnimation(dst *Player, src *gltf2.Animation) error {
 			switch c.Target.Path {
 			case gltf2.Rotation:
 				temp[c.Sampler], err = MakeSampler(c.Sampler, true, true)
-			case gltf2.Weight:
+			case gltf2.Weights:
 				temp[c.Sampler], err = MakeSampler(c.Sampler, true, false)
 			default:
 				temp[c.Sampler], err = MakeSampler(c.Sampler, false, false)
@@ -146,12 +147,20 @@ func (s *Instance) recurRender(root *Node, node *Node, cameraMatrix mgl32.Mat4, 
 				p.Uniform("ModelMatrix", modelMatrix)
 				p.Uniform("NormalMatrix", modelMatrix.Inv().Transpose())
 				p.Uniform("Camera", cameraPos)
+				// lighting
 				if s.model.app.Lighting != nil {
 					if s.model.app.Lighting.Global != nil {
 						p.Uniform("LightDir", s.model.app.Lighting.Global.Direction.Mul(-1))
 						p.Uniform("LightColor", s.model.app.Lighting.Global.Color)
 					}
 				}
+				// morphing
+				if weight := node.Weight(); weight != nil{
+					for i, v := range weight {
+						p.Uniform(fmt.Sprintf("MorphWeight[%d]", i), v)
+					}
+				}
+				// skinning
 				if node.skin != nil {
 					node.Skin().update(p, modelMatrix)
 				}
@@ -202,7 +211,7 @@ func (s *Instance) recurRender(root *Node, node *Node, cameraMatrix mgl32.Mat4, 
 					gl.ActiveTexture(gl.TEXTURE4)
 					gl.BindTexture(gl.TEXTURE_2D, mt.EmissiveTexture.Index.UserData.(uint32))
 				}
-				//
+				// rendering
 				gl.BindVertexArray(primUser.vao)
 				if prim.Indices == nil {
 					gl.DrawArrays(uint32(prim.Mode.GL()), int32(0), int32(prim.Indices.Count))

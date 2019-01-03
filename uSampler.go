@@ -21,12 +21,14 @@ func MakeSampler(sampler *gltf2.AnimationSampler, normalize bool, rotation bool)
 		if sampler.Input.ComponentType != gltf2.FLOAT {
 			return nil, errors.New("Must be float type")
 		}
-		return &PlayerStepSampler{
+		res := &PlayerStepSampler{
 			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
 			out:      nFloat32s(sampler.Output, normalize),
-			outCount: sampler.Output.Type.Count(),
-		}, nil
+		}
+		res.outCount = len(res.out) / len(res.in)
+		return res, nil
 	case gltf2.LINEAR:
+
 		if sampler.Input.Type != gltf2.SCALAR {
 			return nil, errors.New("Must be scalar type")
 		}
@@ -34,17 +36,19 @@ func MakeSampler(sampler *gltf2.AnimationSampler, normalize bool, rotation bool)
 			return nil, errors.New("Must be float type")
 		}
 		if rotation {
-			return &PlayerSphereLinearSampler{
+			res := &PlayerSphereLinearSampler{
 				in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
 				out:      nFloat32s(sampler.Output, normalize),
-				outCount: sampler.Output.Type.Count(),
-			}, nil
+			}
+			res.outCount = len(res.out) / len(res.in)
+			return res, nil
 		}
-		return &PlayerLinearSampler{
+		res := &PlayerLinearSampler{
 			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
 			out:      nFloat32s(sampler.Output, normalize),
-			outCount: sampler.Output.Type.Count(),
-		}, nil
+		}
+		res.outCount = len(res.out) / len(res.in)
+		return res, nil
 	case gltf2.CUBICSPLINE:
 		if sampler.Input.Type != gltf2.SCALAR {
 			return nil, errors.New("Must be scalar type")
@@ -52,11 +56,13 @@ func MakeSampler(sampler *gltf2.AnimationSampler, normalize bool, rotation bool)
 		if sampler.Input.ComponentType != gltf2.FLOAT {
 			return nil, errors.New("Must be float type")
 		}
-		return &PlayerCubicSampler{
+		res := &PlayerCubicSampler{
 			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
 			out:      nFloat32s(sampler.Output, normalize),
 			outCount: sampler.Output.Type.Count(),
-		}, nil
+		}
+		res.outCount = len(res.out) / len(res.in)
+		return res, nil
 	}
 	panic("Unreachable")
 }
