@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ad9fc10-d5d8-46bd-955a-69df36addd2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/shader/aConst.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aInstance.go" beforeDir="false" afterPath="$PROJECT_DIR$/aInstance.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aLight.go" beforeDir="false" afterPath="$PROJECT_DIR$/aLight.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/aModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aNode.go" beforeDir="false" afterPath="$PROJECT_DIR$/aNode.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aPlayer.go" beforeDir="false" afterPath="$PROJECT_DIR$/aPlayer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aProgram.go" beforeDir="false" afterPath="$PROJECT_DIR$/aProgram.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ogl/OGL.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ogl/OGL_Context41.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ogl/OGL_Context43.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ogl/OGL_Context45.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/Standard.vs.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/shader/Standard.vs.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/aShaderDefines.go" beforeDir="false" afterPath="$PROJECT_DIR$/shader/aShaderDefines.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shader/aShaderStatic.go" beforeDir="false" afterPath="$PROJECT_DIR$/shader/aShaderStatic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uSampler.go" beforeDir="false" afterPath="$PROJECT_DIR$/uSampler.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,88 +31,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1731">
-              <caret line="96" column="20" lean-forward="true" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aInstance.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-755">
-              <caret line="159" column="58" selection-start-line="159" selection-start-column="47" selection-end-line="159" selection-end-column="58" />
-              <folding>
-                <element signature="e#140#240#0" />
-                <element signature="n#!!block;n#NewInstance#0" />
-                <element signature="e#306#413#0" />
-                <element signature="e#350#359#0" />
-                <element signature="e#400#409#0" />
-                <element signature="n#!!block;n#Close#0" />
-                <element signature="e#495#516#0" />
-                <element signature="n#!!block;n#Scene#0" />
-                <element signature="e#583#619#0" />
-                <element signature="e#689#774#0" />
-                <element signature="e#734#771#0" />
-                <element signature="e#780#815#0" />
-                <element signature="n#!!block;n#find#0" />
-                <element signature="e#930#989#0" />
-                <element signature="e#969#986#0" />
-                <element signature="n#!!block;n#Controller#0" />
-                <element signature="n#!!block;n#setupAnimation#0" />
-                <element signature="n#!!block;n#Matrix#0" />
-                <element signature="n#!!block;n#Translate#0" />
-                <element signature="n#!!block;n#Rotate#0" />
-                <element signature="n#!!block;n#Scale#0" />
-                <element signature="n#!!block;n#GetTranslate#0" />
-                <element signature="n#!!block;n#GetRotate#0" />
-                <element signature="n#!!block;n#GetScale#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aModel.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="211" column="83" selection-start-line="211" selection-start-column="83" selection-end-line="211" selection-end-column="83" />
-              <folding>
-                <element signature="n#!!block;n#BuildModel#0" />
-                <element signature="n#!!block;n#_Setup_accessor#0" />
-                <element signature="n#!!block;n#_Setup_textures#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/models/AnimatedMorphCube/glTF/AnimatedMorphCube.gltf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2508">
-              <caret line="114" column="22" lean-forward="true" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aProgram.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1738">
-              <caret line="93" column="53" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
-              <folding>
-                <element signature="n#!!block;n#GL#0" />
-                <element signature="n#!!block;n#Use#0" />
-              </folding>
+            <state relative-caret-position="-139">
+              <caret line="89" column="6" lean-forward="true" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/shader/Standard.vs.glsl">
+        <entry file="file://$PROJECT_DIR$/aLight.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="149" column="24" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="24" />
+            <state relative-caret-position="335">
+              <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+              <folding>
+                <element signature="n#!!block;n#NewLighting#0" />
+                <element signature="e#225#301#0" />
+                <element signature="e#251#261#0" />
+                <element signature="e#287#296#0" />
+                <element signature="n#!!block;n#SetColor#0" />
+                <element signature="e#634#704#0" />
+                <element signature="n#!!block;n#SetColor#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,9 +94,9 @@
       <find>mesh</find>
       <find>weight</find>
       <find>fmt</find>
-      <find>HAS_MORPH_POSITION</find>
       <find>morph_1_normal</find>
       <find>MorphWeight</find>
+      <find>HAS_MORPH_POSITION</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
@@ -188,7 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../gltf2/spec_MaterialPBRMetallicRoughness.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_MeshPrimitive.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_Sampler.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_Scene.go" />
@@ -228,17 +152,18 @@
         <option value="$PROJECT_DIR$/aStructure.go" />
         <option value="$PROJECT_DIR$/uIdentifier.go" />
         <option value="$PROJECT_DIR$/../gltf2/enums.go" />
-        <option value="$PROJECT_DIR$/shader/aShaderDefines.go" />
         <option value="$PROJECT_DIR$/aPlayer.go" />
         <option value="$PROJECT_DIR$/../gltf2/spec_Mesh.go" />
         <option value="$PROJECT_DIR$/aNode.go" />
         <option value="$PROJECT_DIR$/uSampler.go" />
         <option value="$PROJECT_DIR$/shader/aConst.go" />
-        <option value="$PROJECT_DIR$/aModel.go" />
         <option value="$PROJECT_DIR$/shader/Standard.vs.glsl" />
         <option value="$PROJECT_DIR$/demo/main.go" />
         <option value="$PROJECT_DIR$/aProgram.go" />
         <option value="$PROJECT_DIR$/aInstance.go" />
+        <option value="$PROJECT_DIR$/shader/aShaderDefines.go" />
+        <option value="$PROJECT_DIR$/aModel.go" />
+        <option value="$PROJECT_DIR$/aLight.go" />
       </list>
     </option>
   </component>
@@ -252,6 +177,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,49 +193,12 @@
             <path>
               <item name="godel" type="b2602c69:ProjectViewProjectNode" />
               <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="godel" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="godel" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="godel" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="AnimatedMorphCube" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="godel" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="AnimatedMorphCube" type="462c0819:PsiDirectoryNode" />
-              <item name="glTF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="godel" type="462c0819:PsiDirectoryNode" />
-              <item name="shader" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="godel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="godel" type="47feb1d3:ProjectViewModuleNode" />
               <item name="gltf2" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -440,7 +329,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20255864" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20469083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -454,7 +343,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50159913" side_tool="true" weight="0.39219934" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.50159913" side_tool="true" visible="true" weight="0.39219934" />
       <window_info anchor="bottom" id="Statistic" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -488,16 +377,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_glTFid.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!block;n#String#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/models/RiggedFigure/glTF/RiggedFigure.gltf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-425">
@@ -1032,13 +911,6 @@
         <state relative-caret-position="-462" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MeshPrimitive.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-858">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../go-gl/mathgl/mgl32/vecn.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-508">
@@ -1091,13 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shader/aShaderDefines.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="54" column="59" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/glutils.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1105,24 +970,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shader/aConst.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aApplication.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shader/aGenerate.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -1154,26 +1005,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../gltf2/spec_MeshPrimitive.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-594">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shader/aGenerate.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shader/Standard.vs.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="96" column="27" lean-forward="true" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aProgram.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="93" column="53" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
+          <folding>
+            <element signature="n#!!block;n#GL#0" />
+            <element signature="n#!!block;n#Use#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/models/AnimatedMorphCube/glTF/AnimatedMorphCube.gltf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/aInstance.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-755">
+        <state relative-caret-position="22">
           <caret line="159" column="58" selection-start-line="159" selection-start-column="47" selection-end-line="159" selection-end-column="58" />
           <folding>
-            <element signature="e#140#240#0" />
             <element signature="n#!!block;n#NewInstance#0" />
-            <element signature="e#306#413#0" />
-            <element signature="e#350#359#0" />
-            <element signature="e#400#409#0" />
             <element signature="n#!!block;n#Close#0" />
-            <element signature="e#495#516#0" />
             <element signature="n#!!block;n#Scene#0" />
-            <element signature="e#583#619#0" />
-            <element signature="e#689#774#0" />
-            <element signature="e#734#771#0" />
-            <element signature="e#780#815#0" />
             <element signature="n#!!block;n#find#0" />
-            <element signature="e#930#989#0" />
-            <element signature="e#969#986#0" />
             <element signature="n#!!block;n#Controller#0" />
             <element signature="n#!!block;n#setupAnimation#0" />
             <element signature="n#!!block;n#Matrix#0" />
@@ -1187,17 +1066,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/main.go">
+    <entry file="file://$PROJECT_DIR$/shader/aConst.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1731">
-          <caret line="96" column="20" lean-forward="true" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
+        <state relative-caret-position="308">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shader/aShaderDefines.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="54" column="59" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aModel.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="211" column="83" selection-start-line="211" selection-start-column="83" selection-end-line="211" selection-end-column="83" />
+        <state relative-caret-position="463">
+          <caret line="242" column="36" selection-start-line="242" selection-start-column="36" selection-end-line="242" selection-end-column="36" />
           <folding>
             <element signature="n#!!block;n#BuildModel#0" />
             <element signature="n#!!block;n#_Setup_accessor#0" />
@@ -1206,28 +1092,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/models/AnimatedMorphCube/glTF/AnimatedMorphCube.gltf">
+    <entry file="file://$PROJECT_DIR$/demo/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2508">
-          <caret line="114" column="22" lean-forward="true" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+        <state relative-caret-position="-139">
+          <caret line="89" column="6" lean-forward="true" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aProgram.go">
+    <entry file="file://$PROJECT_DIR$/aLight.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1738">
-          <caret line="93" column="53" selection-start-line="93" selection-start-column="53" selection-end-line="93" selection-end-column="53" />
+        <state relative-caret-position="335">
+          <caret line="66" column="14" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
           <folding>
-            <element signature="n#!!block;n#GL#0" />
-            <element signature="n#!!block;n#Use#0" />
+            <element signature="n#!!block;n#NewLighting#0" />
+            <element signature="e#225#301#0" />
+            <element signature="e#251#261#0" />
+            <element signature="e#287#296#0" />
+            <element signature="n#!!block;n#SetColor#0" />
+            <element signature="e#634#704#0" />
+            <element signature="n#!!block;n#SetColor#1" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shader/Standard.vs.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="149" column="24" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="24" />
         </state>
       </provider>
     </entry>

@@ -212,10 +212,11 @@ func (s *Model) _Setup_programs() (err error) {
 					fmt.Println(i, shader.VertexAttributeMorphPosition[i], morphpos)
 					gl.BindBuffer(gl.ARRAY_BUFFER, morphpos.UserData.(uint32))
 					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphPosition[i]))
-					gl.VertexAttribIPointer(
+					gl.VertexAttribPointer(
 						uint32(shader.VertexAttributeMorphPosition[i]),
 						int32(morphpos.Type.Count()),
 						uint32(morphpos.ComponentType),
+						morphpos.Normalized,
 						int32(morphpos.BufferView.ByteStride),
 						gl.PtrOffset(0),
 					)
@@ -223,10 +224,11 @@ func (s *Model) _Setup_programs() (err error) {
 				if morphnormal, ok := target[gltf2.NORMAL]; ok {
 					gl.BindBuffer(gl.ARRAY_BUFFER, morphnormal.UserData.(uint32))
 					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphNormal[i]))
-					gl.VertexAttribIPointer(
+					gl.VertexAttribPointer(
 						uint32(shader.VertexAttributeMorphNormal[i]),
 						int32(morphnormal.Type.Count()),
 						uint32(morphnormal.ComponentType),
+						morphnormal.Normalized,
 						int32(morphnormal.BufferView.ByteStride),
 						gl.PtrOffset(0),
 					)
@@ -234,10 +236,11 @@ func (s *Model) _Setup_programs() (err error) {
 				if morphtangent, ok := target[gltf2.TANGENT]; ok {
 					gl.BindBuffer(gl.ARRAY_BUFFER, morphtangent.UserData.(uint32))
 					gl.EnableVertexAttribArray(uint32(shader.VertexAttributeMorphTangent[i]))
-					gl.VertexAttribIPointer(
+					gl.VertexAttribPointer(
 						uint32(shader.VertexAttributeMorphTangent[i]),
 						int32(morphtangent.Type.Count()),
 						uint32(morphtangent.ComponentType),
+						morphtangent.Normalized,
 						int32(morphtangent.BufferView.ByteStride),
 						gl.PtrOffset(0),
 					)
