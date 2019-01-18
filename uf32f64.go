@@ -1,4 +1,4 @@
-package godel1
+package godel
 
 import (
 	"github.com/go-gl/mathgl/mgl32"

@@ -1,4 +1,4 @@
-package godel1
+package sdlGodel
 
 type Key uint16
 const (

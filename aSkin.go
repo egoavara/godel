@@ -1,4 +1,4 @@
-package godel1
+package godel
 
 type Skin struct {
 	Name string

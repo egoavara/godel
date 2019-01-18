@@ -10,8 +10,9 @@ import (
 	"github.com/iamGreedy/essence/must"
 	"github.com/iamGreedy/essence/prefix"
 	"github.com/iamGreedy/gltf2"
-	"github.com/iamGreedy/godel"
+	"github.com/iamGreedy/godel/back"
 	"github.com/iamGreedy/godel/shader"
+	"github.com/iamGreedy/godel"
 	"os"
 	"runtime"
 )
@@ -65,6 +66,7 @@ func main() {
 		Strictness(gltf2.LEVEL1).
 		Parse()).(*gltf2.GLTF)
 	// godel Model
+	godel.NewNode()
 	//app := godel.NewApplication(shader.Standard, shader.Flat, godel.NewCamera(godel.Perspective), godel.NewLighting())
 	app := godel.NewApplication(shader.Standard, shader.PBR, godel.NewCamera(godel.Perspective), godel.NewLighting())
 	app.Camera.LookFrom(mgl32.Vec3{0, 11, -128})

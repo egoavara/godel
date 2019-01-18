@@ -1,7 +1,0 @@
-# GLSL
-
-## #define
-- HAS_NORMAL
-- HAS_TANGENT
-- HAS_COORD_0
-- HAS_BASECOLORTEX

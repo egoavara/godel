@@ -1,4 +1,4 @@
-package godel1
+package sdlGodel
 
 import (
 	"github.com/go-gl/glfw/v3.2/glfw"

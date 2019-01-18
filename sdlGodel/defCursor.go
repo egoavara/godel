@@ -1,4 +1,4 @@
-package godel1
+package sdlGodel
 
 type Click uint16
 

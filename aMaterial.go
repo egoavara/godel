@@ -1,4 +1,4 @@
-package godel1
+package godel
 
 import (
 	"github.com/go-gl/gl/v3.2-core/gl"

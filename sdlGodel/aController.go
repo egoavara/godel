@@ -1,4 +1,4 @@
-package godel1
+package sdlGodel
 
 import "github.com/go-gl/mathgl/mgl64"
 

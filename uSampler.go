@@ -1,266 +1,205 @@
 package godel
 
 import (
-	"github.com/go-gl/mathgl/mgl32"
-	"github.com/iamGreedy/gltf2"
-	"github.com/pkg/errors"
+	"gonum.org/v1/gonum/floats"
 	"math"
+	"sort"
 )
 
-type PlayerSampler interface {
-	P(current float32) *mgl32.VecN
-	Range() (min, max float32)
+type Sampler interface {
+	P(current float64) []float64
+	Range() (min, max float64)
 }
 
-func MakeSampler(sampler *gltf2.AnimationSampler, normalize bool, rotation bool) (PlayerSampler, error) {
-	switch sampler.Interpolation {
-	case gltf2.STEP:
-		if sampler.Input.Type != gltf2.SCALAR {
-			return nil, errors.New("Must be scalar type")
-		}
-		if sampler.Input.ComponentType != gltf2.FLOAT {
-			return nil, errors.New("Must be float type")
-		}
-		res := &PlayerStepSampler{
-			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
-			out:      nFloat32s(sampler.Output, normalize),
-		}
-		res.outCount = len(res.out) / len(res.in)
-		return res, nil
-	case gltf2.LINEAR:
-
-		if sampler.Input.Type != gltf2.SCALAR {
-			return nil, errors.New("Must be scalar type")
-		}
-		if sampler.Input.ComponentType != gltf2.FLOAT {
-			return nil, errors.New("Must be float type")
-		}
-		if rotation {
-			res := &PlayerSphereLinearSampler{
-				in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
-				out:      nFloat32s(sampler.Output, normalize),
-			}
-			res.outCount = len(res.out) / len(res.in)
-			return res, nil
-		}
-		res := &PlayerLinearSampler{
-			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
-			out:      nFloat32s(sampler.Output, normalize),
-		}
-		res.outCount = len(res.out) / len(res.in)
-		return res, nil
-	case gltf2.CUBICSPLINE:
-		if sampler.Input.Type != gltf2.SCALAR {
-			return nil, errors.New("Must be scalar type")
-		}
-		if sampler.Input.ComponentType != gltf2.FLOAT {
-			return nil, errors.New("Must be float type")
-		}
-		res := &PlayerCubicSampler{
-			in:       sampler.Input.MustSliceMapping(new([]float32), true, true).([]float32),
-			out:      nFloat32s(sampler.Output, normalize),
-			outCount: sampler.Output.Type.Count(),
-		}
-		res.outCount = len(res.out) / len(res.in)
-		return res, nil
+func inputIsValid(in []float64) bool {
+	return sort.Float64sAreSorted(in)
+}
+func outputValidate(in []float64, out []float64, outcount int, mode int) bool {
+	l := len(in)
+	if l*outcount*mode != len(out) {
+		return false
 	}
-	panic("Unreachable")
+	return true
+}
+func neighbor(in []float64, a float64) (lidx, ridx int, diff float64) {
+	if a <= in[0] {
+		return 0, 0, 0
+	}
+	for i := 1; i < len(in); i++ {
+		if a < in[i] {
+			return i - 1, i, (a - in[i-1]) / (in[i] - in[i-1])
+		}
+	}
+	return len(in) - 1, len(in) - 1, 0
+}
+func lerp(dst, a, b []float64, diff float64) []float64 {
+	floats.SubTo(dst, b, a)
+	floats.Scale(diff, dst)
+	floats.Add(dst, a)
+	return dst
+}
+func norm(dst []float64) []float64 {
+	floats.Scale(math.Sqrt(floats.Dot(dst, dst)), dst)
+	return dst
+}
+func normTo(dst, a []float64) []float64 {
+	copy(dst, a)
+	floats.Scale(math.Sqrt(floats.Dot(dst, dst)), dst)
+	return dst
 }
 
-type PlayerStepSampler struct {
-	in       []float32
-	out      []float32
-	outCount int
+type StepSampler struct {
+	in    []float64
+	out   []float64
+	count int
 }
 
-func (s *PlayerStepSampler) Range() (min, max float32) {
+func NewStepSampler(in, out []float64, count int) *StepSampler {
+	if !inputIsValid(in) {
+		return nil
+	}
+	if !outputValidate(in, out, count, 1) {
+		return nil
+	}
+	return &StepSampler{
+		in:    in,
+		out:   out,
+		count: count,
+	}
+}
+func (s *StepSampler) P(current float64) []float64 {
+	var l, _, _ = neighbor(s.in, current)
+	return s.out[s.count*l : s.count*(l+1)]
+}
+func (s *StepSampler) Range() (min, max float64) {
 	return s.in[0], s.in[len(s.in)-1]
 }
-func (s *PlayerStepSampler) P(current float32) *mgl32.VecN {
-	current = mgl32.Clamp(current, s.in[0], s.in[len(s.in)-1])
-	for i, v := range s.in {
-		if current < v {
-			return mgl32.NewVecNFromData(s.out[(i-1)*s.outCount : (i+0)*s.outCount])
-		}
+
+type LinearSampler struct {
+	in    []float64
+	out   []float64
+	count int
+}
+
+func NewLinearSampler(in, out []float64, count int) *LinearSampler {
+	if !inputIsValid(in) {
+		return nil
 	}
-	panic("Unreachable")
+	if !outputValidate(in, out, count, 1) {
+		return nil
+	}
+	return &LinearSampler{
+		in:    in,
+		out:   out,
+		count: count,
+	}
 }
-
-type PlayerLinearSampler struct {
-	in       []float32
-	out      []float32
-	outCount int
+func (s *LinearSampler) P(current float64) []float64 {
+	var l, r, diff = neighbor(s.in, current)
+	var lo, ro = s.out[s.count*l : s.count*(l+1)], s.out[s.count*r : s.count*(r+1)]
+	return lerp(make([]float64, s.count), lo, ro, diff)
 }
-
-func (s *PlayerLinearSampler) Range() (min, max float32) {
+func (s *LinearSampler) Range() (min, max float64) {
 	return s.in[0], s.in[len(s.in)-1]
 }
-func (s *PlayerLinearSampler) P(current float32) *mgl32.VecN {
-	current = mgl32.Clamp(current, s.in[0], s.in[len(s.in)-1])
-	if current >= s.in[len(s.in)-1] {
-		i := len(s.in) - 1
-		return mgl32.NewVecNFromData(s.out[i*s.outCount : (i+1)*s.outCount])
-	}
-	for i, k1 := range s.in {
-		if current < k1 {
-			k0 := s.in[i-1]
-			dt := k1 - k0
-			t := (current - k0) / dt
-			startk0 := (i - 1) * s.outCount
-			startk1 := (i) * s.outCount
-			p0 := mgl32.NewVecNFromData(s.out[startk0 : startk0+s.outCount])
-			p1 := mgl32.NewVecNFromData(s.out[startk1 : startk1+s.outCount])
-			return p0.Add(nil, p1.Sub(nil, p0).Mul(nil, t))
-		}
-	}
-	panic("Unreachable")
+
+type SphericalLinearSampler struct {
+	in    []float64
+	out   []float64
+	count int
 }
 
-type PlayerSphereLinearSampler struct {
-	in       []float32
-	out      []float32
-	outCount int
-}
-
-func (s *PlayerSphereLinearSampler) Range() (min, max float32) {
-	return s.in[0], s.in[len(s.in)-1]
-}
-func (s *PlayerSphereLinearSampler) P(current float32) *mgl32.VecN {
-	current = mgl32.Clamp(current, s.in[0], s.in[len(s.in)-1])
-	if current >= s.in[len(s.in)-1] {
-		i := len(s.in) - 1
-		return mgl32.NewVecNFromData(s.out[i*s.outCount : (i+1)*s.outCount])
+func NewSphericalLinearSampler(in, out []float64, count int) *SphericalLinearSampler {
+	if !inputIsValid(in) {
+		return nil
 	}
-	for i, k1 := range s.in {
-		if current < k1 {
-			k0 := s.in[i-1]
-			dt := k1 - k0
-			t := (current - k0) / dt
-			startk0 := (i - 1) * s.outCount
-			startk1 := (i) * s.outCount
-			p0 := mgl32.NewVecNFromData(s.out[startk0 : startk0+s.outCount])
-			p1 := mgl32.NewVecNFromData(s.out[startk1 : startk1+s.outCount])
-			//
-			q0 := mgl32.Quat{
-				W: p0.Get(3),
-				V: p0.Vec3(),
-			}
-			q1 := mgl32.Quat{
-				W: p1.Get(3),
-				V: p1.Vec3(),
-			}
-			//res := mgl32.QuatSlerp(q0, q1, t)
-			res := slerp(q0, q1, t)
-			return mgl32.NewVecNFromData([]float32{
-				res.V[0],
-				res.V[1],
-				res.V[2],
-				res.W,
-			})
-		}
+	if !outputValidate(in, out, count, 1) {
+		return nil
 	}
-	panic("Unreachable")
-}
-
-type PlayerCubicSampler struct {
-	in       []float32
-	out      []float32
-	outCount int
-}
-
-func (s *PlayerCubicSampler) Range() (min, max float32) {
-	return s.in[0], s.in[len(s.in)-1]
-}
-func (s *PlayerCubicSampler) P(current float32) *mgl32.VecN {
-	current = mgl32.Clamp(current, s.in[0], s.in[len(s.in)-1])
-	if current >= s.in[len(s.in)-1] {
-		i := len(s.in) - 1
-		return mgl32.NewVecNFromData(s.out[i*s.outCount : (i+1)*s.outCount])
+	return &SphericalLinearSampler{
+		in:    in,
+		out:   out,
+		count: count,
 	}
-	for i, k1 := range s.in {
-		if current < k1 {
-			k0 := s.in[i-1]
-			dt := k1 - k0
-			startk0 := (i - 1) * s.outCount * 3
-			startk1 := (i) * s.outCount * 3
-			//
-			t := (current - k0) / dt
-			p0 := mgl32.NewVecNFromData(s.out[startk0+s.outCount*1 : startk0+s.outCount*2])
-			m0 := mgl32.NewVecNFromData(s.out[startk0+s.outCount*2 : startk0+s.outCount*3])
-			m1 := mgl32.NewVecNFromData(s.out[startk1+s.outCount*0 : startk1+s.outCount*1])
-			p1 := mgl32.NewVecNFromData(s.out[startk1+s.outCount*1 : startk1+s.outCount*2])
-			// P(t)
-			a := 2*t*t*t - 3*t*t + 1
-			b := t*t*t - 2*t*t + t
-			c := -2*t*t*t + 3*t*t
-			d := t*t*t - t*t
-			return p0.Mul(nil, a).Add(nil, m0.Mul(nil, b)).Add(nil, p1.Mul(nil, c)).Add(nil, m1.Mul(nil, d))
-		}
-	}
-	panic("Unreachable")
 }
-func nFloat32s(accessor *gltf2.Accessor, normalize bool) []float32 {
-	if accessor.ComponentType != gltf2.FLOAT {
-		if !normalize {
-			return nil
-		}
-	}
-	var res []float32
-	switch accessor.ComponentType {
-	case gltf2.FLOAT:
-		accessor.MustSliceMapping(&res, false, true)
-	case gltf2.BYTE:
-		data := accessor.MustSliceMapping(new([]int8), false, true).([]int8)
-		res = make([]float32, 0, len(data))
-		for _, v := range data {
-			res = append(res, mgl32.Clamp(float32(v)/127.0, -1, 1))
-		}
-	case gltf2.UNSIGNED_BYTE:
-		data := accessor.MustSliceMapping(new([]uint8), false, true).([]uint8)
-		res = make([]float32, 0, len(data))
-		for _, v := range data {
-			res = append(res, mgl32.Clamp(float32(v)/255.0, 0, 1))
-		}
-	case gltf2.SHORT:
-		data := accessor.MustSliceMapping(new([]int16), false, true).([]int16)
-		res = make([]float32, 0, len(data))
-		for _, v := range data {
-			res = append(res, mgl32.Clamp(float32(v)/32767.0, -1, 1))
-		}
-	case gltf2.UNSIGNED_SHORT:
-		data := accessor.MustSliceMapping(new([]uint16), false, true).([]uint16)
-		res = make([]float32, 0, len(data))
-		for _, v := range data {
-			res = append(res, mgl32.Clamp(float32(v)/65535.0, 0, 1))
-		}
-	}
-	return res
-}
-
-func slerp(q0 mgl32.Quat, q1 mgl32.Quat, amount float32) mgl32.Quat {
-	q0, q1 = q0.Normalize(), q1.Normalize()
-	dot := q0.Dot(q1)
+func (s *SphericalLinearSampler) P(current float64) []float64 {
+	var l, r, diff = neighbor(s.in, current)
+	var lo, ro = s.out[s.count*l : s.count*(l+1)], s.out[s.count*r : s.count*(r+1)]
+	//
+	var f0, f1 = normTo(make([]float64, s.count), lo), normTo(make([]float64, s.count), ro)
+	dot := floats.Dot(f0, f1)
 	if dot < 0 {
-		q1 = mgl32.Quat{
-			W: -q1.W,
-			V: mgl32.Vec3{
-				-q1.V[0],
-				-q1.V[1],
-				-q1.V[2],
-			},
-		}
+		floats.Scale(-1, f1)
 		dot = -dot
 	}
-	// If the inputs are too close for comfort, linearly interpolate and normalize the result.
-	if dot > 0.9995 {
-		return mgl32.QuatNlerp(q0, q1, amount)
+	if dot > .9995 {
+		return normTo(make([]float64, s.count), lerp(make([]float64, s.count), f0, f1, diff))
 	}
 
-	// This is here for precision errors, I'm perfectly aware that *technically* the dot is bound [-1,1], but since Acos will freak out if it's not (even if it's just a liiiiitle bit over due to normal error) we need to clamp it
-	dot = mgl32.Clamp(dot, 0, 1)
+	theta := math.Acos(dot) * diff
+	cos, sin := math.Cos(theta), math.Sin(theta)
+	//
+	relin := floats.ScaleTo(make([]float64, s.count), dot, f0)
+	floats.Sub(f1, relin)
+	norm(f1)
+	//
+	floats.Scale(cos, f0)
+	floats.Scale(sin, f1)
+	floats.Add(f0, f1)
+	return f0
+}
+func (s *SphericalLinearSampler) Range() (min, max float64) {
+	return s.in[0], s.in[len(s.in)-1]
+}
 
-	theta := float32(math.Acos(float64(dot))) * amount
-	c, s := float32(math.Cos(float64(theta))), float32(math.Sin(float64(theta)))
-	rel := q1.Sub(q0.Scale(dot)).Normalize()
-	return q0.Scale(c).Add(rel.Scale(s))
+type CubicSampler struct {
+	in    []float64
+	out   []float64
+	count int
+}
+func NewCubicSampler(in, out []float64, count int) *CubicSampler {
+	if !inputIsValid(in) {
+		return nil
+	}
+	if !outputValidate(in, out, count, 3) {
+		return nil
+	}
+	return &CubicSampler{
+		in:    in,
+		out:   out,
+		count: count,
+	}
+}
+func (s *CubicSampler) P(current float64) []float64 {
+	var l, r, diff = neighbor(s.in, current)
+	var lstart = l * s.count * 3
+	var rstart = r * s.count * 3
+	var (
+		p0 = s.out[lstart+1*s.count : lstart+2*s.count]
+		m0 = s.out[lstart+2*s.count : lstart+3*s.count]
+	)
+	var (
+		m1 = s.out[rstart+0*s.count : rstart+1*s.count]
+		p1 = s.out[rstart+1*s.count : rstart+2*s.count]
+	)
+	//
+	diff3 := diff * diff * diff
+	diff2 := diff * diff
+	//
+	a := 2*diff3 - 3*diff2 + 1
+	b := diff3 - 2*diff2 + diff
+	c := -2*diff3 + 3*diff2
+	d := diff3 - diff2
+	//
+	ea := floats.ScaleTo(make([]float64, s.count), a, p0)
+	eb := floats.ScaleTo(make([]float64, s.count), b, m0)
+	ec := floats.ScaleTo(make([]float64, s.count), c, m1)
+	ed := floats.ScaleTo(make([]float64, s.count), d, p1)
+	floats.Add(ea, eb)
+	floats.Add(ea, ec)
+	floats.Add(ea, ed)
+	return ea
+}
+func (s *CubicSampler) Range() (min, max float64) {
+	return s.in[0], s.in[len(s.in)-1]
 }

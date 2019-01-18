@@ -1,4 +1,4 @@
-package godel1
+package godel
 
 type Texture struct {
 	glptr uint32
