@@ -8,41 +8,53 @@ import (
 )
 
 type Lighting struct {
-	Global *GlobalLight
-	// TODO Locals []*LocalLight
+	Global *DirectionalLight
+	// TODO Locals []*PointLight
 	// TODO IBLs []*ImageBaseLight
 }
 
 func NewLighting() *Lighting {
 	return &Lighting{
-		Global: &GlobalLight{
+		Global: &DirectionalLight{
 			Direction: mgl32.Vec3{0, -1, 0},
 			Color:     mgl32.Vec3{1, 1, 1},
 		},
 	}
 }
 
-type GlobalLight struct {
+type DirectionalLight struct {
 	Direction mgl32.Vec3
 	Color     mgl32.Vec3
-	// TODO Ambient float32
-	// TODO SkySphere *ImageBaseLight
 }
 
-func (s *GlobalLight) SetColor(c color.Color) {
+func (s *DirectionalLight) SetColor(c color.Color) {
 	r, g, b, _ := c.RGBA()
 	s.Color[0] = float32(r) / math.MaxUint16
 	s.Color[1] = float32(g) / math.MaxUint16
 	s.Color[2] = float32(b) / math.MaxUint16
 }
 
-type LocalLight struct {
-	Position mgl32.Vec3
-	Color    mgl32.Vec3
-	Lumen    float32
+type PointLight struct {
+	Position    mgl32.Vec3
+	Color       mgl32.Vec3
+	Attenuation mgl32.Vec3
 }
 
-func (s *LocalLight) SetColor(c color.Color) {
+func (s *PointLight) SetColor(c color.Color) {
+	r, g, b, _ := c.RGBA()
+	s.Color[0] = float32(r) / math.MaxUint16
+	s.Color[1] = float32(g) / math.MaxUint16
+	s.Color[2] = float32(b) / math.MaxUint16
+}
+
+type SpotLight struct {
+	Position  mgl32.Vec3
+	Direction mgl32.Vec3
+	Color     mgl32.Vec3
+	Cutoff    float32
+}
+
+func (s *SpotLight) SetColor(c color.Color) {
 	r, g, b, _ := c.RGBA()
 	s.Color[0] = float32(r) / math.MaxUint16
 	s.Color[1] = float32(g) / math.MaxUint16
@@ -60,9 +72,10 @@ const (
 )
 
 type ImageBaseLight struct {
-	Position mgl32.Vec3
-	Light    [IBL_SIZE]image.Image
-	uBRDF uint32
-	uDiffuse uint32
+	BRDF      *image.RGBA
+	Diffuse   [IBL_SIZE]*image.RGBA
+	Specular  [IBL_SIZE]*image.RGBA
+	uBRDF     uint32
+	uDiffuse  uint32
 	uSpecular uint32
 }

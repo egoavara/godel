@@ -6,10 +6,6 @@ import (
 	"image"
 )
 
-//type program struct {
-//	glptr   uint32
-//	defines *shader.DefineList
-//}
 type Application struct {
 	glprograms []*Program
 	//
@@ -54,24 +50,21 @@ func NewApplication(vs *shader.Shader, fs *shader.Shader, camera *Camera, lighti
 		Lighting: lighting,
 	}
 }
-func (s *Application) requireProgram(defines *shader.DefineList) int {
-	// find matching program index
-	var findIdx = -1
-	for i, prog := range s.glprograms {
-		if prog.defines.Condition(defines) {
-			findIdx = i
-			break
+func (s *Application) BuildProgram(vs, fs *shader.Shader, defines *shader.DefineList) *Program {
+	if temp := s.FindProgram(vs, fs, defines); temp != nil{
+		return temp
+	}
+	temp := NewProgram(vs, fs, defines)
+	s.glprograms = append(s.glprograms, temp)
+	return temp
+}
+func (s *Application) FindProgram(vs, fs *shader.Shader, defines *shader.DefineList) *Program {
+	for _, v := range s.glprograms {
+		if v.vsid == vs.ID() && v.fsid == fs.ID() && v.defines.Condition(defines){
+			return v
 		}
 	}
-	if findIdx == -1 {
-		// Compile new program
-		s.glprograms = append(s.glprograms, NewProgram(s.vs, s.fs, defines))
-		findIdx = len(s.glprograms) - 1
-	}
-	return findIdx
-}
-func (s *Application) getProgram(i int) *Program {
-	return s.glprograms[i]
+	return nil
 }
 
 //

@@ -1,38 +1,34 @@
 package godel
 
 import (
-	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/mathgl/mgl32"
+	"github.com/google/uuid"
 	"github.com/iamGreedy/essence/version"
 	"github.com/iamGreedy/godel/shader"
 	"strings"
 )
 
 type Program struct {
-	ptr          uint32
-	defines      *shader.DefineList
-	uniformIndex map[string]int32
-	uniformData  map[int32]interface{}
-	uboPointer   map[string]uint32
+	vsid              uuid.UUID
+	fsid              uuid.UUID
+	ptr               uint32
+	defines           *shader.DefineList
+	uniformIndex      map[string]int32
+	uniformData       map[int32]interface{}
+	uniformBlockIndex map[string]uint32
 }
 
 func NewProgram(vertex, frag *shader.Shader, defines *shader.DefineList) *Program {
 	p := &Program{
+		vsid:         vertex.ID(),
+		fsid:         frag.ID(),
 		ptr:          buildProgram(vertex.Source(version.New(4, 1), *defines...), frag.Source(version.New(4, 1), *defines...)),
 		defines:      defines,
 		uniformIndex: make(map[string]int32),
 		uniformData:  make(map[int32]interface{}),
-		uboPointer:   make(map[string]uint32),
+		uniformBlockIndex: make(map[string]uint32),
 	}
-	// opengl ^4.2 support binding in layout GLSL
-	p.Use(func(p *ProgramContext) {
-		for i := 0; i < 64; i++ {
-			p.Uniform(fmt.Sprintf("JointMatrix[%d]", i), mgl32.Ident4())
-		}
-	})
-	
-	
 	return p
 }
 func (s *Program) GL() uint32 {
@@ -49,7 +45,7 @@ type ProgramContext struct {
 	ref *Program
 }
 
-func (s *ProgramContext) UniformIndex(key string) int32 {
+func (s *ProgramContext) uniformIndex(key string) int32 {
 	key = strings.Trim(key, "\x00")
 	if v, ok := s.ref.uniformIndex[key]; ok {
 		return v
@@ -61,13 +57,12 @@ func (s *ProgramContext) UniformIndex(key string) int32 {
 	}
 	return -1
 }
-
-// Do not use just Array float
 func (s *ProgramContext) Uniform(key string, data interface{}) bool {
-	if idx := s.UniformIndex(key); idx >= 0 {
+	if idx := s.uniformIndex(key); idx >= 0 {
 		if isEqualUniformData(s.ref.uniformData[idx], data) {
 			return true
 		}
+
 		s.ref.uniformData[idx] = data
 		switch d := data.(type) {
 		case int:
@@ -97,15 +92,30 @@ func (s *ProgramContext) Uniform(key string, data interface{}) bool {
 	}
 	return false
 }
+func (s *ProgramContext) uniformBlockIndex(key string) uint32 {
+	key = strings.Trim(key, "\x00")
+	if v, ok := s.ref.uniformBlockIndex[key]; ok {
+		return v
+	}
+	lc := gl.GetUniformBlockIndex(s.ref.ptr, gl.Str(key+"\x00"))
+	if lc != gl.INVALID_INDEX {
+		s.ref.uniformBlockIndex[key] = lc
+		return lc
+	}
+	return gl.INVALID_INDEX
+}
+func (s *ProgramContext) UBO(key string)  {
+
+}
 
 func isEqualUniformData(a, b interface{}) bool {
-	if oa, ok := a.([]float32); ok{
-		if ob, ok := b.([]float32); ok{
-			if len(oa) != len(ob){
+	if oa, ok := a.([]float32); ok {
+		if ob, ok := b.([]float32); ok {
+			if len(oa) != len(ob) {
 				return false
 			}
 			for i, ioa := range oa {
-				if ioa != ob[i]{
+				if ioa != ob[i] {
 					return false
 				}
 			}

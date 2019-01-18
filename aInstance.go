@@ -140,8 +140,7 @@ func (s *Instance) recurRender(root *Node, node *Node, cameraMatrix mgl32.Mat4, 
 		// render mesh
 		for _, prim := range node.src.Mesh.Primitives {
 			primUser := prim.UserData.(*primitive)
-			prog := s.model.app.getProgram(primUser.programIndex)
-			prog.Use(func(p *ProgramContext) {
+			primUser.prog.Use(func(p *ProgramContext) {
 				// matrix
 				p.Uniform("CameraMatrix", cameraMatrix)
 				p.Uniform("ModelMatrix", modelMatrix)

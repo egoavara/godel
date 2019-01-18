@@ -11,20 +11,20 @@ import (
 )
 
 type primitive struct {
-	programIndex int
-	vao          uint32
+	prog *Program
+	vao  uint32
 }
 type Model struct {
 	app  *Application
 	gltf *gltf2.GLTF
 }
 
-func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool) (*Model, error) {
+func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool, shaders... *shader.Shader) (*Model, error) {
 	res := &Model{
 		app:  s,
 		gltf: model,
 	}
-	if err := res._Setup(); err != nil {
+	if err := res._Setup(shaders); err != nil {
 		return nil, err
 	}
 	if clearCache {
@@ -34,24 +34,36 @@ func (s *Application) BuildModel(model *gltf2.GLTF, clearCache bool) (*Model, er
 }
 
 // privates
-func (s *Model) _Setup() error {
+func (s *Model) _Setup(shaders []*shader.Shader) error {
 	if err := s._Setup_accessor(); err != nil {
 		return err
 	}
 	if err := s._Setup_textures(); err != nil {
 		return err
 	}
-	if err := s._Setup_programs(); err != nil {
+	var (
+		vs = s.app.vs
+		fs = s.app.fs
+	)
+	for _, v := range shaders {
+		switch v.Type() {
+		case shader.Vertex:
+			vs = v
+		case shader.Fragment:
+			fs = v
+		}
+	}
+	if err := s._Setup_programs(vs, fs); err != nil {
 		return err
 	}
 	return nil
 }
-func (s *Model) _Setup_programs() (err error) {
+func (s *Model) _Setup_programs(vs, fs *shader.Shader) (err error) {
 	var base = shader.NewDefineList()
 	//
 	for _, mesh := range s.gltf.Meshes {
 		meshbase := base.Copy()
-		if len(mesh.Weights) > 0{
+		if len(mesh.Weights) > 0 {
 			meshbase.Add(shader.MORPH_SIZE(len(mesh.Weights)))
 		}
 		for _, prim := range mesh.Primitives {
@@ -111,7 +123,7 @@ func (s *Model) _Setup_programs() (err error) {
 				}
 			}
 			//
-			temp.programIndex = s.app.requireProgram(defs)
+			temp.prog = s.app.BuildProgram(vs, fs, defs)
 			// Setup Vao
 			gl.GenVertexArrays(1, &temp.vao)
 			gl.BindVertexArray(temp.vao)
